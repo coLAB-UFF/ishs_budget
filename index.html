@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orçamento ISHS | coLAB-UFF</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary:      #45c4a0;
+      --primary-dark: #2fa882;
+      --primary-light:#d0f3ec;
+      --accent:       #E960B2;
+      --accent-dark:  #c94497;
+      --accent-light: #fce4f4;
+      --neutral-bg:   #f4f7f6;
+      --card-bg:      #ffffff;
+      --text-main:    #1a1a2e;
+      --text-muted:   #6c757d;
+      --border:       #e2e8f0;
+      --shadow:       0 2px 8px rgba(0,0,0,0.08);
+      --shadow-lg:    0 8px 32px rgba(0,0,0,0.15);
+      --radius:       8px;
+      --font:         'Inter', system-ui, sans-serif;
+      --green-text:   #1a7a57;
+      --red-text:     #c0392b;
+    }
+
+    html, body { height: 100%; font-family: var(--font); color: var(--text-main); background: var(--neutral-bg); }
+
+    .app { display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+
+    /* ── Header ─────────────────────────────────────────────── */
+    .board-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 14px 24px 12px;
+      flex-shrink: 0;
+      box-shadow: 0 2px 12px rgba(69,196,160,0.35);
+    }
+    #board-title {
+      font-size: 1.55rem; font-weight: 700; outline: none;
+      border-bottom: 2px solid transparent; transition: border-color 0.2s;
+      display: inline-block; min-width: 80px; cursor: text; line-height: 1.3;
+    }
+    #board-title:focus { border-bottom-color: rgba(255,255,255,0.7); }
+    #board-title:empty::before { content: attr(data-placeholder); opacity: 0.45; }
+    #board-desc {
+      font-size: 0.875rem; opacity: 0.85; outline: none;
+      border-bottom: 1px solid transparent; transition: border-color 0.2s;
+      display: inline-block; min-width: 80px; cursor: text; margin-top: 3px;
+    }
+    #board-desc:focus { border-bottom-color: rgba(255,255,255,0.45); }
+    #board-desc:empty::before { content: attr(data-placeholder); opacity: 0.45; }
+
+    /* ── Toolbar ─────────────────────────────────────────────── */
+    .toolbar {
+      display: flex; align-items: center; flex-wrap: wrap;
+      gap: 8px; padding: 10px 20px;
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .filter-group {
+      display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+    }
+    .filter-label {
+      font-size: 0.72rem; font-weight: 600; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.4px; margin-right: 2px;
+    }
+    .chip {
+      padding: 4px 12px; border-radius: 20px; font-size: 0.78rem;
+      font-weight: 500; cursor: pointer; border: 1.5px solid var(--border);
+      background: white; color: var(--text-muted); transition: all 0.14s;
+      font-family: var(--font);
+    }
+    .chip:hover { border-color: var(--primary); color: var(--primary-dark); }
+    .chip.active-primary { background: var(--primary); color: white; border-color: var(--primary); }
+    .chip.active-receita { background: var(--primary-light); color: var(--primary-dark); border-color: var(--primary); }
+    .chip.active-despesa { background: var(--accent-light);  color: var(--accent-dark);  border-color: var(--accent); }
+    .chip.active-situacao { background: var(--primary-dark); color: white; border-color: var(--primary-dark); }
+    .chip-del {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: rgba(0,0,0,0.15); color: white; font-size: 9px;
+      margin-left: 4px; cursor: pointer; line-height: 1;
+    }
+    .toolbar-sep { width: 1px; height: 22px; background: var(--border); margin: 0 4px; }
+    .toolbar-spacer { flex: 1; }
+    .btn-secondary {
+      background: white; color: var(--primary-dark);
+      border: 1.5px solid var(--primary); padding: 6px 14px;
+      border-radius: var(--radius); font-size: 0.82rem; font-weight: 600;
+      cursor: pointer; font-family: var(--font); transition: background 0.14s;
+    }
+    .btn-secondary:hover { background: var(--primary-light); }
+    .btn-primary {
+      background: var(--primary); color: white; border: none;
+      padding: 7px 16px; border-radius: var(--radius);
+      font-size: 0.82rem; font-weight: 600; cursor: pointer;
+      font-family: var(--font); transition: background 0.14s;
+    }
+    .btn-primary:hover { background: var(--primary-dark); }
+
+    /* ── Table ───────────────────────────────────────────────── */
+    .table-wrapper {
+      flex: 1; overflow: auto;
+    }
+    .table-wrapper::-webkit-scrollbar { width: 8px; height: 8px; }
+    .table-wrapper::-webkit-scrollbar-track { background: var(--neutral-bg); }
+    .table-wrapper::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+    .table-wrapper::-webkit-scrollbar-thumb:hover { background: #aaa; }
+
+    #budget-table {
+      width: 100%; border-collapse: collapse;
+      min-width: 960px;
+    }
+
+    #budget-table thead th {
+      position: sticky; top: 0; z-index: 10;
+      background: var(--primary); color: white;
+      padding: 10px 10px; text-align: left;
+      font-size: 0.75rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      border-right: 1px solid rgba(255,255,255,0.15);
+      white-space: nowrap;
+    }
+    #budget-table thead th:last-child { border-right: none; }
+    #budget-table thead th.th-center { text-align: center; }
+    #budget-table thead th.th-right  { text-align: right; }
+
+    .entry-row { border-bottom: 1px solid var(--border); transition: background 0.1s; }
+    .entry-row:hover { background: #fafffe; }
+    .entry-row.receita td.col-id { border-left: 3px solid var(--primary); }
+    .entry-row.despesa td.col-id { border-left: 3px solid var(--accent); }
+
+    #budget-table td {
+      padding: 5px 8px; vertical-align: middle;
+      border-right: 1px solid var(--border); font-size: 0.83rem;
+    }
+    #budget-table td:last-child { border-right: none; }
+
+    .col-id     { width: 50px;  text-align: center; color: var(--text-muted); font-size: 0.75rem; font-weight: 600; }
+    .col-data   { width: 140px; }
+    .col-desc   { min-width: 160px; }
+    .col-forn   { min-width: 140px; }
+    .col-tipo   { width: 108px; }
+    .col-parc   { width: 82px;  text-align: center; }
+    .col-valor  { width: 120px; text-align: right; }
+    .col-sub    { width: 130px; text-align: right; font-weight: 600; }
+    .col-sit    { width: 120px; }
+    .col-act    { width: 50px;  text-align: center; }
+
+    /* ── Cell Inputs ────────────────────────────────────────── */
+    .cell-input, .cell-select {
+      width: 100%; border: none; background: transparent;
+      font-size: 0.83rem; font-family: var(--font); color: var(--text-main);
+      padding: 3px 4px; border-radius: 4px; outline: none;
+      transition: background 0.12s, box-shadow 0.12s;
+    }
+    .cell-input:focus, .cell-select:focus {
+      background: white;
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+    .cell-input[type="number"] { text-align: right; }
+    .cell-input[type="date"]   { text-align: left; cursor: pointer; }
+    .cell-select { cursor: pointer; }
+
+    .valor-wrap { display: flex; align-items: center; gap: 3px; }
+    .valor-prefix { font-size: 0.75rem; color: var(--text-muted); flex-shrink: 0; }
+
+    /* ── Tipo badge ─────────────────────────────────────────── */
+    .tipo-select-wrap { position: relative; }
+    .cell-select.sel-receita { color: var(--primary-dark); font-weight: 600; }
+    .cell-select.sel-despesa { color: var(--accent-dark);  font-weight: 600; }
+
+    /* ── Subtotal ────────────────────────────────────────────── */
+    .sub-receita { color: var(--green-text); }
+    .sub-despesa { color: var(--accent-dark); }
+
+    /* ── Delete button ──────────────────────────────────────── */
+    .btn-delete-row {
+      background: none; border: none; cursor: pointer;
+      color: #ccc; font-size: 1rem; padding: 4px 6px;
+      border-radius: 4px; transition: color 0.14s, background 0.14s;
+      font-family: var(--font);
+    }
+    .btn-delete-row:hover { color: #e53e3e; background: #fff0f0; }
+
+    /* ── Empty state ────────────────────────────────────────── */
+    .empty-state-cell {
+      padding: 40px 20px; text-align: center;
+      color: var(--text-muted); font-size: 0.88rem;
+    }
+
+    /* ── Saldo row ──────────────────────────────────────────── */
+    #budget-table tfoot tr {
+      border-top: 2px solid var(--primary);
+      background: var(--primary-light);
+    }
+    #budget-table tfoot td {
+      padding: 10px 10px; font-size: 0.82rem;
+    }
+    .saldo-label-cell {
+      font-weight: 700; color: var(--text-main);
+      font-size: 0.82rem;
+    }
+    .saldo-label-cell .saldo-title {
+      font-size: 0.9rem; font-weight: 700; margin-right: 16px;
+    }
+    .saldo-sub {
+      font-size: 0.75rem; color: var(--text-muted); margin-right: 12px;
+    }
+    .saldo-sub strong { color: var(--text-main); }
+    .saldo-total-cell {
+      text-align: right; font-size: 1rem; font-weight: 700;
+    }
+    .saldo-pos { color: var(--green-text); }
+    .saldo-neg { color: var(--red-text); }
+
+    /* ── Modal ──────────────────────────────────────────────── */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.42);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 1000; backdrop-filter: blur(2px);
+    }
+    .modal-overlay.hidden { display: none; }
+    .modal-box {
+      background: white; border-radius: 12px;
+      box-shadow: var(--shadow-lg); padding: 24px;
+      width: min(400px, 95vw); max-height: 90vh;
+      overflow-y: auto; position: relative;
+    }
+    .modal-box h2 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; }
+    .modal-close {
+      position: absolute; top: 14px; right: 14px;
+      background: none; border: none; font-size: 1.3rem; cursor: pointer;
+      color: var(--text-muted); padding: 2px 7px; border-radius: 4px;
+      transition: background 0.14s; line-height: 1;
+    }
+    .modal-close:hover { background: var(--neutral-bg); }
+
+    /* Situação modal list */
+    .sit-list { margin-bottom: 16px; display: flex; flex-direction: column; gap: 6px; }
+    .sit-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 7px 10px; background: var(--neutral-bg);
+      border-radius: var(--radius); font-size: 0.85rem;
+    }
+    .sit-item-name { font-weight: 500; }
+    .sit-item-del {
+      background: none; border: none; cursor: pointer;
+      color: #ccc; font-size: 0.9rem; padding: 2px 6px;
+      border-radius: 4px; transition: color 0.14s, background 0.14s;
+      font-family: var(--font);
+    }
+    .sit-item-del:hover:not(:disabled) { color: #e53e3e; background: #fff0f0; }
+    .sit-item-del:disabled { opacity: 0.3; cursor: default; }
+    .sit-add-row { display: flex; gap: 8px; align-items: center; }
+    .sit-add-row input {
+      flex: 1; padding: 8px 10px;
+      border: 1.5px solid var(--border); border-radius: var(--radius);
+      font-size: 0.85rem; font-family: var(--font); outline: none;
+    }
+    .sit-add-row input:focus { border-color: var(--primary); }
+
+    /* ── Embed Panel ─────────────────────────────────────────── */
+    .embed-panel {
+      position: fixed; bottom: 0; right: 24px;
+      background: white; border-radius: 12px 12px 0 0;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.11);
+      z-index: 500; min-width: 310px; max-width: 430px;
+    }
+    .embed-toggle {
+      background: var(--accent); color: white; border: none;
+      padding: 10px 20px; border-radius: 12px 12px 0 0;
+      cursor: pointer; font-weight: 700; font-size: 0.82rem;
+      font-family: var(--font); width: 100%; text-align: center;
+      letter-spacing: 0.3px; transition: background 0.14s;
+    }
+    .embed-toggle:hover { background: var(--accent-dark); }
+    .embed-body { padding: 14px 16px 16px; border-top: 1px solid var(--border); }
+    .embed-panel.collapsed .embed-body { display: none; }
+    .embed-body > p { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 11px; }
+    .embed-fields { display: flex; gap: 12px; margin-bottom: 11px; }
+    .embed-fields label {
+      display: flex; flex-direction: column; gap: 4px;
+      font-size: 0.72rem; font-weight: 600;
+      color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.4px;
+    }
+    .embed-fields input {
+      width: 90px; padding: 5px 8px;
+      border: 1.5px solid var(--border); border-radius: 6px;
+      font-size: 0.83rem; font-family: var(--font); outline: none;
+    }
+    .embed-fields input:focus { border-color: var(--primary); }
+    #embed-code {
+      width: 100%; padding: 8px; border: 1.5px solid var(--border);
+      border-radius: 6px; font-size: 0.68rem; font-family: monospace;
+      resize: none; color: var(--text-muted); background: var(--neutral-bg);
+      margin-bottom: 9px;
+    }
+    .embed-note { font-size: 0.7rem; color: var(--text-muted); margin-top: 8px; }
+    .embed-note.warn { color: #e53e3e; font-weight: 600; }
+
+    /* ── Toast & Error ───────────────────────────────────────── */
+    .toast {
+      position: fixed; bottom: 80px; left: 50%;
+      transform: translateX(-50%) translateY(16px);
+      background: #1a1a2e; color: white; padding: 9px 20px;
+      border-radius: 20px; font-size: 0.83rem; font-weight: 500;
+      opacity: 0; pointer-events: none; transition: opacity 0.28s, transform 0.28s;
+      z-index: 2000;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .error-banner {
+      background: #fff5f5; border-bottom: 1.5px solid #feb2b2;
+      color: #c53030; padding: 9px 20px; font-size: 0.82rem;
+      display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;
+    }
+    .error-banner.hidden { display: none; }
+    .error-banner button { background: none; border: none; cursor: pointer; font-size: 1.1rem; color: #c53030; }
+
+    /* ── View Mode ───────────────────────────────────────────── */
+    .app.view-mode .cell-input,
+    .app.view-mode .cell-select {
+      pointer-events: none; -webkit-appearance: none; appearance: none;
+      border: none; background: transparent; cursor: default;
+    }
+    .app.view-mode .btn-delete-row,
+    .app.view-mode #btn-add-row,
+    .app.view-mode #btn-situacao,
+    .app.view-mode .embed-panel { display: none !important; }
+    .app.view-mode [contenteditable] { pointer-events: none; outline: none !important; border-color: transparent !important; cursor: default; }
+  </style>
+</head>
+<body>
+
+<div id="app" class="app">
+
+  <!-- Error Banner -->
+  <div id="error-banner" class="error-banner hidden">
+    <span id="error-msg"></span>
+    <button onclick="document.getElementById('error-banner').classList.add('hidden')" aria-label="Fechar">&times;</button>
+  </div>
+
+  <!-- Board Header -->
+  <header class="board-header">
+    <h1 id="board-title" contenteditable="true" spellcheck="false" data-placeholder="Título do Orçamento"></h1>
+    <p  id="board-desc"  contenteditable="true" spellcheck="false" data-placeholder="Descrição..."></p>
+  </header>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <span class="filter-label">Tipo:</span>
+    <div class="filter-group" id="tipo-filters"></div>
+    <div class="toolbar-sep"></div>
+    <span class="filter-label">Situação:</span>
+    <div class="filter-group" id="situacao-filters"></div>
+    <button id="btn-situacao" class="btn-secondary" title="Gerenciar situações">⚙ Situações</button>
+    <div class="toolbar-spacer"></div>
+    <button id="btn-add-row" class="btn-primary">+ Adicionar Linha</button>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrapper">
+    <table id="budget-table">
+      <thead>
+        <tr>
+          <th class="col-id th-center">ID</th>
+          <th class="col-data">Data</th>
+          <th class="col-desc">Descrição</th>
+          <th class="col-forn">Fornecedor</th>
+          <th class="col-tipo">Tipo</th>
+          <th class="col-parc th-center">Parcelas</th>
+          <th class="col-valor th-right">Valor (R$)</th>
+          <th class="col-sub th-right">Subtotal</th>
+          <th class="col-sit">Situação</th>
+          <th class="col-act"></th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+      <tfoot>
+        <tr>
+          <td colspan="7" class="saldo-label-cell">
+            <span class="saldo-title">SALDO</span>
+            <span class="saldo-sub">↑ Receitas: <strong id="saldo-receitas">R$ 0,00</strong></span>
+            <span class="saldo-sub">↓ Despesas: <strong id="saldo-despesas">R$ 0,00</strong></span>
+          </td>
+          <td class="saldo-total-cell">
+            <span id="saldo-value" class="saldo-pos">R$ 0,00</span>
+          </td>
+          <td colspan="2"></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <!-- Situação Modal -->
+  <div id="situacao-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="sit-modal-title">
+    <div class="modal-box">
+      <button class="modal-close" id="sit-modal-close" aria-label="Fechar">&times;</button>
+      <h2 id="sit-modal-title">Gerenciar Situações</h2>
+      <div class="sit-list" id="sit-list"></div>
+      <div class="sit-add-row">
+        <input type="text" id="nova-situacao" placeholder="Nova situação..." maxlength="30">
+        <button id="btn-add-situacao" class="btn-primary">Adicionar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Embed Panel -->
+  <div id="embed-panel" class="embed-panel collapsed">
+    <button id="embed-toggle" class="embed-toggle">&lt;/&gt; Incorporar Planilha</button>
+    <div class="embed-body">
+      <p>Gere um iframe estático e somente leitura desta planilha:</p>
+      <div class="embed-fields">
+        <label>Largura (px)<input type="number" id="em-w" value="1100"></label>
+        <label>Altura (px)<input type="number" id="em-h" value="600"></label>
+      </div>
+      <textarea id="embed-code" readonly rows="4" spellcheck="false"></textarea>
+      <button id="btn-copy-embed" class="btn-primary" style="width:100%">Copiar Código</button>
+      <p id="embed-note-el" class="embed-note">Tamanho da URL: <span id="url-len">0</span> caracteres</p>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+</div><!-- /#app -->
+
+<script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* ══════════════════════════════════════════════════════════
+     1. CONSTANTS
+  ══════════════════════════════════════════════════════════ */
+
+  const LS_KEY = 'budget-v1';
+  const IS_VIEW_MODE = new URLSearchParams(window.location.search).get('view') === '1';
+
+  /* ══════════════════════════════════════════════════════════
+     2. STATE
+  ══════════════════════════════════════════════════════════ */
+
+  let state = {
+    title: 'Orçamento ISHS',
+    description: 'Programação financeira do evento ISHS | coLAB-UFF',
+    situacoes: ['Previsto', 'Efetuado'],
+    filtroTipo: 'todos',
+    filtroSituacao: 'todas',
+    nextId: 1,
+    entries: []
+  };
+
+  /* Full state replacement → save → render */
+  function setState(patch) {
+    Object.assign(state, patch);
+    if (!IS_VIEW_MODE) saveLS();
+    render();
+  }
+
+  function saveLS() {
+    try { localStorage.setItem(LS_KEY, JSON.stringify(state)); }
+    catch (e) { if (e.name === 'QuotaExceededError') showToast('Armazenamento local cheio.'); }
+  }
+
+  function loadLS() {
+    try {
+      const raw = localStorage.getItem(LS_KEY);
+      if (!raw) return;
+      const p = JSON.parse(raw);
+      p.entries = (p.entries || []).map(e => ({
+        descricao: '', fornecedor: '', tipo: 'Despesa',
+        parcelas: 1, valor: 0, situacao: 'Previsto', ...e
+      }));
+      Object.assign(state, p);
+    } catch (_) {}
+  }
+
+  /* Direct field mutation — used for text inputs (no re-render) */
+  function updateField(id, field, value) {
+    const e = state.entries.find(e => e.id === id);
+    if (!e) return;
+    e[field] = value;
+    saveLS();
+    debounceEmbedCode();
+  }
+
+  /* Field mutation + targeted DOM update — used for numeric inputs */
+  function updateNumeric(id, field, value) {
+    const e = state.entries.find(e => e.id === id);
+    if (!e) return;
+    e[field] = value;
+    saveLS();
+    updateSubtotalCell(id);
+    updateSaldoRow();
+    debounceEmbedCode();
+  }
+
+  function addEntry() {
+    const today = new Date().toISOString().split('T')[0];
+    const entry = {
+      id: state.nextId,
+      data: today,
+      descricao: '',
+      fornecedor: '',
+      tipo: 'Despesa',
+      parcelas: 1,
+      valor: 0,
+      situacao: state.situacoes[0] || 'Previsto'
+    };
+    setState({ nextId: state.nextId + 1, entries: [...state.entries, entry] });
+    // Focus description of new row after render
+    setTimeout(() => {
+      const inp = document.querySelector(`.entry-row[data-id="${entry.id}"] .inp-desc`);
+      if (inp) inp.focus();
+    }, 30);
+  }
+
+  function deleteEntry(id) {
+    setState({ entries: state.entries.filter(e => e.id !== id) });
+  }
+
+  function addSituacao(nome) {
+    if (!nome || state.situacoes.includes(nome)) return false;
+    setState({ situacoes: [...state.situacoes, nome] });
+    return true;
+  }
+
+  function removeSituacao(nome) {
+    if (state.entries.some(e => e.situacao === nome)) return false;
+    setState({ situacoes: state.situacoes.filter(s => s !== nome) });
+    return true;
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     3. FILTERS
+  ══════════════════════════════════════════════════════════ */
+
+  function getFiltered() {
+    return state.entries.filter(e => {
+      const tipoOk = state.filtroTipo === 'todos' || e.tipo.toLowerCase() === state.filtroTipo;
+      const sitOk  = state.filtroSituacao === 'todas' || e.situacao === state.filtroSituacao;
+      return tipoOk && sitOk;
+    });
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     4. RENDER
+  ══════════════════════════════════════════════════════════ */
+
+  function render() {
+    renderFilters();
+    renderTable();
+    renderEmbedCode();
+  }
+
+  function renderFilters() {
+    /* ── Tipo chips ── */
+    const tipoEl = document.getElementById('tipo-filters');
+    if (!tipoEl) return;
+    tipoEl.innerHTML = '';
+    const tipoOpts = [
+      { val: 'todos',   label: 'Todos',   cls: 'active-primary' },
+      { val: 'receita', label: 'Receita', cls: 'active-receita'  },
+      { val: 'despesa', label: 'Despesa', cls: 'active-despesa'  },
+    ];
+    tipoOpts.forEach(opt => {
+      const btn = el('button', 'chip' + (state.filtroTipo === opt.val ? ' ' + opt.cls : ''));
+      btn.textContent = opt.label;
+      btn.addEventListener('click', () => setState({ filtroTipo: opt.val }));
+      tipoEl.appendChild(btn);
+    });
+
+    /* ── Situação chips ── */
+    const sitEl = document.getElementById('situacao-filters');
+    if (!sitEl) return;
+    sitEl.innerHTML = '';
+    const allChip = el('button', 'chip' + (state.filtroSituacao === 'todas' ? ' active-primary' : ''));
+    allChip.textContent = 'Todas';
+    allChip.addEventListener('click', () => setState({ filtroSituacao: 'todas' }));
+    sitEl.appendChild(allChip);
+
+    state.situacoes.forEach(sit => {
+      const btn = el('button', 'chip' + (state.filtroSituacao === sit ? ' active-situacao' : ''));
+      btn.textContent = sit;
+      btn.addEventListener('click', () => setState({ filtroSituacao: sit }));
+      sitEl.appendChild(btn);
+    });
+  }
+
+  function renderTable() {
+    /* Save focus so we can restore after rebuild */
+    const focused = document.activeElement;
+    let focusId = null, focusField = null, cursorPos = null;
+    if (focused && focused.dataset && focused.dataset.eid) {
+      focusId    = +focused.dataset.eid;
+      focusField = focused.dataset.field;
+      if (focused.type !== 'date' && focused.type !== 'select-one') {
+        try { cursorPos = focused.selectionStart; } catch (_) {}
+      }
+    }
+
+    const tbody = document.getElementById('table-body');
+    tbody.innerHTML = '';
+
+    const filtered = getFiltered();
+    if (filtered.length === 0) {
+      const tr  = el('tr');
+      const td  = el('td', 'empty-state-cell');
+      td.colSpan = 10;
+      td.textContent = IS_VIEW_MODE
+        ? 'Nenhuma entrada registrada.'
+        : 'Nenhuma entrada. Clique em "+ Adicionar Linha" para começar.';
+      tr.appendChild(td);
+      tbody.appendChild(tr);
+    } else {
+      filtered.forEach(entry => tbody.appendChild(buildRow(entry)));
+    }
+
+    updateSaldoRow();
+
+    /* Restore focus */
+    if (focusId !== null && focusField !== null) {
+      const inp = document.querySelector(
+        `[data-eid="${focusId}"][data-field="${focusField}"]`
+      );
+      if (inp) {
+        inp.focus();
+        if (cursorPos !== null && inp.setSelectionRange) {
+          try { inp.setSelectionRange(cursorPos, cursorPos); } catch (_) {}
+        }
+      }
+    }
+  }
+
+  function buildRow(entry) {
+    const isReceita = entry.tipo === 'Receita';
+    const tr = el('tr', 'entry-row ' + (isReceita ? 'receita' : 'despesa'));
+    tr.dataset.id = entry.id;
+
+    /* ID */
+    const tdId = el('td', 'col-id');
+    tdId.textContent = entry.id;
+    tr.appendChild(tdId);
+
+    /* Data */
+    const tdData = el('td', 'col-data');
+    const inpData = makeInput('date', entry.data, entry.id, 'data');
+    inpData.className += ' cell-input';
+    if (!IS_VIEW_MODE) {
+      inpData.addEventListener('change', () => {
+        updateField(entry.id, 'data', inpData.value);
+        // date change may affect nothing structural, no full render needed
+      });
+    }
+    tdData.appendChild(inpData);
+    tr.appendChild(tdData);
+
+    /* Descrição */
+    const tdDesc = el('td', 'col-desc');
+    const inpDesc = makeInput('text', entry.descricao, entry.id, 'descricao', 'Descrição');
+    inpDesc.className += ' cell-input inp-desc';
+    if (!IS_VIEW_MODE) {
+      inpDesc.addEventListener('input', () => updateField(entry.id, 'descricao', inpDesc.value));
+    }
+    tdDesc.appendChild(inpDesc);
+    tr.appendChild(tdDesc);
+
+    /* Fornecedor */
+    const tdForn = el('td', 'col-forn');
+    const inpForn = makeInput('text', entry.fornecedor, entry.id, 'fornecedor', 'Fornecedor');
+    inpForn.className += ' cell-input';
+    if (!IS_VIEW_MODE) {
+      inpForn.addEventListener('input', () => updateField(entry.id, 'fornecedor', inpForn.value));
+    }
+    tdForn.appendChild(inpForn);
+    tr.appendChild(tdForn);
+
+    /* Tipo */
+    const tdTipo = el('td', 'col-tipo');
+    if (IS_VIEW_MODE) {
+      const badge = el('span', isReceita ? 'vbadge-receita' : 'vbadge-despesa');
+      badge.textContent = entry.tipo;
+      tdTipo.appendChild(badge);
+    } else {
+      const selTipo = el('select', 'cell-select ' + (isReceita ? 'sel-receita' : 'sel-despesa'));
+      selTipo.dataset.eid   = entry.id;
+      selTipo.dataset.field = 'tipo';
+      ['Receita', 'Despesa'].forEach(opt => {
+        const o = el('option'); o.value = opt; o.textContent = opt;
+        if (opt === entry.tipo) o.selected = true;
+        selTipo.appendChild(o);
+      });
+      selTipo.addEventListener('change', () => {
+        updateField(entry.id, 'tipo', selTipo.value);
+        render(); // tipo change affects row color + saldo
+      });
+      tdTipo.appendChild(selTipo);
+    }
+    tr.appendChild(tdTipo);
+
+    /* Parcelas */
+    const tdParc = el('td', 'col-parc');
+    const inpParc = makeInput('number', entry.parcelas, entry.id, 'parcelas');
+    inpParc.className += ' cell-input';
+    inpParc.min = '1'; inpParc.step = '1';
+    if (!IS_VIEW_MODE) {
+      inpParc.addEventListener('input', () => {
+        const v = Math.max(1, parseInt(inpParc.value) || 1);
+        updateNumeric(entry.id, 'parcelas', v);
+      });
+    }
+    tdParc.appendChild(inpParc);
+    tr.appendChild(tdParc);
+
+    /* Valor */
+    const tdValor = el('td', 'col-valor');
+    const valorWrap = el('div', 'valor-wrap');
+    const valorPrefix = el('span', 'valor-prefix'); valorPrefix.textContent = 'R$';
+    const inpValor = makeInput('number', entry.valor, entry.id, 'valor');
+    inpValor.className += ' cell-input';
+    inpValor.min = '0'; inpValor.step = '0.01';
+    if (!IS_VIEW_MODE) {
+      inpValor.addEventListener('input', () => {
+        const v = Math.max(0, parseFloat(inpValor.value) || 0);
+        updateNumeric(entry.id, 'valor', v);
+      });
+    }
+    valorWrap.appendChild(valorPrefix);
+    valorWrap.appendChild(inpValor);
+    tdValor.appendChild(valorWrap);
+    tr.appendChild(tdValor);
+
+    /* Subtotal (computed, read-only) */
+    const tdSub = el('td', 'col-sub ' + (isReceita ? 'sub-receita' : 'sub-despesa'));
+    tdSub.dataset.subtotal = entry.id;
+    tdSub.textContent = fmtBRL(entry.parcelas * entry.valor);
+    tr.appendChild(tdSub);
+
+    /* Situação */
+    const tdSit = el('td', 'col-sit');
+    if (IS_VIEW_MODE) {
+      const badge = el('span', 'vbadge-situacao');
+      badge.textContent = entry.situacao;
+      tdSit.appendChild(badge);
+    } else {
+      const selSit = el('select', 'cell-select');
+      selSit.dataset.eid   = entry.id;
+      selSit.dataset.field = 'situacao';
+      state.situacoes.forEach(sit => {
+        const o = el('option'); o.value = sit; o.textContent = sit;
+        if (sit === entry.situacao) o.selected = true;
+        selSit.appendChild(o);
+      });
+      selSit.addEventListener('change', () => {
+        updateField(entry.id, 'situacao', selSit.value);
+        // no structural re-render needed, only affects saldo if filtered
+        updateSaldoRow();
+      });
+      tdSit.appendChild(selSit);
+    }
+    tr.appendChild(tdSit);
+
+    /* Ações */
+    const tdAct = el('td', 'col-act');
+    if (!IS_VIEW_MODE) {
+      const btnDel = el('button', 'btn-delete-row');
+      btnDel.textContent = '🗑';
+      btnDel.title = 'Excluir linha';
+      btnDel.addEventListener('click', () => {
+        if (confirm(`Excluir a linha #${entry.id}?`)) deleteEntry(entry.id);
+      });
+      tdAct.appendChild(btnDel);
+    }
+    tr.appendChild(tdAct);
+
+    return tr;
+  }
+
+  function makeInput(type, value, eid, field, placeholder) {
+    const inp = el('input');
+    inp.type  = type;
+    inp.value = (value !== undefined && value !== null) ? value : '';
+    inp.dataset.eid   = eid;
+    inp.dataset.field = field;
+    if (placeholder) inp.placeholder = placeholder;
+    if (IS_VIEW_MODE) { inp.readOnly = true; inp.tabIndex = -1; }
+    return inp;
+  }
+
+  /* Targeted update: only the subtotal cell for one entry */
+  function updateSubtotalCell(id) {
+    const e  = state.entries.find(e => e.id === id);
+    const td = document.querySelector(`[data-subtotal="${id}"]`);
+    if (!e || !td) return;
+    td.textContent = fmtBRL(e.parcelas * e.valor);
+    td.className = 'col-sub ' + (e.tipo === 'Receita' ? 'sub-receita' : 'sub-despesa');
+  }
+
+  /* Targeted update: saldo row only */
+  function updateSaldoRow() {
+    const filtered = getFiltered();
+    let receitas = 0, despesas = 0;
+    filtered.forEach(e => {
+      const sub = (e.parcelas || 0) * (e.valor || 0);
+      if (e.tipo === 'Receita') receitas += sub;
+      else                      despesas += sub;
+    });
+    const saldo = receitas - despesas;
+
+    const elR = document.getElementById('saldo-receitas');
+    const elD = document.getElementById('saldo-despesas');
+    const elS = document.getElementById('saldo-value');
+    if (elR) elR.textContent = fmtBRL(receitas);
+    if (elD) elD.textContent = fmtBRL(despesas);
+    if (elS) {
+      elS.textContent = fmtBRL(Math.abs(saldo));
+      elS.className = saldo >= 0 ? 'saldo-pos' : 'saldo-neg';
+      elS.title = saldo >= 0 ? 'Saldo positivo' : 'Saldo negativo';
+    }
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     5. SITUAÇÃO MODAL
+  ══════════════════════════════════════════════════════════ */
+
+  function openSituacaoModal() {
+    renderSituacaoList();
+    document.getElementById('situacao-modal').classList.remove('hidden');
+    document.getElementById('nova-situacao').focus();
+  }
+
+  function closeSituacaoModal() {
+    document.getElementById('situacao-modal').classList.add('hidden');
+    document.getElementById('nova-situacao').value = '';
+  }
+
+  function renderSituacaoList() {
+    const list = document.getElementById('sit-list');
+    list.innerHTML = '';
+    if (state.situacoes.length === 0) {
+      const p = el('p'); p.style.color = 'var(--text-muted)'; p.style.fontSize = '0.82rem';
+      p.textContent = 'Nenhuma situação cadastrada.';
+      list.appendChild(p);
+      return;
+    }
+    state.situacoes.forEach(sit => {
+      const inUse = state.entries.some(e => e.situacao === sit);
+      const div = el('div', 'sit-item');
+      const name = el('span', 'sit-item-name'); name.textContent = sit;
+      const btn  = el('button', 'sit-item-del'); btn.textContent = '✕'; btn.title = 'Remover';
+      btn.disabled = inUse;
+      if (inUse) btn.title = 'Em uso — não pode ser removida';
+      btn.addEventListener('click', () => {
+        if (!removeSituacao(sit)) {
+          showToast('Esta situação está em uso e não pode ser removida.');
+          return;
+        }
+        // If we removed the active filter, reset it
+        if (state.filtroSituacao === sit) setState({ filtroSituacao: 'todas' });
+        renderSituacaoList();
+      });
+      div.appendChild(name);
+      div.appendChild(btn);
+      list.appendChild(div);
+    });
+  }
+
+  function initSituacaoModal() {
+    document.getElementById('btn-situacao').addEventListener('click', openSituacaoModal);
+    document.getElementById('sit-modal-close').addEventListener('click', closeSituacaoModal);
+    document.getElementById('situacao-modal').addEventListener('click', e => {
+      if (e.target === e.currentTarget) closeSituacaoModal();
+    });
+
+    const novaInput = document.getElementById('nova-situacao');
+    document.getElementById('btn-add-situacao').addEventListener('click', () => {
+      const nome = novaInput.value.trim();
+      if (!nome) { novaInput.focus(); return; }
+      if (!addSituacao(nome)) {
+        showToast('Esta situação já existe.');
+        return;
+      }
+      novaInput.value = '';
+      renderSituacaoList();
+      novaInput.focus();
+    });
+
+    novaInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') document.getElementById('btn-add-situacao').click();
+    });
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     6. INLINE HEADER EDITING
+  ══════════════════════════════════════════════════════════ */
+
+  function initInlineEdit() {
+    const titleEl = document.getElementById('board-title');
+    const descEl  = document.getElementById('board-desc');
+
+    function stripPaste(e) {
+      e.preventDefault();
+      const txt = (e.clipboardData || window.clipboardData).getData('text/plain');
+      document.execCommand('insertText', false, txt);
+    }
+    titleEl.addEventListener('paste', stripPaste);
+    descEl.addEventListener('paste',  stripPaste);
+    titleEl.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); titleEl.blur(); } });
+
+    let tT, tD;
+    titleEl.addEventListener('input', () => {
+      clearTimeout(tT);
+      tT = setTimeout(() => { state.title = titleEl.innerText.trim() || 'Orçamento'; saveLS(); debounceEmbedCode(); }, 350);
+    });
+    descEl.addEventListener('input', () => {
+      clearTimeout(tD);
+      tD = setTimeout(() => { state.description = descEl.innerText.trim(); saveLS(); debounceEmbedCode(); }, 350);
+    });
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     7. EMBED PANEL
+  ══════════════════════════════════════════════════════════ */
+
+  let _embedTimer;
+  function debounceEmbedCode() {
+    clearTimeout(_embedTimer);
+    _embedTimer = setTimeout(renderEmbedCode, 600);
+  }
+
+  function renderEmbedCode() {
+    if (IS_VIEW_MODE) return;
+    const ta   = document.getElementById('embed-code');
+    const note = document.getElementById('embed-note-el');
+    if (!ta || !note) return;
+    const encoded = LZString.compressToEncodedURIComponent(JSON.stringify(state));
+    const base    = window.location.href.split('?')[0];
+    const url     = `${base}?view=1&data=${encoded}`;
+    const w = document.getElementById('em-w').value || 1100;
+    const h = document.getElementById('em-h').value || 600;
+    ta.value = `<iframe src="${url}" width="${w}" height="${h}" frameborder="0" style="border:none;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.12)"></iframe>`;
+    const urlLen = url.length;
+    const span = document.getElementById('url-len');
+    if (span) span.textContent = urlLen;
+    if (urlLen > 2000) {
+      note.className = 'embed-note warn';
+      note.textContent = `⚠️ URL com ${urlLen} chars — pode não funcionar em alguns navegadores.`;
+    } else {
+      note.className = 'embed-note';
+      note.innerHTML = `Tamanho da URL: <span id="url-len">${urlLen}</span> caracteres`;
+    }
+  }
+
+  function initEmbed() {
+    document.getElementById('embed-toggle').addEventListener('click', () => {
+      const p = document.getElementById('embed-panel');
+      p.classList.toggle('collapsed');
+      if (!p.classList.contains('collapsed')) renderEmbedCode();
+    });
+
+    document.getElementById('btn-copy-embed').addEventListener('click', () => {
+      const code = document.getElementById('embed-code').value;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(code).then(() => {
+          const btn = document.getElementById('btn-copy-embed');
+          btn.textContent = '✓ Copiado!';
+          setTimeout(() => btn.textContent = 'Copiar Código', 2000);
+        });
+      } else {
+        document.getElementById('embed-code').select();
+        document.execCommand('copy');
+        showToast('Código copiado!');
+      }
+    });
+
+    ['em-w', 'em-h'].forEach(id =>
+      document.getElementById(id).addEventListener('input', renderEmbedCode)
+    );
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     8. LOAD FROM URL (view mode)
+  ══════════════════════════════════════════════════════════ */
+
+  function loadFromURL() {
+    const p = new URLSearchParams(window.location.search);
+    if (p.get('view') !== '1') return;
+    const raw = p.get('data');
+    if (raw) {
+      try {
+        const parsed = JSON.parse(LZString.decompressFromEncodedURIComponent(raw));
+        parsed.entries = (parsed.entries || []).map(e => ({
+          descricao: '', fornecedor: '', tipo: 'Despesa',
+          parcelas: 1, valor: 0, situacao: 'Previsto', ...e
+        }));
+        Object.assign(state, parsed);
+      } catch (_) {
+        showError('Não foi possível carregar os dados do embed.');
+      }
+    }
+    document.getElementById('app').classList.add('view-mode');
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     9. UTILITIES
+  ══════════════════════════════════════════════════════════ */
+
+  function fmtBRL(n) {
+    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(n || 0);
+  }
+
+  function el(tag, cls) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    return e;
+  }
+
+  function esc(s) {
+    return String(s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2600);
+  }
+
+  function showError(msg) {
+    document.getElementById('error-msg').textContent = msg;
+    document.getElementById('error-banner').classList.remove('hidden');
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     INIT
+  ══════════════════════════════════════════════════════════ */
+
+  document.addEventListener('DOMContentLoaded', () => {
+    if (!IS_VIEW_MODE) loadLS();
+    loadFromURL();
+
+    /* Sync header text */
+    document.getElementById('board-title').innerText = state.title;
+    document.getElementById('board-desc').innerText  = state.description;
+
+    render();
+
+    if (!IS_VIEW_MODE) {
+      initInlineEdit();
+      initSituacaoModal();
+      initEmbed();
+      document.getElementById('btn-add-row').addEventListener('click', addEntry);
+    }
+  });
+
+})();
+</script>
+</body>
+</html>
