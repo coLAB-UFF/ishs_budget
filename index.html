@@ -530,7 +530,8 @@
         return;
       }
       if (res.status === 401 || res.status === 403) {
-        setSyncStatus('error', 'Token inválido ou sem permissão');
+        if (getToken()) setSyncStatus('error', 'Token inválido ou sem permissão');
+        else            setSyncStatus('notoken', '○ Configure o token para acessar este repositório');
         return;
       }
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
