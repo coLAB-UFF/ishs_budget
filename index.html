@@ -30,103 +30,98 @@
     }
 
     html, body { height: 100%; font-family: var(--font); color: var(--text-main); background: var(--neutral-bg); }
-
     .app { display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
 
     /* ── Header ─────────────────────────────────────────────── */
     .board-header {
       background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      color: white;
-      padding: 14px 24px 12px;
-      flex-shrink: 0;
+      color: white; padding: 12px 20px 10px; flex-shrink: 0;
       box-shadow: 0 2px 12px rgba(69,196,160,0.35);
     }
+    .header-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .header-titles { flex: 1; min-width: 0; }
+    .header-controls { display: flex; align-items: center; gap: 8px; flex-shrink: 0; padding-top: 2px; }
+
     #board-title {
-      font-size: 1.55rem; font-weight: 700; outline: none;
+      font-size: 1.45rem; font-weight: 700; outline: none;
       border-bottom: 2px solid transparent; transition: border-color 0.2s;
       display: inline-block; min-width: 80px; cursor: text; line-height: 1.3;
     }
     #board-title:focus { border-bottom-color: rgba(255,255,255,0.7); }
     #board-title:empty::before { content: attr(data-placeholder); opacity: 0.45; }
     #board-desc {
-      font-size: 0.875rem; opacity: 0.85; outline: none;
+      font-size: 0.85rem; opacity: 0.85; outline: none;
       border-bottom: 1px solid transparent; transition: border-color 0.2s;
-      display: inline-block; min-width: 80px; cursor: text; margin-top: 3px;
+      display: inline-block; min-width: 80px; cursor: text; margin-top: 2px;
     }
     #board-desc:focus { border-bottom-color: rgba(255,255,255,0.45); }
     #board-desc:empty::before { content: attr(data-placeholder); opacity: 0.45; }
 
+    /* ── Sync status ─────────────────────────────────────────── */
+    .sync-status {
+      font-size: 0.72rem; font-weight: 600; padding: 4px 10px;
+      border-radius: 20px; white-space: nowrap;
+      background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9);
+      transition: background 0.2s, color 0.2s;
+    }
+    .sync-status[data-status="synced"]  { background: rgba(255,255,255,0.22); color: #fff; }
+    .sync-status[data-status="saving"]  { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.75); }
+    .sync-status[data-status="pending"] { background: rgba(255,200,0,0.25);   color: #fff7cc; }
+    .sync-status[data-status="error"]   { background: rgba(220,50,50,0.35);   color: #ffe0e0; }
+    .sync-status[data-status="notoken"] { background: rgba(255,255,255,0.1);  color: rgba(255,255,255,0.6); }
+    .sync-status[data-status="loading"] { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.7); }
+
+    .btn-token {
+      background: rgba(255,255,255,0.18); color: white; border: none;
+      width: 30px; height: 30px; border-radius: 50%; font-size: 0.9rem;
+      cursor: pointer; transition: background 0.14s; display: flex;
+      align-items: center; justify-content: center;
+    }
+    .btn-token:hover { background: rgba(255,255,255,0.3); }
+
     /* ── Toolbar ─────────────────────────────────────────────── */
     .toolbar {
       display: flex; align-items: center; flex-wrap: wrap;
-      gap: 8px; padding: 10px 20px;
-      background: var(--card-bg);
-      border-bottom: 1px solid var(--border);
-      flex-shrink: 0;
+      gap: 8px; padding: 9px 20px;
+      background: var(--card-bg); border-bottom: 1px solid var(--border); flex-shrink: 0;
     }
-    .filter-group {
-      display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
-    }
-    .filter-label {
-      font-size: 0.72rem; font-weight: 600; color: var(--text-muted);
-      text-transform: uppercase; letter-spacing: 0.4px; margin-right: 2px;
-    }
-    .chip {
-      padding: 4px 12px; border-radius: 20px; font-size: 0.78rem;
-      font-weight: 500; cursor: pointer; border: 1.5px solid var(--border);
-      background: white; color: var(--text-muted); transition: all 0.14s;
-      font-family: var(--font);
-    }
+    .filter-group { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+    .filter-label { font-size: 0.72rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.4px; margin-right: 2px; }
+    .chip { padding: 4px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 500; cursor: pointer; border: 1.5px solid var(--border); background: white; color: var(--text-muted); transition: all 0.14s; font-family: var(--font); }
     .chip:hover { border-color: var(--primary); color: var(--primary-dark); }
-    .chip.active-primary { background: var(--primary); color: white; border-color: var(--primary); }
-    .chip.active-receita { background: var(--primary-light); color: var(--primary-dark); border-color: var(--primary); }
-    .chip.active-despesa { background: var(--accent-light);  color: var(--accent-dark);  border-color: var(--accent); }
-    .chip.active-situacao { background: var(--primary-dark); color: white; border-color: var(--primary-dark); }
-    .chip-del {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 14px; height: 14px; border-radius: 50%;
-      background: rgba(0,0,0,0.15); color: white; font-size: 9px;
-      margin-left: 4px; cursor: pointer; line-height: 1;
-    }
-    .toolbar-sep { width: 1px; height: 22px; background: var(--border); margin: 0 4px; }
+    .chip.active-primary  { background: var(--primary);      color: white;              border-color: var(--primary); }
+    .chip.active-receita  { background: var(--primary-light); color: var(--primary-dark); border-color: var(--primary); }
+    .chip.active-despesa  { background: var(--accent-light);  color: var(--accent-dark);  border-color: var(--accent); }
+    .chip.active-situacao { background: var(--primary-dark);  color: white;              border-color: var(--primary-dark); }
+    .toolbar-sep    { width: 1px; height: 22px; background: var(--border); margin: 0 2px; }
     .toolbar-spacer { flex: 1; }
     .btn-secondary {
-      background: white; color: var(--primary-dark);
-      border: 1.5px solid var(--primary); padding: 6px 14px;
-      border-radius: var(--radius); font-size: 0.82rem; font-weight: 600;
+      background: white; color: var(--primary-dark); border: 1.5px solid var(--primary);
+      padding: 5px 12px; border-radius: var(--radius); font-size: 0.78rem; font-weight: 600;
       cursor: pointer; font-family: var(--font); transition: background 0.14s;
     }
     .btn-secondary:hover { background: var(--primary-light); }
     .btn-primary {
       background: var(--primary); color: white; border: none;
-      padding: 7px 16px; border-radius: var(--radius);
-      font-size: 0.82rem; font-weight: 600; cursor: pointer;
-      font-family: var(--font); transition: background 0.14s;
+      padding: 6px 14px; border-radius: var(--radius); font-size: 0.78rem; font-weight: 600;
+      cursor: pointer; font-family: var(--font); transition: background 0.14s;
     }
     .btn-primary:hover { background: var(--primary-dark); }
 
     /* ── Table ───────────────────────────────────────────────── */
-    .table-wrapper {
-      flex: 1; overflow: auto;
-    }
+    .table-wrapper { flex: 1; overflow: auto; }
     .table-wrapper::-webkit-scrollbar { width: 8px; height: 8px; }
     .table-wrapper::-webkit-scrollbar-track { background: var(--neutral-bg); }
     .table-wrapper::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
     .table-wrapper::-webkit-scrollbar-thumb:hover { background: #aaa; }
 
-    #budget-table {
-      width: 100%; border-collapse: collapse;
-      min-width: 960px;
-    }
-
+    #budget-table { width: 100%; border-collapse: collapse; min-width: 960px; }
     #budget-table thead th {
       position: sticky; top: 0; z-index: 10;
-      background: var(--primary); color: white;
-      padding: 10px 10px; text-align: left;
-      font-size: 0.75rem; font-weight: 600;
+      background: var(--primary); color: white; padding: 10px 10px;
+      text-align: left; font-size: 0.73rem; font-weight: 600;
       text-transform: uppercase; letter-spacing: 0.5px;
-      border-right: 1px solid rgba(255,255,255,0.15);
-      white-space: nowrap;
+      border-right: 1px solid rgba(255,255,255,0.15); white-space: nowrap;
     }
     #budget-table thead th:last-child { border-right: none; }
     #budget-table thead th.th-center { text-align: center; }
@@ -137,204 +132,146 @@
     .entry-row.receita td.col-id { border-left: 3px solid var(--primary); }
     .entry-row.despesa td.col-id { border-left: 3px solid var(--accent); }
 
-    #budget-table td {
-      padding: 5px 8px; vertical-align: middle;
-      border-right: 1px solid var(--border); font-size: 0.83rem;
-    }
+    #budget-table td { padding: 4px 8px; vertical-align: middle; border-right: 1px solid var(--border); font-size: 0.82rem; }
     #budget-table td:last-child { border-right: none; }
 
-    .col-id     { width: 50px;  text-align: center; color: var(--text-muted); font-size: 0.75rem; font-weight: 600; }
-    .col-data   { width: 140px; }
-    .col-desc   { min-width: 160px; }
-    .col-forn   { min-width: 140px; }
-    .col-tipo   { width: 108px; }
-    .col-parc   { width: 82px;  text-align: center; }
-    .col-valor  { width: 120px; text-align: right; }
-    .col-sub    { width: 130px; text-align: right; font-weight: 600; }
-    .col-sit    { width: 120px; }
-    .col-act    { width: 50px;  text-align: center; }
+    .col-id   { width: 50px;  text-align: center; color: var(--text-muted); font-size: 0.73rem; font-weight: 600; }
+    .col-data { width: 138px; }
+    .col-desc { min-width: 160px; }
+    .col-forn { min-width: 140px; }
+    .col-tipo { width: 106px; }
+    .col-parc { width: 80px; text-align: center; }
+    .col-valor{ width: 120px; text-align: right; }
+    .col-sub  { width: 130px; text-align: right; font-weight: 600; }
+    .col-sit  { width: 120px; }
+    .col-act  { width: 48px; text-align: center; }
 
-    /* ── Cell Inputs ────────────────────────────────────────── */
+    /* ── Cell inputs ────────────────────────────────────────── */
     .cell-input, .cell-select {
       width: 100%; border: none; background: transparent;
-      font-size: 0.83rem; font-family: var(--font); color: var(--text-main);
+      font-size: 0.82rem; font-family: var(--font); color: var(--text-main);
       padding: 3px 4px; border-radius: 4px; outline: none;
       transition: background 0.12s, box-shadow 0.12s;
     }
-    .cell-input:focus, .cell-select:focus {
-      background: white;
-      box-shadow: 0 0 0 2px var(--primary);
-    }
+    .cell-input:focus, .cell-select:focus { background: white; box-shadow: 0 0 0 2px var(--primary); }
     .cell-input[type="number"] { text-align: right; }
-    .cell-input[type="date"]   { text-align: left; cursor: pointer; }
-    .cell-select { cursor: pointer; }
-
-    .valor-wrap { display: flex; align-items: center; gap: 3px; }
-    .valor-prefix { font-size: 0.75rem; color: var(--text-muted); flex-shrink: 0; }
-
-    /* ── Tipo badge ─────────────────────────────────────────── */
-    .tipo-select-wrap { position: relative; }
+    .valor-wrap { display: flex; align-items: center; gap: 2px; }
+    .valor-prefix { font-size: 0.73rem; color: var(--text-muted); flex-shrink: 0; }
     .cell-select.sel-receita { color: var(--primary-dark); font-weight: 600; }
     .cell-select.sel-despesa { color: var(--accent-dark);  font-weight: 600; }
-
-    /* ── Subtotal ────────────────────────────────────────────── */
     .sub-receita { color: var(--green-text); }
     .sub-despesa { color: var(--accent-dark); }
 
-    /* ── Delete button ──────────────────────────────────────── */
     .btn-delete-row {
-      background: none; border: none; cursor: pointer;
-      color: #ccc; font-size: 1rem; padding: 4px 6px;
-      border-radius: 4px; transition: color 0.14s, background 0.14s;
-      font-family: var(--font);
+      background: none; border: none; cursor: pointer; color: #ccc;
+      font-size: 1rem; padding: 3px 6px; border-radius: 4px; transition: color 0.14s, background 0.14s;
     }
     .btn-delete-row:hover { color: #e53e3e; background: #fff0f0; }
 
-    /* ── Empty state ────────────────────────────────────────── */
-    .empty-state-cell {
-      padding: 40px 20px; text-align: center;
-      color: var(--text-muted); font-size: 0.88rem;
-    }
+    .empty-state-cell { padding: 40px 20px; text-align: center; color: var(--text-muted); font-size: 0.88rem; }
 
     /* ── Saldo row ──────────────────────────────────────────── */
-    #budget-table tfoot tr {
-      border-top: 2px solid var(--primary);
-      background: var(--primary-light);
-    }
-    #budget-table tfoot td {
-      padding: 10px 10px; font-size: 0.82rem;
-    }
-    .saldo-label-cell {
-      font-weight: 700; color: var(--text-main);
-      font-size: 0.82rem;
-    }
-    .saldo-label-cell .saldo-title {
-      font-size: 0.9rem; font-weight: 700; margin-right: 16px;
-    }
-    .saldo-sub {
-      font-size: 0.75rem; color: var(--text-muted); margin-right: 12px;
-    }
+    #budget-table tfoot tr { border-top: 2px solid var(--primary); background: var(--primary-light); }
+    #budget-table tfoot td { padding: 10px 10px; font-size: 0.82rem; }
+    .saldo-label-cell { font-weight: 700; }
+    .saldo-title { font-size: 0.88rem; font-weight: 700; margin-right: 16px; }
+    .saldo-sub  { font-size: 0.75rem; color: var(--text-muted); margin-right: 12px; }
     .saldo-sub strong { color: var(--text-main); }
-    .saldo-total-cell {
-      text-align: right; font-size: 1rem; font-weight: 700;
-    }
+    .saldo-total-cell { text-align: right; font-size: 1rem; font-weight: 700; }
     .saldo-pos { color: var(--green-text); }
     .saldo-neg { color: var(--red-text); }
 
-    /* ── Modal ──────────────────────────────────────────────── */
+    /* ── Modal base ─────────────────────────────────────────── */
     .modal-overlay {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.42);
+      position: fixed; inset: 0; background: rgba(0,0,0,0.42);
       display: flex; align-items: center; justify-content: center;
       z-index: 1000; backdrop-filter: blur(2px);
     }
     .modal-overlay.hidden { display: none; }
     .modal-box {
-      background: white; border-radius: 12px;
-      box-shadow: var(--shadow-lg); padding: 24px;
-      width: min(400px, 95vw); max-height: 90vh;
+      background: white; border-radius: 12px; box-shadow: var(--shadow-lg);
+      padding: 24px; width: min(440px, 95vw); max-height: 90vh;
       overflow-y: auto; position: relative;
     }
-    .modal-box h2 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; }
+    .modal-box h2 { font-size: 1rem; font-weight: 700; margin-bottom: 14px; }
     .modal-close {
       position: absolute; top: 14px; right: 14px;
       background: none; border: none; font-size: 1.3rem; cursor: pointer;
-      color: var(--text-muted); padding: 2px 7px; border-radius: 4px;
-      transition: background 0.14s; line-height: 1;
+      color: var(--text-muted); padding: 2px 7px; border-radius: 4px; transition: background 0.14s; line-height: 1;
     }
     .modal-close:hover { background: var(--neutral-bg); }
 
-    /* Situação modal list */
-    .sit-list { margin-bottom: 16px; display: flex; flex-direction: column; gap: 6px; }
-    .sit-item {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 7px 10px; background: var(--neutral-bg);
-      border-radius: var(--radius); font-size: 0.85rem;
+    /* ── Token modal ─────────────────────────────────────────── */
+    .token-intro { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 14px; line-height: 1.5; }
+    .token-field-wrap { position: relative; margin-bottom: 14px; }
+    .token-field-wrap input {
+      width: 100%; padding: 9px 38px 9px 11px;
+      border: 1.5px solid var(--border); border-radius: var(--radius);
+      font-size: 0.85rem; font-family: monospace; outline: none;
+      transition: border-color 0.18s;
     }
-    .sit-item-name { font-weight: 500; }
-    .sit-item-del {
+    .token-field-wrap input:focus { border-color: var(--primary); }
+    .btn-show-token {
+      position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
       background: none; border: none; cursor: pointer;
-      color: #ccc; font-size: 0.9rem; padding: 2px 6px;
-      border-radius: 4px; transition: color 0.14s, background 0.14s;
-      font-family: var(--font);
+      font-size: 0.8rem; color: var(--text-muted); padding: 2px 4px;
     }
+    .token-guide {
+      background: var(--neutral-bg); border-radius: var(--radius);
+      padding: 12px 14px; margin-bottom: 16px; font-size: 0.78rem; line-height: 1.6;
+    }
+    .token-guide strong { color: var(--text-main); display: block; margin-bottom: 6px; }
+    .token-guide ol { padding-left: 18px; color: var(--text-muted); }
+    .token-guide li { margin-bottom: 3px; }
+    .token-guide a { color: var(--primary-dark); }
+    .token-guide code { background: #e8f8f4; padding: 1px 5px; border-radius: 3px; font-size: 0.75rem; color: var(--primary-dark); }
+    .token-status { font-size: 0.78rem; margin-bottom: 14px; padding: 8px 12px; border-radius: var(--radius); }
+    .token-status.ok  { background: var(--primary-light); color: var(--primary-dark); }
+    .token-status.none{ background: #fff3cd; color: #856404; }
+    .modal-actions { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 4px; }
+    .btn-danger {
+      background: transparent; color: #e53e3e; border: 1.5px solid #e53e3e;
+      padding: 7px 14px; border-radius: var(--radius); font-size: 0.82rem; font-weight: 600;
+      cursor: pointer; font-family: var(--font); transition: background 0.14s, color 0.14s;
+    }
+    .btn-danger:hover { background: #e53e3e; color: white; }
+
+    /* ── Situação modal ─────────────────────────────────────── */
+    .sit-list { margin-bottom: 14px; display: flex; flex-direction: column; gap: 6px; }
+    .sit-item { display: flex; align-items: center; justify-content: space-between; padding: 7px 10px; background: var(--neutral-bg); border-radius: var(--radius); font-size: 0.85rem; }
+    .sit-item-name { font-weight: 500; }
+    .sit-item-del { background: none; border: none; cursor: pointer; color: #ccc; font-size: 0.9rem; padding: 2px 6px; border-radius: 4px; transition: color 0.14s, background 0.14s; }
     .sit-item-del:hover:not(:disabled) { color: #e53e3e; background: #fff0f0; }
     .sit-item-del:disabled { opacity: 0.3; cursor: default; }
     .sit-add-row { display: flex; gap: 8px; align-items: center; }
-    .sit-add-row input {
-      flex: 1; padding: 8px 10px;
-      border: 1.5px solid var(--border); border-radius: var(--radius);
-      font-size: 0.85rem; font-family: var(--font); outline: none;
-    }
+    .sit-add-row input { flex: 1; padding: 8px 10px; border: 1.5px solid var(--border); border-radius: var(--radius); font-size: 0.85rem; font-family: var(--font); outline: none; }
     .sit-add-row input:focus { border-color: var(--primary); }
 
-    /* ── Embed Panel ─────────────────────────────────────────── */
-    .embed-panel {
-      position: fixed; bottom: 0; right: 24px;
-      background: white; border-radius: 12px 12px 0 0;
-      box-shadow: 0 -4px 20px rgba(0,0,0,0.11);
-      z-index: 500; min-width: 310px; max-width: 430px;
-    }
-    .embed-toggle {
-      background: var(--accent); color: white; border: none;
-      padding: 10px 20px; border-radius: 12px 12px 0 0;
-      cursor: pointer; font-weight: 700; font-size: 0.82rem;
-      font-family: var(--font); width: 100%; text-align: center;
-      letter-spacing: 0.3px; transition: background 0.14s;
-    }
+    /* ── Embed panel ─────────────────────────────────────────── */
+    .embed-panel { position: fixed; bottom: 0; right: 24px; background: white; border-radius: 12px 12px 0 0; box-shadow: 0 -4px 20px rgba(0,0,0,0.11); z-index: 500; min-width: 310px; max-width: 430px; }
+    .embed-toggle { background: var(--accent); color: white; border: none; padding: 10px 20px; border-radius: 12px 12px 0 0; cursor: pointer; font-weight: 700; font-size: 0.82rem; font-family: var(--font); width: 100%; text-align: center; letter-spacing: 0.3px; transition: background 0.14s; }
     .embed-toggle:hover { background: var(--accent-dark); }
     .embed-body { padding: 14px 16px 16px; border-top: 1px solid var(--border); }
     .embed-panel.collapsed .embed-body { display: none; }
     .embed-body > p { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 11px; }
     .embed-fields { display: flex; gap: 12px; margin-bottom: 11px; }
-    .embed-fields label {
-      display: flex; flex-direction: column; gap: 4px;
-      font-size: 0.72rem; font-weight: 600;
-      color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.4px;
-    }
-    .embed-fields input {
-      width: 90px; padding: 5px 8px;
-      border: 1.5px solid var(--border); border-radius: 6px;
-      font-size: 0.83rem; font-family: var(--font); outline: none;
-    }
+    .embed-fields label { display: flex; flex-direction: column; gap: 4px; font-size: 0.72rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.4px; }
+    .embed-fields input { width: 90px; padding: 5px 8px; border: 1.5px solid var(--border); border-radius: 6px; font-size: 0.83rem; font-family: var(--font); outline: none; }
     .embed-fields input:focus { border-color: var(--primary); }
-    #embed-code {
-      width: 100%; padding: 8px; border: 1.5px solid var(--border);
-      border-radius: 6px; font-size: 0.68rem; font-family: monospace;
-      resize: none; color: var(--text-muted); background: var(--neutral-bg);
-      margin-bottom: 9px;
-    }
+    #embed-code { width: 100%; padding: 8px; border: 1.5px solid var(--border); border-radius: 6px; font-size: 0.68rem; font-family: monospace; resize: none; color: var(--text-muted); background: var(--neutral-bg); margin-bottom: 9px; }
     .embed-note { font-size: 0.7rem; color: var(--text-muted); margin-top: 8px; }
     .embed-note.warn { color: #e53e3e; font-weight: 600; }
 
     /* ── Toast & Error ───────────────────────────────────────── */
-    .toast {
-      position: fixed; bottom: 80px; left: 50%;
-      transform: translateX(-50%) translateY(16px);
-      background: #1a1a2e; color: white; padding: 9px 20px;
-      border-radius: 20px; font-size: 0.83rem; font-weight: 500;
-      opacity: 0; pointer-events: none; transition: opacity 0.28s, transform 0.28s;
-      z-index: 2000;
-    }
+    .toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(16px); background: #1a1a2e; color: white; padding: 9px 20px; border-radius: 20px; font-size: 0.83rem; font-weight: 500; opacity: 0; pointer-events: none; transition: opacity 0.28s, transform 0.28s; z-index: 2000; }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-    .error-banner {
-      background: #fff5f5; border-bottom: 1.5px solid #feb2b2;
-      color: #c53030; padding: 9px 20px; font-size: 0.82rem;
-      display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;
-    }
+    .error-banner { background: #fff5f5; border-bottom: 1.5px solid #feb2b2; color: #c53030; padding: 9px 20px; font-size: 0.82rem; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
     .error-banner.hidden { display: none; }
     .error-banner button { background: none; border: none; cursor: pointer; font-size: 1.1rem; color: #c53030; }
 
-    /* ── View Mode ───────────────────────────────────────────── */
-    .app.view-mode .cell-input,
-    .app.view-mode .cell-select {
-      pointer-events: none; -webkit-appearance: none; appearance: none;
-      border: none; background: transparent; cursor: default;
-    }
-    .app.view-mode .btn-delete-row,
-    .app.view-mode #btn-add-row,
-    .app.view-mode #btn-situacao,
-    .app.view-mode .embed-panel { display: none !important; }
+    /* ── View mode ───────────────────────────────────────────── */
+    .app.view-mode .cell-input, .app.view-mode .cell-select { pointer-events: none; -webkit-appearance: none; appearance: none; border: none; background: transparent; cursor: default; }
+    .app.view-mode .btn-delete-row, .app.view-mode #btn-add-row, .app.view-mode #btn-situacao, .app.view-mode .embed-panel, .app.view-mode .btn-token { display: none !important; }
     .app.view-mode [contenteditable] { pointer-events: none; outline: none !important; border-color: transparent !important; cursor: default; }
   </style>
 </head>
@@ -350,8 +287,16 @@
 
   <!-- Board Header -->
   <header class="board-header">
-    <h1 id="board-title" contenteditable="true" spellcheck="false" data-placeholder="Título do Orçamento"></h1>
-    <p  id="board-desc"  contenteditable="true" spellcheck="false" data-placeholder="Descrição..."></p>
+    <div class="header-top">
+      <div class="header-titles">
+        <h1 id="board-title" contenteditable="true" spellcheck="false" data-placeholder="Título do Orçamento"></h1>
+        <p  id="board-desc"  contenteditable="true" spellcheck="false" data-placeholder="Descrição..."></p>
+      </div>
+      <div class="header-controls">
+        <span id="sync-status" class="sync-status" data-status="loading">⟳ Carregando…</span>
+        <button id="btn-token" class="btn-token" title="Configurar sincronização GitHub">⚙</button>
+      </div>
+    </div>
   </header>
 
   <!-- Toolbar -->
@@ -361,7 +306,7 @@
     <div class="toolbar-sep"></div>
     <span class="filter-label">Situação:</span>
     <div class="filter-group" id="situacao-filters"></div>
-    <button id="btn-situacao" class="btn-secondary" title="Gerenciar situações">⚙ Situações</button>
+    <button id="btn-situacao" class="btn-secondary">⚙ Situações</button>
     <div class="toolbar-spacer"></div>
     <button id="btn-add-row" class="btn-primary">+ Adicionar Linha</button>
   </div>
@@ -391,13 +336,42 @@
             <span class="saldo-sub">↑ Receitas: <strong id="saldo-receitas">R$ 0,00</strong></span>
             <span class="saldo-sub">↓ Despesas: <strong id="saldo-despesas">R$ 0,00</strong></span>
           </td>
-          <td class="saldo-total-cell">
-            <span id="saldo-value" class="saldo-pos">R$ 0,00</span>
-          </td>
+          <td class="saldo-total-cell"><span id="saldo-value" class="saldo-pos">R$ 0,00</span></td>
           <td colspan="2"></td>
         </tr>
       </tfoot>
     </table>
+  </div>
+
+  <!-- Token Modal -->
+  <div id="token-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="token-modal-title">
+    <div class="modal-box">
+      <button class="modal-close" id="token-modal-close" aria-label="Fechar">&times;</button>
+      <h2 id="token-modal-title">Sincronização com GitHub</h2>
+      <p class="token-intro">
+        Insira um <strong>Personal Access Token</strong> do GitHub para salvar automaticamente
+        os dados no repositório e acessá-los de qualquer dispositivo.
+      </p>
+      <div id="token-current-status" class="token-status none">Nenhum token configurado</div>
+      <div class="token-field-wrap">
+        <input type="password" id="inp-token" placeholder="github_pat_…" autocomplete="off" spellcheck="false">
+        <button class="btn-show-token" id="btn-show-token" tabindex="-1">👁</button>
+      </div>
+      <div class="token-guide">
+        <strong>Como criar um token Fine-grained:</strong>
+        <ol>
+          <li>Acesse <a href="https://github.com/settings/personal-access-tokens/new" target="_blank">github.com → Settings → Fine-grained tokens</a></li>
+          <li>Em <em>Resource owner</em>, selecione <code>coLAB-UFF</code></li>
+          <li>Em <em>Repository access</em>, escolha <em>Only selected</em> → <code>ishs_budget</code></li>
+          <li>Em <em>Permissions → Contents</em>, selecione <strong>Read and write</strong></li>
+          <li>Gere e copie o token aqui</li>
+        </ol>
+      </div>
+      <div class="modal-actions">
+        <button id="btn-clear-token" class="btn-danger">Remover Token</button>
+        <button id="btn-save-token" class="btn-primary">Salvar e Sincronizar</button>
+      </div>
+    </div>
   </div>
 
   <!-- Situação Modal -->
@@ -407,7 +381,7 @@
       <h2 id="sit-modal-title">Gerenciar Situações</h2>
       <div class="sit-list" id="sit-list"></div>
       <div class="sit-add-row">
-        <input type="text" id="nova-situacao" placeholder="Nova situação..." maxlength="30">
+        <input type="text" id="nova-situacao" placeholder="Nova situação…" maxlength="30">
         <button id="btn-add-situacao" class="btn-primary">Adicionar</button>
       </div>
     </div>
@@ -428,10 +402,9 @@
     </div>
   </div>
 
-  <!-- Toast -->
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-</div><!-- /#app -->
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
 <script>
@@ -439,14 +412,39 @@
   'use strict';
 
   /* ══════════════════════════════════════════════════════════
-     1. CONSTANTS
+     1. GITHUB CONFIG
   ══════════════════════════════════════════════════════════ */
 
-  const LS_KEY = 'budget-v1';
+  const GH_REPO   = 'coLAB-UFF/ishs_budget';
+  const GH_BRANCH = 'main';
+  const GH_FILE   = 'data.json';
+  const GH_API    = `https://api.github.com/repos/${GH_REPO}/contents/${GH_FILE}`;
+
+  const LS_KEY    = 'budget-v1';
+  const TOKEN_KEY = 'budget-gh-token';
   const IS_VIEW_MODE = new URLSearchParams(window.location.search).get('view') === '1';
 
+  let currentSHA = null;   // SHA do data.json no repo (necessário para updates)
+  let _saveTimer = null;
+
   /* ══════════════════════════════════════════════════════════
-     2. STATE
+     2. TOKEN
+  ══════════════════════════════════════════════════════════ */
+
+  function getToken()    { return localStorage.getItem(TOKEN_KEY) || ''; }
+  function setToken(t)   { if (t) localStorage.setItem(TOKEN_KEY, t.trim()); else localStorage.removeItem(TOKEN_KEY); }
+  function clearToken()  { localStorage.removeItem(TOKEN_KEY); }
+
+  function ghHeaders(write) {
+    const h = { 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' };
+    const t = getToken();
+    if (t) h['Authorization'] = `Bearer ${t}`;
+    else if (write) throw new Error('Token não configurado');
+    return h;
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     3. STATE
   ══════════════════════════════════════════════════════════ */
 
   let state = {
@@ -459,11 +457,11 @@
     entries: []
   };
 
-  /* Full state replacement → save → render */
   function setState(patch) {
     Object.assign(state, patch);
-    if (!IS_VIEW_MODE) saveLS();
+    saveLS();
     render();
+    scheduleSave();
   }
 
   function saveLS() {
@@ -476,24 +474,21 @@
       const raw = localStorage.getItem(LS_KEY);
       if (!raw) return;
       const p = JSON.parse(raw);
-      p.entries = (p.entries || []).map(e => ({
-        descricao: '', fornecedor: '', tipo: 'Despesa',
-        parcelas: 1, valor: 0, situacao: 'Previsto', ...e
-      }));
+      p.entries = (p.entries || []).map(e => ({ descricao:'', fornecedor:'', tipo:'Despesa', parcelas:1, valor:0, situacao:'Previsto', ...e }));
       Object.assign(state, p);
     } catch (_) {}
   }
 
-  /* Direct field mutation — used for text inputs (no re-render) */
+  /* Direct mutation for text fields (no re-render, no full setState) */
   function updateField(id, field, value) {
     const e = state.entries.find(e => e.id === id);
     if (!e) return;
     e[field] = value;
     saveLS();
-    debounceEmbedCode();
+    scheduleSave();
   }
 
-  /* Field mutation + targeted DOM update — used for numeric inputs */
+  /* Direct mutation for numeric fields + targeted DOM update */
   function updateNumeric(id, field, value) {
     const e = state.entries.find(e => e.id === id);
     if (!e) return;
@@ -501,47 +496,126 @@
     saveLS();
     updateSubtotalCell(id);
     updateSaldoRow();
-    debounceEmbedCode();
+    scheduleSave();
   }
 
   function addEntry() {
     const today = new Date().toISOString().split('T')[0];
-    const entry = {
-      id: state.nextId,
-      data: today,
-      descricao: '',
-      fornecedor: '',
-      tipo: 'Despesa',
-      parcelas: 1,
-      valor: 0,
-      situacao: state.situacoes[0] || 'Previsto'
-    };
+    const entry = { id: state.nextId, data: today, descricao:'', fornecedor:'', tipo:'Despesa', parcelas:1, valor:0, situacao: state.situacoes[0] || 'Previsto' };
     setState({ nextId: state.nextId + 1, entries: [...state.entries, entry] });
-    // Focus description of new row after render
-    setTimeout(() => {
-      const inp = document.querySelector(`.entry-row[data-id="${entry.id}"] .inp-desc`);
-      if (inp) inp.focus();
-    }, 30);
+    setTimeout(() => { const i = document.querySelector(`.entry-row[data-id="${entry.id}"] .inp-desc`); if (i) i.focus(); }, 30);
   }
 
-  function deleteEntry(id) {
-    setState({ entries: state.entries.filter(e => e.id !== id) });
-  }
-
-  function addSituacao(nome) {
-    if (!nome || state.situacoes.includes(nome)) return false;
-    setState({ situacoes: [...state.situacoes, nome] });
-    return true;
-  }
-
-  function removeSituacao(nome) {
-    if (state.entries.some(e => e.situacao === nome)) return false;
-    setState({ situacoes: state.situacoes.filter(s => s !== nome) });
+  function deleteEntry(id) { setState({ entries: state.entries.filter(e => e.id !== id) }); }
+  function addSituacao(n)  { if (!n || state.situacoes.includes(n)) return false; setState({ situacoes: [...state.situacoes, n] }); return true; }
+  function removeSituacao(n) {
+    if (state.entries.some(e => e.situacao === n)) return false;
+    setState({ situacoes: state.situacoes.filter(s => s !== n) });
+    if (state.filtroSituacao === n) setState({ filtroSituacao: 'todas' });
     return true;
   }
 
   /* ══════════════════════════════════════════════════════════
-     3. FILTERS
+     4. GITHUB SYNC
+  ══════════════════════════════════════════════════════════ */
+
+  async function loadFromGitHub() {
+    setSyncStatus('loading', 'Carregando…');
+    try {
+      const res = await fetch(GH_API, { headers: ghHeaders(false) });
+      if (res.status === 404) {
+        // No data file yet — first time use
+        currentSHA = null;
+        setSyncStatus(getToken() ? 'synced' : 'notoken');
+        return;
+      }
+      if (res.status === 401 || res.status === 403) {
+        setSyncStatus('error', 'Token inválido ou sem permissão');
+        return;
+      }
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      const file = await res.json();
+      currentSHA = file.sha;
+      const decoded = JSON.parse(b64DecodeUnicode(file.content.replace(/\n/g, '')));
+      decoded.entries = (decoded.entries || []).map(e => ({ descricao:'', fornecedor:'', tipo:'Despesa', parcelas:1, valor:0, situacao:'Previsto', ...e }));
+      Object.assign(state, decoded);
+      saveLS();
+      syncHeaderText();
+      render();
+      setSyncStatus('synced');
+    } catch (err) {
+      console.warn('GitHub load failed:', err.message);
+      setSyncStatus('error', 'Erro ao carregar do repositório');
+    }
+  }
+
+  async function saveToGitHub() {
+    const token = getToken();
+    if (!token) { setSyncStatus('notoken'); return; }
+    setSyncStatus('saving', 'Salvando…');
+    try {
+      const content = b64EncodeUnicode(JSON.stringify(state, null, 2));
+      const body = { message: `Update budget data — ${new Date().toISOString()}`, content, branch: GH_BRANCH };
+      if (currentSHA) body.sha = currentSHA;
+
+      const res = await fetch(GH_API, {
+        method: 'PUT',
+        headers: ghHeaders(true),
+        body: JSON.stringify(body)
+      });
+
+      if (res.status === 409) {
+        // SHA conflict: repo was updated externally — reload and retry
+        showToast('Conflito de versão detectado. Recarregando dados do repositório…');
+        await loadFromGitHub();
+        return;
+      }
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.message || `HTTP ${res.status}`);
+      }
+
+      const result = await res.json();
+      currentSHA = result.content.sha;
+      setSyncStatus('synced');
+    } catch (err) {
+      console.warn('GitHub save failed:', err.message);
+      setSyncStatus('error', `Erro ao salvar: ${err.message}`);
+    }
+  }
+
+  /* Debounced save — fires 2.5 s after last change */
+  function scheduleSave() {
+    if (IS_VIEW_MODE) return;
+    setSyncStatus('pending', '● Alterações pendentes…');
+    clearTimeout(_saveTimer);
+    _saveTimer = setTimeout(() => saveToGitHub(), 2500);
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     5. SYNC STATUS UI
+  ══════════════════════════════════════════════════════════ */
+
+  const STATUS_LABELS = {
+    loading: '⟳ Carregando…',
+    saving:  '⏳ Salvando…',
+    pending: '● Pendente',
+    synced:  '✓ Sincronizado',
+    error:   '✗ Erro',
+    notoken: '○ Sem token'
+  };
+
+  function setSyncStatus(status, customMsg) {
+    const el = document.getElementById('sync-status');
+    if (!el) return;
+    el.dataset.status = status;
+    el.textContent = customMsg || STATUS_LABELS[status] || status;
+    el.title = customMsg || '';
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     6. FILTERS
   ══════════════════════════════════════════════════════════ */
 
   function getFiltered() {
@@ -553,7 +627,7 @@
   }
 
   /* ══════════════════════════════════════════════════════════
-     4. RENDER
+     7. RENDER
   ══════════════════════════════════════════════════════════ */
 
   function render() {
@@ -563,240 +637,143 @@
   }
 
   function renderFilters() {
-    /* ── Tipo chips ── */
     const tipoEl = document.getElementById('tipo-filters');
-    if (!tipoEl) return;
+    const sitEl  = document.getElementById('situacao-filters');
+    if (!tipoEl || !sitEl) return;
+
     tipoEl.innerHTML = '';
-    const tipoOpts = [
-      { val: 'todos',   label: 'Todos',   cls: 'active-primary' },
-      { val: 'receita', label: 'Receita', cls: 'active-receita'  },
-      { val: 'despesa', label: 'Despesa', cls: 'active-despesa'  },
-    ];
-    tipoOpts.forEach(opt => {
-      const btn = el('button', 'chip' + (state.filtroTipo === opt.val ? ' ' + opt.cls : ''));
-      btn.textContent = opt.label;
-      btn.addEventListener('click', () => setState({ filtroTipo: opt.val }));
-      tipoEl.appendChild(btn);
+    [['todos','Todos','active-primary'],['receita','Receita','active-receita'],['despesa','Despesa','active-despesa']].forEach(([val, lbl, cls]) => {
+      const b = el('button', 'chip' + (state.filtroTipo === val ? ' ' + cls : ''));
+      b.textContent = lbl;
+      b.addEventListener('click', () => setState({ filtroTipo: val }));
+      tipoEl.appendChild(b);
     });
 
-    /* ── Situação chips ── */
-    const sitEl = document.getElementById('situacao-filters');
-    if (!sitEl) return;
     sitEl.innerHTML = '';
-    const allChip = el('button', 'chip' + (state.filtroSituacao === 'todas' ? ' active-primary' : ''));
-    allChip.textContent = 'Todas';
-    allChip.addEventListener('click', () => setState({ filtroSituacao: 'todas' }));
-    sitEl.appendChild(allChip);
-
+    const allB = el('button', 'chip' + (state.filtroSituacao === 'todas' ? ' active-primary' : ''));
+    allB.textContent = 'Todas';
+    allB.addEventListener('click', () => setState({ filtroSituacao: 'todas' }));
+    sitEl.appendChild(allB);
     state.situacoes.forEach(sit => {
-      const btn = el('button', 'chip' + (state.filtroSituacao === sit ? ' active-situacao' : ''));
-      btn.textContent = sit;
-      btn.addEventListener('click', () => setState({ filtroSituacao: sit }));
-      sitEl.appendChild(btn);
+      const b = el('button', 'chip' + (state.filtroSituacao === sit ? ' active-situacao' : ''));
+      b.textContent = sit;
+      b.addEventListener('click', () => setState({ filtroSituacao: sit }));
+      sitEl.appendChild(b);
     });
   }
 
   function renderTable() {
-    /* Save focus so we can restore after rebuild */
-    const focused = document.activeElement;
-    let focusId = null, focusField = null, cursorPos = null;
+    const focused  = document.activeElement;
+    let focusId = null, focusField = null, cur = null;
     if (focused && focused.dataset && focused.dataset.eid) {
-      focusId    = +focused.dataset.eid;
-      focusField = focused.dataset.field;
-      if (focused.type !== 'date' && focused.type !== 'select-one') {
-        try { cursorPos = focused.selectionStart; } catch (_) {}
-      }
+      focusId = +focused.dataset.eid; focusField = focused.dataset.field;
+      if (focused.type !== 'date') try { cur = focused.selectionStart; } catch(_) {}
     }
 
     const tbody = document.getElementById('table-body');
     tbody.innerHTML = '';
-
     const filtered = getFiltered();
+
     if (filtered.length === 0) {
-      const tr  = el('tr');
-      const td  = el('td', 'empty-state-cell');
-      td.colSpan = 10;
-      td.textContent = IS_VIEW_MODE
-        ? 'Nenhuma entrada registrada.'
-        : 'Nenhuma entrada. Clique em "+ Adicionar Linha" para começar.';
-      tr.appendChild(td);
-      tbody.appendChild(tr);
+      const tr = el('tr'); const td = el('td', 'empty-state-cell'); td.colSpan = 10;
+      td.textContent = IS_VIEW_MODE ? 'Nenhuma entrada registrada.' : 'Nenhuma entrada. Clique em "+ Adicionar Linha" para começar.';
+      tr.appendChild(td); tbody.appendChild(tr);
     } else {
       filtered.forEach(entry => tbody.appendChild(buildRow(entry)));
     }
-
     updateSaldoRow();
 
-    /* Restore focus */
-    if (focusId !== null && focusField !== null) {
-      const inp = document.querySelector(
-        `[data-eid="${focusId}"][data-field="${focusField}"]`
-      );
-      if (inp) {
-        inp.focus();
-        if (cursorPos !== null && inp.setSelectionRange) {
-          try { inp.setSelectionRange(cursorPos, cursorPos); } catch (_) {}
-        }
-      }
+    if (focusId !== null) {
+      const inp = document.querySelector(`[data-eid="${focusId}"][data-field="${focusField}"]`);
+      if (inp) { inp.focus(); if (cur !== null && inp.setSelectionRange) try { inp.setSelectionRange(cur, cur); } catch(_) {} }
     }
   }
 
   function buildRow(entry) {
-    const isReceita = entry.tipo === 'Receita';
-    const tr = el('tr', 'entry-row ' + (isReceita ? 'receita' : 'despesa'));
+    const isR = entry.tipo === 'Receita';
+    const tr  = el('tr', 'entry-row ' + (isR ? 'receita' : 'despesa'));
     tr.dataset.id = entry.id;
 
-    /* ID */
-    const tdId = el('td', 'col-id');
-    tdId.textContent = entry.id;
-    tr.appendChild(tdId);
+    // ID
+    const tdId = el('td','col-id'); tdId.textContent = entry.id; tr.appendChild(tdId);
 
-    /* Data */
-    const tdData = el('td', 'col-data');
-    const inpData = makeInput('date', entry.data, entry.id, 'data');
-    inpData.className += ' cell-input';
+    // Data
+    const tdD = el('td','col-data');
+    const inD = mkInput('date', entry.data, entry.id, 'data');
+    if (!IS_VIEW_MODE) inD.addEventListener('change', () => { updateField(entry.id,'data',inD.value); });
+    tdD.appendChild(inD); tr.appendChild(tdD);
+
+    // Descrição
+    const tdDesc = el('td','col-desc');
+    const inDesc = mkInput('text', entry.descricao, entry.id, 'descricao', 'Descrição');
+    inDesc.className += ' inp-desc';
+    if (!IS_VIEW_MODE) inDesc.addEventListener('input', () => updateField(entry.id,'descricao',inDesc.value));
+    tdDesc.appendChild(inDesc); tr.appendChild(tdDesc);
+
+    // Fornecedor
+    const tdF = el('td','col-forn');
+    const inF = mkInput('text', entry.fornecedor, entry.id, 'fornecedor', 'Fornecedor');
+    if (!IS_VIEW_MODE) inF.addEventListener('input', () => updateField(entry.id,'fornecedor',inF.value));
+    tdF.appendChild(inF); tr.appendChild(tdF);
+
+    // Tipo
+    const tdT = el('td','col-tipo');
+    const selT = el('select', 'cell-select ' + (isR ? 'sel-receita' : 'sel-despesa'));
+    selT.dataset.eid = entry.id; selT.dataset.field = 'tipo';
+    ['Receita','Despesa'].forEach(o => { const op = el('option'); op.value = o; op.textContent = o; if (o === entry.tipo) op.selected = true; selT.appendChild(op); });
+    if (!IS_VIEW_MODE) selT.addEventListener('change', () => { updateField(entry.id,'tipo',selT.value); render(); });
+    tdT.appendChild(selT); tr.appendChild(tdT);
+
+    // Parcelas
+    const tdP = el('td','col-parc');
+    const inP = mkInput('number', entry.parcelas, entry.id, 'parcelas');
+    inP.min = '1'; inP.step = '1';
+    if (!IS_VIEW_MODE) inP.addEventListener('input', () => updateNumeric(entry.id,'parcelas', Math.max(1, parseInt(inP.value)||1)));
+    tdP.appendChild(inP); tr.appendChild(tdP);
+
+    // Valor
+    const tdV = el('td','col-valor');
+    const vWrap = el('div','valor-wrap');
+    const vPfx = el('span','valor-prefix'); vPfx.textContent = 'R$';
+    const inV = mkInput('number', entry.valor, entry.id, 'valor');
+    inV.min = '0'; inV.step = '0.01';
+    if (!IS_VIEW_MODE) inV.addEventListener('input', () => updateNumeric(entry.id,'valor', Math.max(0, parseFloat(inV.value)||0)));
+    vWrap.appendChild(vPfx); vWrap.appendChild(inV); tdV.appendChild(vWrap); tr.appendChild(tdV);
+
+    // Subtotal
+    const tdS = el('td', 'col-sub ' + (isR ? 'sub-receita' : 'sub-despesa'));
+    tdS.dataset.subtotal = entry.id;
+    tdS.textContent = fmtBRL(entry.parcelas * entry.valor);
+    tr.appendChild(tdS);
+
+    // Situação
+    const tdSit = el('td','col-sit');
+    const selSit = el('select','cell-select');
+    selSit.dataset.eid = entry.id; selSit.dataset.field = 'situacao';
+    state.situacoes.forEach(s => { const o = el('option'); o.value = s; o.textContent = s; if (s === entry.situacao) o.selected = true; selSit.appendChild(o); });
+    if (!IS_VIEW_MODE) selSit.addEventListener('change', () => { updateField(entry.id,'situacao',selSit.value); updateSaldoRow(); });
+    tdSit.appendChild(selSit); tr.appendChild(tdSit);
+
+    // Ações
+    const tdA = el('td','col-act');
     if (!IS_VIEW_MODE) {
-      inpData.addEventListener('change', () => {
-        updateField(entry.id, 'data', inpData.value);
-        // date change may affect nothing structural, no full render needed
-      });
+      const btn = el('button','btn-delete-row'); btn.textContent = '🗑'; btn.title = 'Excluir';
+      btn.addEventListener('click', () => { if (confirm(`Excluir linha #${entry.id}?`)) deleteEntry(entry.id); });
+      tdA.appendChild(btn);
     }
-    tdData.appendChild(inpData);
-    tr.appendChild(tdData);
-
-    /* Descrição */
-    const tdDesc = el('td', 'col-desc');
-    const inpDesc = makeInput('text', entry.descricao, entry.id, 'descricao', 'Descrição');
-    inpDesc.className += ' cell-input inp-desc';
-    if (!IS_VIEW_MODE) {
-      inpDesc.addEventListener('input', () => updateField(entry.id, 'descricao', inpDesc.value));
-    }
-    tdDesc.appendChild(inpDesc);
-    tr.appendChild(tdDesc);
-
-    /* Fornecedor */
-    const tdForn = el('td', 'col-forn');
-    const inpForn = makeInput('text', entry.fornecedor, entry.id, 'fornecedor', 'Fornecedor');
-    inpForn.className += ' cell-input';
-    if (!IS_VIEW_MODE) {
-      inpForn.addEventListener('input', () => updateField(entry.id, 'fornecedor', inpForn.value));
-    }
-    tdForn.appendChild(inpForn);
-    tr.appendChild(tdForn);
-
-    /* Tipo */
-    const tdTipo = el('td', 'col-tipo');
-    if (IS_VIEW_MODE) {
-      const badge = el('span', isReceita ? 'vbadge-receita' : 'vbadge-despesa');
-      badge.textContent = entry.tipo;
-      tdTipo.appendChild(badge);
-    } else {
-      const selTipo = el('select', 'cell-select ' + (isReceita ? 'sel-receita' : 'sel-despesa'));
-      selTipo.dataset.eid   = entry.id;
-      selTipo.dataset.field = 'tipo';
-      ['Receita', 'Despesa'].forEach(opt => {
-        const o = el('option'); o.value = opt; o.textContent = opt;
-        if (opt === entry.tipo) o.selected = true;
-        selTipo.appendChild(o);
-      });
-      selTipo.addEventListener('change', () => {
-        updateField(entry.id, 'tipo', selTipo.value);
-        render(); // tipo change affects row color + saldo
-      });
-      tdTipo.appendChild(selTipo);
-    }
-    tr.appendChild(tdTipo);
-
-    /* Parcelas */
-    const tdParc = el('td', 'col-parc');
-    const inpParc = makeInput('number', entry.parcelas, entry.id, 'parcelas');
-    inpParc.className += ' cell-input';
-    inpParc.min = '1'; inpParc.step = '1';
-    if (!IS_VIEW_MODE) {
-      inpParc.addEventListener('input', () => {
-        const v = Math.max(1, parseInt(inpParc.value) || 1);
-        updateNumeric(entry.id, 'parcelas', v);
-      });
-    }
-    tdParc.appendChild(inpParc);
-    tr.appendChild(tdParc);
-
-    /* Valor */
-    const tdValor = el('td', 'col-valor');
-    const valorWrap = el('div', 'valor-wrap');
-    const valorPrefix = el('span', 'valor-prefix'); valorPrefix.textContent = 'R$';
-    const inpValor = makeInput('number', entry.valor, entry.id, 'valor');
-    inpValor.className += ' cell-input';
-    inpValor.min = '0'; inpValor.step = '0.01';
-    if (!IS_VIEW_MODE) {
-      inpValor.addEventListener('input', () => {
-        const v = Math.max(0, parseFloat(inpValor.value) || 0);
-        updateNumeric(entry.id, 'valor', v);
-      });
-    }
-    valorWrap.appendChild(valorPrefix);
-    valorWrap.appendChild(inpValor);
-    tdValor.appendChild(valorWrap);
-    tr.appendChild(tdValor);
-
-    /* Subtotal (computed, read-only) */
-    const tdSub = el('td', 'col-sub ' + (isReceita ? 'sub-receita' : 'sub-despesa'));
-    tdSub.dataset.subtotal = entry.id;
-    tdSub.textContent = fmtBRL(entry.parcelas * entry.valor);
-    tr.appendChild(tdSub);
-
-    /* Situação */
-    const tdSit = el('td', 'col-sit');
-    if (IS_VIEW_MODE) {
-      const badge = el('span', 'vbadge-situacao');
-      badge.textContent = entry.situacao;
-      tdSit.appendChild(badge);
-    } else {
-      const selSit = el('select', 'cell-select');
-      selSit.dataset.eid   = entry.id;
-      selSit.dataset.field = 'situacao';
-      state.situacoes.forEach(sit => {
-        const o = el('option'); o.value = sit; o.textContent = sit;
-        if (sit === entry.situacao) o.selected = true;
-        selSit.appendChild(o);
-      });
-      selSit.addEventListener('change', () => {
-        updateField(entry.id, 'situacao', selSit.value);
-        // no structural re-render needed, only affects saldo if filtered
-        updateSaldoRow();
-      });
-      tdSit.appendChild(selSit);
-    }
-    tr.appendChild(tdSit);
-
-    /* Ações */
-    const tdAct = el('td', 'col-act');
-    if (!IS_VIEW_MODE) {
-      const btnDel = el('button', 'btn-delete-row');
-      btnDel.textContent = '🗑';
-      btnDel.title = 'Excluir linha';
-      btnDel.addEventListener('click', () => {
-        if (confirm(`Excluir a linha #${entry.id}?`)) deleteEntry(entry.id);
-      });
-      tdAct.appendChild(btnDel);
-    }
-    tr.appendChild(tdAct);
-
+    tr.appendChild(tdA);
     return tr;
   }
 
-  function makeInput(type, value, eid, field, placeholder) {
-    const inp = el('input');
-    inp.type  = type;
-    inp.value = (value !== undefined && value !== null) ? value : '';
-    inp.dataset.eid   = eid;
-    inp.dataset.field = field;
-    if (placeholder) inp.placeholder = placeholder;
-    if (IS_VIEW_MODE) { inp.readOnly = true; inp.tabIndex = -1; }
-    return inp;
+  function mkInput(type, value, eid, field, placeholder) {
+    const i = el('input','cell-input');
+    i.type = type; i.value = (value !== undefined && value !== null) ? value : '';
+    i.dataset.eid = eid; i.dataset.field = field;
+    if (placeholder) i.placeholder = placeholder;
+    if (IS_VIEW_MODE) { i.readOnly = true; i.tabIndex = -1; }
+    return i;
   }
 
-  /* Targeted update: only the subtotal cell for one entry */
   function updateSubtotalCell(id) {
     const e  = state.entries.find(e => e.id === id);
     const td = document.querySelector(`[data-subtotal="${id}"]`);
@@ -805,190 +782,140 @@
     td.className = 'col-sub ' + (e.tipo === 'Receita' ? 'sub-receita' : 'sub-despesa');
   }
 
-  /* Targeted update: saldo row only */
   function updateSaldoRow() {
     const filtered = getFiltered();
-    let receitas = 0, despesas = 0;
-    filtered.forEach(e => {
-      const sub = (e.parcelas || 0) * (e.valor || 0);
-      if (e.tipo === 'Receita') receitas += sub;
-      else                      despesas += sub;
-    });
-    const saldo = receitas - despesas;
-
+    let rec = 0, des = 0;
+    filtered.forEach(e => { const s = (e.parcelas||0)*(e.valor||0); if (e.tipo==='Receita') rec += s; else des += s; });
+    const saldo = rec - des;
     const elR = document.getElementById('saldo-receitas');
     const elD = document.getElementById('saldo-despesas');
     const elS = document.getElementById('saldo-value');
-    if (elR) elR.textContent = fmtBRL(receitas);
-    if (elD) elD.textContent = fmtBRL(despesas);
-    if (elS) {
-      elS.textContent = fmtBRL(Math.abs(saldo));
-      elS.className = saldo >= 0 ? 'saldo-pos' : 'saldo-neg';
-      elS.title = saldo >= 0 ? 'Saldo positivo' : 'Saldo negativo';
-    }
+    if (elR) elR.textContent = fmtBRL(rec);
+    if (elD) elD.textContent = fmtBRL(des);
+    if (elS) { elS.textContent = fmtBRL(Math.abs(saldo)); elS.className = saldo >= 0 ? 'saldo-pos' : 'saldo-neg'; }
   }
 
   /* ══════════════════════════════════════════════════════════
-     5. SITUAÇÃO MODAL
+     8. TOKEN MODAL
   ══════════════════════════════════════════════════════════ */
 
-  function openSituacaoModal() {
-    renderSituacaoList();
-    document.getElementById('situacao-modal').classList.remove('hidden');
-    document.getElementById('nova-situacao').focus();
+  function openTokenModal() {
+    const statusEl = document.getElementById('token-current-status');
+    const inp = document.getElementById('inp-token');
+    const hasToken = !!getToken();
+    statusEl.textContent = hasToken ? '✓ Token configurado neste dispositivo' : 'Nenhum token configurado';
+    statusEl.className = 'token-status ' + (hasToken ? 'ok' : 'none');
+    inp.value = '';
+    inp.placeholder = hasToken ? 'Insira um novo token para substituir…' : 'github_pat_…';
+    document.getElementById('token-modal').classList.remove('hidden');
+    if (!hasToken) setTimeout(() => inp.focus(), 40);
   }
 
-  function closeSituacaoModal() {
-    document.getElementById('situacao-modal').classList.add('hidden');
-    document.getElementById('nova-situacao').value = '';
+  function closeTokenModal() { document.getElementById('token-modal').classList.add('hidden'); }
+
+  function initTokenModal() {
+    document.getElementById('btn-token').addEventListener('click', openTokenModal);
+    document.getElementById('token-modal-close').addEventListener('click', closeTokenModal);
+    document.getElementById('token-modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeTokenModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeTokenModal(); });
+
+    document.getElementById('btn-show-token').addEventListener('click', () => {
+      const inp = document.getElementById('inp-token');
+      inp.type = inp.type === 'password' ? 'text' : 'password';
+    });
+
+    document.getElementById('btn-save-token').addEventListener('click', async () => {
+      const val = document.getElementById('inp-token').value.trim();
+      if (!val) { showToast('Insira o token antes de salvar.'); return; }
+      setToken(val);
+      closeTokenModal();
+      showToast('Token salvo. Sincronizando…');
+      currentSHA = null; // força re-fetch do SHA
+      await loadFromGitHub();
+    });
+
+    document.getElementById('btn-clear-token').addEventListener('click', () => {
+      if (!confirm('Remover o token? O salvamento automático será desativado.')) return;
+      clearToken();
+      closeTokenModal();
+      setSyncStatus('notoken');
+      showToast('Token removido.');
+    });
   }
+
+  /* ══════════════════════════════════════════════════════════
+     9. SITUAÇÃO MODAL
+  ══════════════════════════════════════════════════════════ */
+
+  function openSituacaoModal() { renderSituacaoList(); document.getElementById('situacao-modal').classList.remove('hidden'); document.getElementById('nova-situacao').focus(); }
+  function closeSituacaoModal() { document.getElementById('situacao-modal').classList.add('hidden'); document.getElementById('nova-situacao').value = ''; }
 
   function renderSituacaoList() {
-    const list = document.getElementById('sit-list');
-    list.innerHTML = '';
-    if (state.situacoes.length === 0) {
-      const p = el('p'); p.style.color = 'var(--text-muted)'; p.style.fontSize = '0.82rem';
-      p.textContent = 'Nenhuma situação cadastrada.';
-      list.appendChild(p);
-      return;
-    }
+    const list = document.getElementById('sit-list'); list.innerHTML = '';
+    if (!state.situacoes.length) { const p = el('p'); p.style.cssText='color:var(--text-muted);font-size:.82rem'; p.textContent='Nenhuma situação.'; list.appendChild(p); return; }
     state.situacoes.forEach(sit => {
       const inUse = state.entries.some(e => e.situacao === sit);
-      const div = el('div', 'sit-item');
-      const name = el('span', 'sit-item-name'); name.textContent = sit;
-      const btn  = el('button', 'sit-item-del'); btn.textContent = '✕'; btn.title = 'Remover';
-      btn.disabled = inUse;
-      if (inUse) btn.title = 'Em uso — não pode ser removida';
-      btn.addEventListener('click', () => {
-        if (!removeSituacao(sit)) {
-          showToast('Esta situação está em uso e não pode ser removida.');
-          return;
-        }
-        // If we removed the active filter, reset it
-        if (state.filtroSituacao === sit) setState({ filtroSituacao: 'todas' });
-        renderSituacaoList();
-      });
-      div.appendChild(name);
-      div.appendChild(btn);
-      list.appendChild(div);
+      const div = el('div','sit-item');
+      const nm  = el('span','sit-item-name'); nm.textContent = sit;
+      const btn = el('button','sit-item-del'); btn.textContent = '✕'; btn.disabled = inUse;
+      btn.title = inUse ? 'Em uso — não pode ser removida' : 'Remover';
+      btn.addEventListener('click', () => { if (!removeSituacao(sit)) { showToast('Em uso — não pode ser removida.'); return; } renderSituacaoList(); });
+      div.appendChild(nm); div.appendChild(btn); list.appendChild(div);
     });
   }
 
   function initSituacaoModal() {
     document.getElementById('btn-situacao').addEventListener('click', openSituacaoModal);
     document.getElementById('sit-modal-close').addEventListener('click', closeSituacaoModal);
-    document.getElementById('situacao-modal').addEventListener('click', e => {
-      if (e.target === e.currentTarget) closeSituacaoModal();
-    });
-
-    const novaInput = document.getElementById('nova-situacao');
-    document.getElementById('btn-add-situacao').addEventListener('click', () => {
-      const nome = novaInput.value.trim();
-      if (!nome) { novaInput.focus(); return; }
-      if (!addSituacao(nome)) {
-        showToast('Esta situação já existe.');
-        return;
-      }
-      novaInput.value = '';
-      renderSituacaoList();
-      novaInput.focus();
-    });
-
-    novaInput.addEventListener('keydown', e => {
-      if (e.key === 'Enter') document.getElementById('btn-add-situacao').click();
-    });
+    document.getElementById('situacao-modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeSituacaoModal(); });
+    const ni = document.getElementById('nova-situacao');
+    document.getElementById('btn-add-situacao').addEventListener('click', () => { const n = ni.value.trim(); if (!n) return; if (!addSituacao(n)) { showToast('Já existe.'); return; } ni.value=''; renderSituacaoList(); ni.focus(); });
+    ni.addEventListener('keydown', e => { if (e.key==='Enter') document.getElementById('btn-add-situacao').click(); });
   }
 
   /* ══════════════════════════════════════════════════════════
-     6. INLINE HEADER EDITING
+     10. INLINE HEADER EDITING
   ══════════════════════════════════════════════════════════ */
 
   function initInlineEdit() {
     const titleEl = document.getElementById('board-title');
     const descEl  = document.getElementById('board-desc');
-
-    function stripPaste(e) {
-      e.preventDefault();
-      const txt = (e.clipboardData || window.clipboardData).getData('text/plain');
-      document.execCommand('insertText', false, txt);
-    }
-    titleEl.addEventListener('paste', stripPaste);
-    descEl.addEventListener('paste',  stripPaste);
-    titleEl.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); titleEl.blur(); } });
-
+    function strip(e) { e.preventDefault(); document.execCommand('insertText',false,(e.clipboardData||window.clipboardData).getData('text/plain')); }
+    titleEl.addEventListener('paste', strip); descEl.addEventListener('paste', strip);
+    titleEl.addEventListener('keydown', e => { if (e.key==='Enter') { e.preventDefault(); titleEl.blur(); } });
     let tT, tD;
-    titleEl.addEventListener('input', () => {
-      clearTimeout(tT);
-      tT = setTimeout(() => { state.title = titleEl.innerText.trim() || 'Orçamento'; saveLS(); debounceEmbedCode(); }, 350);
-    });
-    descEl.addEventListener('input', () => {
-      clearTimeout(tD);
-      tD = setTimeout(() => { state.description = descEl.innerText.trim(); saveLS(); debounceEmbedCode(); }, 350);
-    });
+    titleEl.addEventListener('input', () => { clearTimeout(tT); tT = setTimeout(() => { state.title = titleEl.innerText.trim()||'Orçamento'; saveLS(); scheduleSave(); renderEmbedCode(); },350); });
+    descEl.addEventListener('input',  () => { clearTimeout(tD); tD = setTimeout(() => { state.description = descEl.innerText.trim(); saveLS(); scheduleSave(); renderEmbedCode(); },350); });
   }
 
   /* ══════════════════════════════════════════════════════════
-     7. EMBED PANEL
+     11. EMBED PANEL
   ══════════════════════════════════════════════════════════ */
-
-  let _embedTimer;
-  function debounceEmbedCode() {
-    clearTimeout(_embedTimer);
-    _embedTimer = setTimeout(renderEmbedCode, 600);
-  }
 
   function renderEmbedCode() {
     if (IS_VIEW_MODE) return;
-    const ta   = document.getElementById('embed-code');
-    const note = document.getElementById('embed-note-el');
-    if (!ta || !note) return;
-    const encoded = LZString.compressToEncodedURIComponent(JSON.stringify(state));
-    const base    = window.location.href.split('?')[0];
-    const url     = `${base}?view=1&data=${encoded}`;
-    const w = document.getElementById('em-w').value || 1100;
-    const h = document.getElementById('em-h').value || 600;
+    const ta = document.getElementById('embed-code'); if (!ta) return;
+    const enc = LZString.compressToEncodedURIComponent(JSON.stringify(state));
+    const url = `${window.location.href.split('?')[0]}?view=1&data=${enc}`;
+    const w = document.getElementById('em-w').value||1100, h = document.getElementById('em-h').value||600;
     ta.value = `<iframe src="${url}" width="${w}" height="${h}" frameborder="0" style="border:none;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.12)"></iframe>`;
-    const urlLen = url.length;
-    const span = document.getElementById('url-len');
-    if (span) span.textContent = urlLen;
-    if (urlLen > 2000) {
-      note.className = 'embed-note warn';
-      note.textContent = `⚠️ URL com ${urlLen} chars — pode não funcionar em alguns navegadores.`;
-    } else {
-      note.className = 'embed-note';
-      note.innerHTML = `Tamanho da URL: <span id="url-len">${urlLen}</span> caracteres`;
-    }
+    const n = url.length; const sp = document.getElementById('url-len'); if (sp) sp.textContent = n;
+    const note = document.getElementById('embed-note-el');
+    if (note) { if (n>2000) { note.className='embed-note warn'; note.textContent=`⚠️ URL com ${n} chars — pode não funcionar em alguns navegadores.`; } else { note.className='embed-note'; note.innerHTML=`Tamanho da URL: <span id="url-len">${n}</span> caracteres`; } }
   }
 
   function initEmbed() {
-    document.getElementById('embed-toggle').addEventListener('click', () => {
-      const p = document.getElementById('embed-panel');
-      p.classList.toggle('collapsed');
-      if (!p.classList.contains('collapsed')) renderEmbedCode();
-    });
-
+    document.getElementById('embed-toggle').addEventListener('click', () => { const p=document.getElementById('embed-panel'); p.classList.toggle('collapsed'); if(!p.classList.contains('collapsed')) renderEmbedCode(); });
     document.getElementById('btn-copy-embed').addEventListener('click', () => {
       const code = document.getElementById('embed-code').value;
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(code).then(() => {
-          const btn = document.getElementById('btn-copy-embed');
-          btn.textContent = '✓ Copiado!';
-          setTimeout(() => btn.textContent = 'Copiar Código', 2000);
-        });
-      } else {
-        document.getElementById('embed-code').select();
-        document.execCommand('copy');
-        showToast('Código copiado!');
-      }
+      if (navigator.clipboard) { navigator.clipboard.writeText(code).then(()=>{ const b=document.getElementById('btn-copy-embed'); b.textContent='✓ Copiado!'; setTimeout(()=>b.textContent='Copiar Código',2000); }); }
+      else { document.getElementById('embed-code').select(); document.execCommand('copy'); showToast('Copiado!'); }
     });
-
-    ['em-w', 'em-h'].forEach(id =>
-      document.getElementById(id).addEventListener('input', renderEmbedCode)
-    );
+    ['em-w','em-h'].forEach(id => document.getElementById(id).addEventListener('input', renderEmbedCode));
   }
 
   /* ══════════════════════════════════════════════════════════
-     8. LOAD FROM URL (view mode)
+     12. URL (view mode)
   ══════════════════════════════════════════════════════════ */
 
   function loadFromURL() {
@@ -998,69 +925,55 @@
     if (raw) {
       try {
         const parsed = JSON.parse(LZString.decompressFromEncodedURIComponent(raw));
-        parsed.entries = (parsed.entries || []).map(e => ({
-          descricao: '', fornecedor: '', tipo: 'Despesa',
-          parcelas: 1, valor: 0, situacao: 'Previsto', ...e
-        }));
+        parsed.entries = (parsed.entries||[]).map(e=>({descricao:'',fornecedor:'',tipo:'Despesa',parcelas:1,valor:0,situacao:'Previsto',...e}));
         Object.assign(state, parsed);
-      } catch (_) {
-        showError('Não foi possível carregar os dados do embed.');
-      }
+      } catch(_) { showError('Não foi possível carregar os dados do embed.'); }
     }
     document.getElementById('app').classList.add('view-mode');
   }
 
   /* ══════════════════════════════════════════════════════════
-     9. UTILITIES
+     13. UTILITIES
   ══════════════════════════════════════════════════════════ */
 
-  function fmtBRL(n) {
-    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(n || 0);
-  }
+  function fmtBRL(n) { return new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(n||0); }
+  function el(tag,cls) { const e=document.createElement(tag); if(cls) e.className=cls; return e; }
+  function showToast(msg) { const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2600); }
+  function showError(msg) { document.getElementById('error-msg').textContent=msg; document.getElementById('error-banner').classList.remove('hidden'); }
+  function syncHeaderText() { const t=document.getElementById('board-title'),d=document.getElementById('board-desc'); if(t&&t.innerText.trim()!==state.title) t.innerText=state.title; if(d&&d.innerText.trim()!==state.description) d.innerText=state.description; }
 
-  function el(tag, cls) {
-    const e = document.createElement(tag);
-    if (cls) e.className = cls;
-    return e;
-  }
-
-  function esc(s) {
-    return String(s)
-      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-      .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-  }
-
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2600);
-  }
-
-  function showError(msg) {
-    document.getElementById('error-msg').textContent = msg;
-    document.getElementById('error-banner').classList.remove('hidden');
-  }
+  /* Base64 ↔ Unicode (handles special chars like ã, ç, é…) */
+  function b64EncodeUnicode(str) { return btoa(unescape(encodeURIComponent(str))); }
+  function b64DecodeUnicode(b64) { return decodeURIComponent(escape(atob(b64))); }
 
   /* ══════════════════════════════════════════════════════════
      INIT
   ══════════════════════════════════════════════════════════ */
 
   document.addEventListener('DOMContentLoaded', () => {
+    // 1. Show local data immediately (fast)
     if (!IS_VIEW_MODE) loadLS();
     loadFromURL();
-
-    /* Sync header text */
-    document.getElementById('board-title').innerText = state.title;
-    document.getElementById('board-desc').innerText  = state.description;
-
+    syncHeaderText();
     render();
 
+    // 2. Wire up events
     if (!IS_VIEW_MODE) {
       initInlineEdit();
+      initTokenModal();
       initSituacaoModal();
       initEmbed();
       document.getElementById('btn-add-row').addEventListener('click', addEntry);
+
+      // 3. Sync with GitHub asynchronously (may update display)
+      if (getToken()) {
+        loadFromGitHub();
+      } else {
+        setSyncStatus('notoken', '○ Configure o token para sincronizar');
+      }
+    } else {
+      setSyncStatus('synced', '');
+      document.getElementById('sync-status').style.display = 'none';
     }
   });
 
