@@ -7,7 +7,7 @@
   ],
   "filtroTipo": "todos",
   "filtroSituacao": "todas",
-  "nextId": 24,
+  "nextId": 25,
   "entries": [
     {
       "descricao": "Edital de Apoio a Eventos",
@@ -238,6 +238,16 @@
       "situacao": "Previsto",
       "id": 23,
       "data": "2026-05-17"
+    },
+    {
+      "id": 24,
+      "data": "2026-05-17",
+      "descricao": "Passagem Aérea (Choque de Cultura)",
+      "fornecedor": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 0,
+      "situacao": "Previsto"
     }
   ]
 }
