@@ -544,7 +544,7 @@
       saveLS();
       syncHeaderText();
       render();
-      setSyncStatus('synced');
+      setSyncStatus(getToken() ? 'synced' : 'notoken', getToken() ? '' : '○ Somente leitura — configure o token para salvar');
     } catch (err) {
       console.warn('GitHub load failed:', err.message);
       setSyncStatus('error', 'Erro ao carregar do repositório');
@@ -967,11 +967,7 @@
       document.getElementById('btn-add-row').addEventListener('click', addEntry);
 
       // 3. Sync with GitHub asynchronously (may update display)
-      if (getToken()) {
-        loadFromGitHub();
-      } else {
-        setSyncStatus('notoken', '○ Configure o token para sincronizar');
-      }
+      loadFromGitHub(); // sempre carrega; PAT só necessário para salvar
     } else {
       setSyncStatus('synced', '');
       document.getElementById('sync-status').style.display = 'none';
