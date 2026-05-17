@@ -278,16 +278,6 @@
       "parcelas": 1,
       "valor": 1500,
       "situacao": "Previsto"
-    },
-    {
-      "id": 28,
-      "data": "2026-05-17",
-      "descricao": "",
-      "fornecedor": "",
-      "tipo": "Despesa",
-      "parcelas": 1,
-      "valor": 0,
-      "situacao": "Previsto"
     }
   ]
 }
