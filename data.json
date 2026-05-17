@@ -1,0 +1,243 @@
+{
+  "title": "Orçamento ISHS",
+  "description": "Programação financeira do evento ISHS | coLAB-UFF",
+  "situacoes": [
+    "Previsto",
+    "Efetuado"
+  ],
+  "filtroTipo": "todos",
+  "filtroSituacao": "todas",
+  "nextId": 24,
+  "entries": [
+    {
+      "descricao": "Edital de Apoio a Eventos",
+      "fornecedor": "Faperj",
+      "tipo": "Receita",
+      "parcelas": 1,
+      "valor": 69317.05,
+      "situacao": "Efetuado",
+      "id": 1,
+      "data": "2026-05-13"
+    },
+    {
+      "descricao": "Inscrições Efetuadas (até a presente data)",
+      "fornecedor": "ISHS 2026",
+      "tipo": "Receita",
+      "parcelas": 1,
+      "valor": 65975,
+      "situacao": "Efetuado",
+      "id": 2,
+      "data": "2026-05-16"
+    },
+    {
+      "descricao": "Inscrições Previstas",
+      "fornecedor": "ISHS 2026",
+      "tipo": "Receita",
+      "parcelas": 1,
+      "valor": 168950,
+      "situacao": "Previsto",
+      "id": 3,
+      "data": "2026-05-16"
+    },
+    {
+      "descricao": "Produção de Evento",
+      "fornecedor": "Natalia Dias",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 10000,
+      "situacao": "Previsto",
+      "id": 4,
+      "data": "2026-05-16"
+    },
+    {
+      "descricao": "Design e Identidade Visual",
+      "fornecedor": "Daniel Rios",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 2500,
+      "situacao": "Previsto",
+      "id": 5,
+      "data": "2026-05-16"
+    },
+    {
+      "descricao": "Passagem Aérea Internacional (Raúl Pérez)",
+      "fornecedor": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 10000,
+      "situacao": "Previsto",
+      "id": 6,
+      "data": "2026-05-16"
+    },
+    {
+      "descricao": "Hospedagem (Raúl Pérez)",
+      "fornecedor": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 3000,
+      "situacao": "Previsto",
+      "id": 7,
+      "data": "2026-05-16"
+    },
+    {
+      "descricao": "Passagem Aérea Nacional (Daniel Kuppermann)",
+      "fornecedor": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 1500,
+      "situacao": "Previsto",
+      "id": 8,
+      "data": "2026-05-16"
+    },
+    {
+      "descricao": "Hospedagem (Daniel Kuppermann)",
+      "fornecedor": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 3000,
+      "situacao": "Previsto",
+      "id": 9,
+      "data": "2026-05-16"
+    },
+    {
+      "descricao": "Passagem Aérea (Malfeitona)",
+      "fornecedor": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 2000,
+      "situacao": "Previsto",
+      "id": 10,
+      "data": "2026-05-16"
+    },
+    {
+      "descricao": "Hospedagem (Malfeitona)",
+      "fornecedor": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 760,
+      "situacao": "Previsto",
+      "id": 11,
+      "data": "2026-05-16"
+    },
+    {
+      "descricao": "Passagem Aérea (Clarissa Diniz)",
+      "fornecedor": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 1500,
+      "situacao": "Previsto",
+      "id": 12,
+      "data": "2026-05-16"
+    },
+    {
+      "descricao": "Hospedagem (Clarissa Diniz)",
+      "fornecedor": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 760,
+      "situacao": "Previsto",
+      "id": 13,
+      "data": "2026-05-16"
+    },
+    {
+      "descricao": "Passagem Aérea (Ismael Monticelli)",
+      "fornecedor": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 2000,
+      "situacao": "Previsto",
+      "id": 14,
+      "data": "2026-05-16"
+    },
+    {
+      "descricao": "Hospedagem (Ismael Monticelli)",
+      "fornecedor": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 760,
+      "situacao": "Previsto",
+      "id": 15,
+      "data": "2026-05-16"
+    },
+    {
+      "descricao": "Passagem Aérea (Roberto Kaz)",
+      "fornecedor": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 2000,
+      "situacao": "Previsto",
+      "id": 16,
+      "data": "2026-05-16"
+    },
+    {
+      "descricao": "Hospedagem (Roberto Kaz)",
+      "fornecedor": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 760,
+      "situacao": "Previsto",
+      "id": 17,
+      "data": "2026-05-16"
+    },
+    {
+      "descricao": "Passagem Aérea (Marcelo Zorzanelli)",
+      "fornecedor": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 1500,
+      "situacao": "Previsto",
+      "id": 18,
+      "data": "2026-05-16"
+    },
+    {
+      "descricao": "Hospedagem (Marcelo Zorzanelli)",
+      "fornecedor": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 760,
+      "situacao": "Previsto",
+      "id": 19,
+      "data": "2026-05-16"
+    },
+    {
+      "descricao": "Passagem Aérea (Thaís Leão Vieira)",
+      "fornecedor": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 3000,
+      "situacao": "Previsto",
+      "id": 20,
+      "data": "2026-05-16"
+    },
+    {
+      "descricao": "Hospedagem (Thaís Leão Vieira)",
+      "fornecedor": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 3000,
+      "situacao": "Previsto",
+      "id": 21,
+      "data": "2026-05-16"
+    },
+    {
+      "descricao": "Buffet Coffee Break",
+      "fornecedor": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 50000,
+      "situacao": "Previsto",
+      "id": 22,
+      "data": "2026-05-17"
+    },
+    {
+      "descricao": "Tradução Simultânea",
+      "fornecedor": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 60000,
+      "situacao": "Previsto",
+      "id": 23,
+      "data": "2026-05-17"
+    }
+  ]
+}
