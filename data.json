@@ -7,7 +7,7 @@
   ],
   "filtroTipo": "todos",
   "filtroSituacao": "todas",
-  "nextId": 28,
+  "nextId": 29,
   "entries": [
     {
       "descricao": "Edital de Apoio a Eventos",
@@ -271,6 +271,16 @@
     },
     {
       "id": 27,
+      "data": "2026-05-17",
+      "descricao": "Hospedagem (Suzy Brasil)",
+      "fornecedor": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 1500,
+      "situacao": "Previsto"
+    },
+    {
+      "id": 28,
       "data": "2026-05-17",
       "descricao": "",
       "fornecedor": "",
