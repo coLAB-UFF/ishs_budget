@@ -7,7 +7,7 @@
   ],
   "filtroTipo": "todos",
   "filtroSituacao": "todas",
-  "nextId": 27,
+  "nextId": 28,
   "entries": [
     {
       "descricao": "Edital de Apoio a Eventos",
@@ -262,7 +262,17 @@
     {
       "id": 26,
       "data": "2026-05-17",
-      "descricao": "Passagem Aérea (",
+      "descricao": "Passagem Aérea (Suzy Brasil)",
+      "fornecedor": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 1500,
+      "situacao": "Previsto"
+    },
+    {
+      "id": 27,
+      "data": "2026-05-17",
+      "descricao": "",
       "fornecedor": "",
       "tipo": "Despesa",
       "parcelas": 1,
