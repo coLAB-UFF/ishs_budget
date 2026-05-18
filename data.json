@@ -161,7 +161,7 @@
     },
     {
       "descricao": "Diárias (Roberto Kaz)",
-      "fornecedor": "",
+      "fornecedor": "Roberto Kaz",
       "tipo": "Despesa",
       "parcelas": 5,
       "valor": 380,
