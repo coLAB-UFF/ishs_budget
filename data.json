@@ -160,16 +160,6 @@
       "data": "2026-05-16"
     },
     {
-      "descricao": "Passagem Aérea (Roberto Kaz)",
-      "fornecedor": "",
-      "tipo": "Despesa",
-      "parcelas": 1,
-      "valor": 2000,
-      "situacao": "Previsto",
-      "id": 16,
-      "data": "2026-05-16"
-    },
-    {
       "descricao": "Hospedagem (Roberto Kaz)",
       "fornecedor": "",
       "tipo": "Despesa",
