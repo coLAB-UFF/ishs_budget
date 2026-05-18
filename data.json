@@ -165,7 +165,7 @@
       "tipo": "Despesa",
       "parcelas": 5,
       "valor": 380,
-      "situacao": "Efetuado",
+      "situacao": "Previsto",
       "id": 17,
       "data": "2026-05-16"
     },
