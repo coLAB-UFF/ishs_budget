@@ -7,7 +7,7 @@
   ],
   "filtroTipo": "todos",
   "filtroSituacao": "todas",
-  "nextId": 30,
+  "nextId": 31,
   "entries": [
     {
       "descricao": "Edital de Apoio a Eventos",
@@ -277,6 +277,16 @@
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 10000,
+      "situacao": "Previsto"
+    },
+    {
+      "id": 30,
+      "data": "2026-05-20",
+      "descricao": "",
+      "fornecedor": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 0,
       "situacao": "Previsto"
     }
   ]
