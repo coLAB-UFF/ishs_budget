@@ -214,7 +214,7 @@
       "fornecedor": "",
       "tipo": "Despesa",
       "parcelas": 1,
-      "valor": 50000,
+      "valor": 55000,
       "situacao": "Previsto",
       "id": 22,
       "data": "2026-05-17"
@@ -230,44 +230,44 @@
       "data": "2026-05-17"
     },
     {
-      "id": 24,
-      "data": "2026-05-17",
       "descricao": "Passagem Aérea (Choque de Cultura)",
       "fornecedor": "",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 1500,
-      "situacao": "Previsto"
+      "situacao": "Previsto",
+      "id": 24,
+      "data": "2026-05-17"
     },
     {
-      "id": 25,
-      "data": "2026-05-17",
       "descricao": "Hospedagem (Choque de Cultura)",
       "fornecedor": "",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 760,
-      "situacao": "Previsto"
+      "situacao": "Previsto",
+      "id": 25,
+      "data": "2026-05-17"
     },
     {
-      "id": 26,
-      "data": "2026-05-17",
       "descricao": "Passagem Aérea (Suzy Brasil)",
       "fornecedor": "",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 1500,
-      "situacao": "Previsto"
+      "situacao": "Previsto",
+      "id": 26,
+      "data": "2026-05-17"
     },
     {
-      "id": 27,
-      "data": "2026-05-17",
       "descricao": "Hospedagem (Suzy Brasil)",
       "fornecedor": "",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 1500,
-      "situacao": "Previsto"
+      "situacao": "Previsto",
+      "id": 27,
+      "data": "2026-05-17"
     }
   ]
 }
