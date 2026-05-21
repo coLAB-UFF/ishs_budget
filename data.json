@@ -8,7 +8,7 @@
   ],
   "filtroTipo": "todos",
   "filtroSituacao": "todas",
-  "nextId": 32,
+  "nextId": 33,
   "entries": [
     {
       "descricao": "Edital de Apoio a Eventos",
@@ -299,6 +299,16 @@
       "parcelas": 1,
       "valor": 380,
       "situacao": "Empenhado"
+    },
+    {
+      "id": 32,
+      "data": "2026-05-21",
+      "descricao": "Passagem (Denise Margonari)",
+      "fornecedor": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 0,
+      "situacao": "Previsto"
     }
   ]
 }
