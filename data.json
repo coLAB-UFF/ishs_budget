@@ -297,8 +297,8 @@
       "fornecedor": "",
       "tipo": "Despesa",
       "parcelas": 1,
-      "valor": 0,
-      "situacao": "Previsto"
+      "valor": 1,
+      "situacao": "Empenhado"
     }
   ]
 }
