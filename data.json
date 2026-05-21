@@ -8,7 +8,7 @@
   ],
   "filtroTipo": "todos",
   "filtroSituacao": "todas",
-  "nextId": 31,
+  "nextId": 32,
   "entries": [
     {
       "descricao": "Edital de Apoio a Eventos",
@@ -289,6 +289,16 @@
       "situacao": "Previsto",
       "id": 30,
       "data": "2026-05-20"
+    },
+    {
+      "id": 31,
+      "data": "2026-05-21",
+      "descricao": "Diárias Porta dos Fundos",
+      "fornecedor": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 0,
+      "situacao": "Previsto"
     }
   ]
 }
