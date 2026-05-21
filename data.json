@@ -166,7 +166,7 @@
       "tipo": "Despesa",
       "parcelas": 5,
       "valor": 380,
-      "situacao": "Previsto",
+      "situacao": "Empenhado",
       "id": 17,
       "data": "2026-05-16"
     },
