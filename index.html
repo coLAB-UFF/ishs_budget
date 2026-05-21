@@ -473,12 +473,22 @@
     catch (e) { if (e.name === 'QuotaExceededError') showToast('Armazenamento local cheio.'); }
   }
 
+  // Ensure default situations are always present in the correct order
+  function migrateSituacoes(s) {
+    const defaults = ['Previsto', 'Empenhado', 'Efetuado'];
+    defaults.forEach((d, i) => {
+      if (!s.includes(d)) s.splice(i, 0, d);
+    });
+    return s;
+  }
+
   function loadLS() {
     try {
       const raw = localStorage.getItem(LS_KEY);
       if (!raw) return;
       const p = JSON.parse(raw);
       p.entries = (p.entries || []).map(e => ({ descricao:'', fornecedor:'', tipo:'Despesa', parcelas:1, valor:0, situacao:'Previsto', ...e }));
+      if (p.situacoes) p.situacoes = migrateSituacoes(p.situacoes);
       Object.assign(state, p);
     } catch (_) {}
   }
@@ -544,6 +554,7 @@
       currentSHA = file.sha;
       const decoded = JSON.parse(b64DecodeUnicode(file.content.replace(/\n/g, '')));
       decoded.entries = (decoded.entries || []).map(e => ({ descricao:'', fornecedor:'', tipo:'Despesa', parcelas:1, valor:0, situacao:'Previsto', ...e }));
+      if (decoded.situacoes) decoded.situacoes = migrateSituacoes(decoded.situacoes);
       Object.assign(state, decoded);
       saveLS();
       syncHeaderText();
