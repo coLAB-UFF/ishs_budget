@@ -301,16 +301,6 @@
       "situacao": "Empenhado"
     },
     {
-      "id": 32,
-      "data": "2026-05-21",
-      "descricao": "Passagem (Denise Margonari)",
-      "fornecedor": "",
-      "tipo": "Despesa",
-      "parcelas": 1,
-      "valor": 1500,
-      "situacao": "Previsto"
-    },
-    {
       "id": 33,
       "data": "2026-05-21",
       "descricao": "Diárias (Denise Margonari)",
