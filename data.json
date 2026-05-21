@@ -3,6 +3,7 @@
   "description": "Programação financeira do evento ISHS | coLAB-UFF",
   "situacoes": [
     "Previsto",
+    "Empenhado",
     "Efetuado"
   ],
   "filtroTipo": "todos",
@@ -45,7 +46,7 @@
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 10000,
-      "situacao": "Previsto",
+      "situacao": "Empenhado",
       "id": 4,
       "data": "2026-05-16"
     },
