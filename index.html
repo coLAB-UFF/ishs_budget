@@ -135,6 +135,7 @@
     #budget-table td { padding: 4px 8px; vertical-align: middle; border-right: 1px solid var(--border); font-size: 0.82rem; }
     #budget-table td:last-child { border-right: none; }
 
+    .col-chk  { width: 36px;  text-align: center; }
     .col-id   { width: 50px;  text-align: center; color: var(--text-muted); font-size: 0.73rem; font-weight: 600; }
     .col-data { width: 138px; }
     .col-desc { min-width: 160px; }
@@ -145,6 +146,10 @@
     .col-sub  { width: 130px; text-align: right; font-weight: 600; }
     .col-sit  { width: 120px; }
     .col-act  { width: 48px; text-align: center; }
+
+    .row-chk { width: 15px; height: 15px; cursor: pointer; accent-color: var(--primary); }
+    .entry-row.inactive { opacity: 0.38; }
+    .entry-row.inactive .col-sub { text-decoration: line-through; color: var(--text-muted); }
 
     /* ── Cell inputs ────────────────────────────────────────── */
     .cell-input, .cell-select {
@@ -273,6 +278,7 @@
     .app.view-mode .cell-input, .app.view-mode .cell-select { pointer-events: none; -webkit-appearance: none; appearance: none; border: none; background: transparent; cursor: default; }
     .app.view-mode .btn-delete-row, .app.view-mode #btn-add-row, .app.view-mode #btn-situacao, .app.view-mode .embed-panel, .app.view-mode .btn-token { display: none !important; }
     .app.view-mode [contenteditable] { pointer-events: none; outline: none !important; border-color: transparent !important; cursor: default; }
+    .app.view-mode .col-chk { display: none; }
   </style>
 </head>
 <body>
@@ -316,6 +322,7 @@
     <table id="budget-table">
       <thead>
         <tr>
+          <th class="col-chk th-center"><input type="checkbox" id="chk-all" class="row-chk" title="Selecionar todas / nenhuma" checked></th>
           <th class="col-id th-center">ID</th>
           <th class="col-data">Data</th>
           <th class="col-desc">Descrição</th>
@@ -331,7 +338,7 @@
       <tbody id="table-body"></tbody>
       <tfoot>
         <tr>
-          <td colspan="7" class="saldo-label-cell">
+          <td colspan="8" class="saldo-label-cell">
             <span class="saldo-title">SALDO</span>
             <span class="saldo-sub">↑ Receitas: <strong id="saldo-receitas">R$ 0,00</strong></span>
             <span class="saldo-sub">↓ Despesas: <strong id="saldo-despesas">R$ 0,00</strong></span>
@@ -487,7 +494,7 @@
       const raw = localStorage.getItem(LS_KEY);
       if (!raw) return;
       const p = JSON.parse(raw);
-      p.entries = (p.entries || []).map(e => ({ descricao:'', fornecedor:'', tipo:'Despesa', parcelas:1, valor:0, situacao:'Previsto', ...e }));
+      p.entries = (p.entries || []).map(e => ({ descricao:'', fornecedor:'', tipo:'Despesa', parcelas:1, valor:0, situacao:'Previsto', ativo:true, ...e }));
       if (p.situacoes) p.situacoes = migrateSituacoes(p.situacoes);
       Object.assign(state, p);
     } catch (_) {}
@@ -515,7 +522,7 @@
 
   function addEntry() {
     const today = new Date().toISOString().split('T')[0];
-    const entry = { id: state.nextId, data: today, descricao:'', fornecedor:'', tipo:'Despesa', parcelas:1, valor:0, situacao: state.situacoes[0] || 'Previsto' };
+    const entry = { id: state.nextId, data: today, descricao:'', fornecedor:'', tipo:'Despesa', parcelas:1, valor:0, situacao: state.situacoes[0] || 'Previsto', ativo: true };
     setState({ nextId: state.nextId + 1, entries: [...state.entries, entry] });
     setTimeout(() => { const i = document.querySelector(`.entry-row[data-id="${entry.id}"] .inp-desc`); if (i) i.focus(); }, 30);
   }
@@ -553,7 +560,7 @@
       const file = await res.json();
       currentSHA = file.sha;
       const decoded = JSON.parse(b64DecodeUnicode(file.content.replace(/\n/g, '')));
-      decoded.entries = (decoded.entries || []).map(e => ({ descricao:'', fornecedor:'', tipo:'Despesa', parcelas:1, valor:0, situacao:'Previsto', ...e }));
+      decoded.entries = (decoded.entries || []).map(e => ({ descricao:'', fornecedor:'', tipo:'Despesa', parcelas:1, valor:0, situacao:'Previsto', ativo:true, ...e }));
       if (decoded.situacoes) decoded.situacoes = migrateSituacoes(decoded.situacoes);
       Object.assign(state, decoded);
       saveLS();
@@ -703,12 +710,24 @@
       const inp = document.querySelector(`[data-eid="${focusId}"][data-field="${focusField}"]`);
       if (inp) { inp.focus(); if (cur !== null && inp.setSelectionRange) try { inp.setSelectionRange(cur, cur); } catch(_) {} }
     }
+    updateHeaderCheckbox();
   }
 
   function buildRow(entry) {
-    const isR = entry.tipo === 'Receita';
-    const tr  = el('tr', 'entry-row ' + (isR ? 'receita' : 'despesa'));
+    const isR     = entry.tipo === 'Receita';
+    const isAtivo = entry.ativo !== false;
+    const tr  = el('tr', 'entry-row ' + (isR ? 'receita' : 'despesa') + (isAtivo ? '' : ' inactive'));
     tr.dataset.id = entry.id;
+
+    // Checkbox
+    const tdChk = el('td','col-chk');
+    if (!IS_VIEW_MODE) {
+      const chk = el('input'); chk.type = 'checkbox'; chk.className = 'row-chk';
+      chk.checked = isAtivo;
+      chk.addEventListener('change', () => toggleAtivo(entry.id));
+      tdChk.appendChild(chk);
+    }
+    tr.appendChild(tdChk);
 
     // ID
     const tdId = el('td','col-id'); tdId.textContent = entry.id; tr.appendChild(tdId);
@@ -801,7 +820,11 @@
   function updateSaldoRow() {
     const filtered = getFiltered();
     let rec = 0, des = 0;
-    filtered.forEach(e => { const s = (e.parcelas||0)*(e.valor||0); if (e.tipo==='Receita') rec += s; else des += s; });
+    // Only count rows that are active (ativo !== false)
+    filtered.filter(e => e.ativo !== false).forEach(e => {
+      const s = (e.parcelas||0)*(e.valor||0);
+      if (e.tipo==='Receita') rec += s; else des += s;
+    });
     const saldo = rec - des;
     const elR = document.getElementById('saldo-receitas');
     const elD = document.getElementById('saldo-despesas');
@@ -809,6 +832,38 @@
     if (elR) elR.textContent = fmtBRL(rec);
     if (elD) elD.textContent = fmtBRL(des);
     if (elS) { elS.textContent = fmtBRL(Math.abs(saldo)); elS.className = saldo >= 0 ? 'saldo-pos' : 'saldo-neg'; }
+  }
+
+  function toggleAtivo(id) {
+    const e = state.entries.find(e => e.id === id);
+    if (!e) return;
+    e.ativo = (e.ativo === false) ? true : false;
+    saveLS(); scheduleSave();
+    // Update row appearance without full re-render
+    const tr = document.querySelector(`.entry-row[data-id="${id}"]`);
+    if (tr) tr.classList.toggle('inactive', e.ativo === false);
+    updateSaldoRow();
+    updateHeaderCheckbox();
+  }
+
+  function setAllAtivo(val) {
+    getFiltered().forEach(e => { e.ativo = val; });
+    saveLS(); scheduleSave();
+    renderTable();
+  }
+
+  function updateHeaderCheckbox() {
+    const chk = document.getElementById('chk-all');
+    if (!chk) return;
+    const filtered = getFiltered();
+    const activeCount = filtered.filter(e => e.ativo !== false).length;
+    if (filtered.length === 0 || activeCount === filtered.length) {
+      chk.checked = true; chk.indeterminate = false;
+    } else if (activeCount === 0) {
+      chk.checked = false; chk.indeterminate = false;
+    } else {
+      chk.checked = false; chk.indeterminate = true;
+    }
   }
 
   /* ══════════════════════════════════════════════════════════
@@ -949,7 +1004,7 @@
     if (raw) {
       try {
         const parsed = JSON.parse(LZString.decompressFromEncodedURIComponent(raw));
-        parsed.entries = (parsed.entries||[]).map(e=>({descricao:'',fornecedor:'',tipo:'Despesa',parcelas:1,valor:0,situacao:'Previsto',...e}));
+        parsed.entries = (parsed.entries||[]).map(e=>({descricao:'',fornecedor:'',tipo:'Despesa',parcelas:1,valor:0,situacao:'Previsto',ativo:true,...e}));
         Object.assign(state, parsed);
       } catch(_) { showError('Não foi possível carregar os dados do embed.'); }
     }
@@ -988,6 +1043,9 @@
       initSituacaoModal();
       initEmbed();
       document.getElementById('btn-add-row').addEventListener('click', addEntry);
+      document.getElementById('chk-all').addEventListener('change', function() {
+        setAllAtivo(this.checked);
+      });
 
       // 3. Sync with GitHub asynchronously (may update display)
       loadFromGitHub(); // sempre carrega; PAT só necessário para salvar
