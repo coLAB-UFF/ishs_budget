@@ -8,7 +8,7 @@
   ],
   "filtroTipo": "todos",
   "filtroSituacao": "todas",
-  "nextId": 33,
+  "nextId": 34,
   "entries": [
     {
       "descricao": "Edital de Apoio a Eventos",
@@ -308,6 +308,16 @@
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 1500,
+      "situacao": "Previsto"
+    },
+    {
+      "id": 33,
+      "data": "2026-05-21",
+      "descricao": "Diárias Denise Margonari)",
+      "fornecedor": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 0,
       "situacao": "Previsto"
     }
   ]
