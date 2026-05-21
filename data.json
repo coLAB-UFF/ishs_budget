@@ -313,11 +313,11 @@
     {
       "id": 33,
       "data": "2026-05-21",
-      "descricao": "Diárias Denise Margonari)",
+      "descricao": "Diárias (Denise Margonari)",
       "fornecedor": "",
       "tipo": "Despesa",
-      "parcelas": 1,
-      "valor": 0,
+      "parcelas": 2,
+      "valor": 380,
       "situacao": "Previsto"
     }
   ]
