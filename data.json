@@ -316,7 +316,7 @@
       "descricao": "Diárias (Denise Margonari)",
       "fornecedor": "",
       "tipo": "Despesa",
-      "parcelas": 2,
+      "parcelas": 5,
       "valor": 380,
       "situacao": "Empenhado"
     }
