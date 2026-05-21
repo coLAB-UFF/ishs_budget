@@ -318,7 +318,7 @@
       "tipo": "Despesa",
       "parcelas": 2,
       "valor": 380,
-      "situacao": "Previsto"
+      "situacao": "Empenhado"
     }
   ]
 }
