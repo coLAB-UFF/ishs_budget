@@ -20,7 +20,7 @@
   "filtroTipo": "todos",
   "filtroSituacao": "todas",
   "groupBy": "none",
-  "nextId": 35,
+  "nextId": 36,
   "entries": [
     {
       "descricao": "Edital de Apoio a Eventos",
@@ -381,6 +381,18 @@
       "ativo": true,
       "id": 34,
       "data": "2026-05-27"
+    },
+    {
+      "id": 35,
+      "data": "2026-05-27",
+      "descricao": "Passagem (Sebástian)",
+      "fornecedor": "",
+      "rubrica": "Diárias Nacionais",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 0,
+      "situacao": "Previsto",
+      "ativo": true
     }
   ]
 }
