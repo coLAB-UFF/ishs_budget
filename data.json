@@ -6,6 +6,17 @@
     "Empenhado",
     "Efetuado"
   ],
+  "rubricas": [
+    "Diárias Nacionais",
+    "Diárias Internacionais",
+    "Passagens",
+    "Hospedagem",
+    "Papelaria e Impressão",
+    "Alimentação",
+    "Tradução Simultânea",
+    "Outros",
+    "Produção"
+  ],
   "filtroTipo": "todos",
   "filtroSituacao": "todas",
   "nextId": 34,
@@ -13,6 +24,7 @@
     {
       "descricao": "Edital de Apoio a Eventos",
       "fornecedor": "Faperj",
+      "rubrica": "Outros",
       "tipo": "Receita",
       "parcelas": 1,
       "valor": 69317.05,
@@ -24,6 +36,7 @@
     {
       "descricao": "Inscrições Efetuadas (até a presente data)",
       "fornecedor": "ISHS 2026",
+      "rubrica": "Outros",
       "tipo": "Receita",
       "parcelas": 1,
       "valor": 81275,
@@ -35,6 +48,7 @@
     {
       "descricao": "Inscrições Previstas",
       "fornecedor": "ISHS 2026",
+      "rubrica": "Outros",
       "tipo": "Receita",
       "parcelas": 1,
       "valor": 184400,
@@ -46,6 +60,7 @@
     {
       "descricao": "Produção de Evento",
       "fornecedor": "Natalia Dias",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 10000,
@@ -57,6 +72,7 @@
     {
       "descricao": "Design e Identidade Visual",
       "fornecedor": "Daniel Rios",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 2500,
@@ -68,6 +84,7 @@
     {
       "descricao": "Passagem Aérea Internacional (Raúl Pérez)",
       "fornecedor": "",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 6478.6,
@@ -79,6 +96,7 @@
     {
       "descricao": "Hospedagem (Raúl Pérez)",
       "fornecedor": "",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 3000,
@@ -90,6 +108,7 @@
     {
       "descricao": "Passagem Aérea Nacional (Daniel Kuppermann)",
       "fornecedor": "",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 1500,
@@ -101,6 +120,7 @@
     {
       "descricao": "Hospedagem (Daniel Kuppermann)",
       "fornecedor": "",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 3000,
@@ -112,6 +132,7 @@
     {
       "descricao": "Passagem Aérea (Malfeitona)",
       "fornecedor": "",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 2000,
@@ -123,6 +144,7 @@
     {
       "descricao": "Hospedagem (Malfeitona)",
       "fornecedor": "",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 760,
@@ -134,6 +156,7 @@
     {
       "descricao": "Passagem Aérea (Clarissa Diniz)",
       "fornecedor": "",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 1500,
@@ -145,6 +168,7 @@
     {
       "descricao": "Hospedagem (Clarissa Diniz)",
       "fornecedor": "",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 760,
@@ -156,6 +180,7 @@
     {
       "descricao": "Passagem Aérea (Ismael Monticelli)",
       "fornecedor": "",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 2000,
@@ -167,6 +192,7 @@
     {
       "descricao": "Hospedagem (Ismael Monticelli)",
       "fornecedor": "",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 760,
@@ -178,6 +204,7 @@
     {
       "descricao": "Diárias (Roberto Kaz)",
       "fornecedor": "Roberto Kaz",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 5,
       "valor": 380,
@@ -189,6 +216,7 @@
     {
       "descricao": "Passagem Aérea (Marcelo Zorzanelli)",
       "fornecedor": "",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 1500,
@@ -200,6 +228,7 @@
     {
       "descricao": "Hospedagem (Marcelo Zorzanelli)",
       "fornecedor": "",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 760,
@@ -211,6 +240,7 @@
     {
       "descricao": "Passagem Aérea (Thaís Leão)",
       "fornecedor": "Thaís Leão Vieira",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 1327.17,
@@ -222,6 +252,7 @@
     {
       "descricao": "Hospedagem (Thaís Leão)",
       "fornecedor": "Thaís Leão Vieira",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 3000,
@@ -233,6 +264,7 @@
     {
       "descricao": "Buffet Coffee Break",
       "fornecedor": "",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 55000,
@@ -244,6 +276,7 @@
     {
       "descricao": "Tradução Simultânea",
       "fornecedor": "",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 60000,
@@ -255,6 +288,7 @@
     {
       "descricao": "Passagem Aérea (Choque de Cultura)",
       "fornecedor": "",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 1500,
@@ -266,6 +300,7 @@
     {
       "descricao": "Hospedagem (Choque de Cultura)",
       "fornecedor": "",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 760,
@@ -277,6 +312,7 @@
     {
       "descricao": "Passagem Aérea (Suzy Brasil)",
       "fornecedor": "",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 1500,
@@ -288,6 +324,7 @@
     {
       "descricao": "Hospedagem (Suzy Brasil)",
       "fornecedor": "",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 1500,
@@ -299,6 +336,7 @@
     {
       "descricao": "Zeladoria",
       "fornecedor": "",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 5775,
@@ -310,6 +348,7 @@
     {
       "descricao": "Teatro Reserva",
       "fornecedor": "",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 2500,
@@ -321,6 +360,7 @@
     {
       "descricao": "Diárias (Porta dos Fundos)",
       "fornecedor": "",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 380,
@@ -332,6 +372,7 @@
     {
       "descricao": "Diárias (Denise Margonari)",
       "fornecedor": "",
+      "rubrica": "Outros",
       "tipo": "Despesa",
       "parcelas": 5,
       "valor": 380,
