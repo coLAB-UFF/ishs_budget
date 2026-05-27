@@ -109,7 +109,7 @@
     {
       "descricao": "Passagem Aérea Nacional (Daniel Kuppermann)",
       "fornecedor": "",
-      "rubrica": "Outros",
+      "rubrica": "Passagens",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 1500,
@@ -121,7 +121,7 @@
     {
       "descricao": "Hospedagem (Daniel Kuppermann)",
       "fornecedor": "",
-      "rubrica": "Outros",
+      "rubrica": "Hospedagem",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 3000,
