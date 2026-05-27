@@ -265,7 +265,7 @@
     {
       "descricao": "Catering / Buffet Coffee Break",
       "fornecedor": "",
-      "rubrica": "Outros",
+      "rubrica": "Alimentação",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 110000,
@@ -277,7 +277,7 @@
     {
       "descricao": "Tradução Simultânea",
       "fornecedor": "",
-      "rubrica": "Outros",
+      "rubrica": "Tradução Simultânea",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 60000,
