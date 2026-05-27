@@ -85,7 +85,7 @@
     {
       "descricao": "Passagem Aérea Internacional (Raúl Pérez)",
       "fornecedor": "",
-      "rubrica": "Outros",
+      "rubrica": "Passagens",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 6478.6,
@@ -97,7 +97,7 @@
     {
       "descricao": "Hospedagem (Raúl Pérez)",
       "fornecedor": "",
-      "rubrica": "Outros",
+      "rubrica": "Hospedagem",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 3000,
