@@ -135,6 +135,7 @@
     #budget-table td { padding: 4px 8px; vertical-align: middle; border-right: 1px solid var(--border); font-size: 0.82rem; }
     #budget-table td:last-child { border-right: none; }
 
+    .col-drag { width: 24px; text-align: center; padding: 0 !important; }
     .col-chk  { width: 36px;  text-align: center; }
     .col-id   { width: 50px;  text-align: center; color: var(--text-muted); font-size: 0.73rem; font-weight: 600; }
     .col-data { width: 138px; }
@@ -148,9 +149,34 @@
     .col-sit  { width: 120px; }
     .col-act  { width: 48px; text-align: center; }
 
+    .drag-handle { display: inline-block; color: #ccc; font-size: 1rem; line-height: 1; cursor: grab; padding: 4px 5px; border-radius: 3px; transition: color 0.12s; user-select: none; }
+    .drag-handle:hover { color: var(--text-muted); }
+    .entry-row.dragging { opacity: 0.45; background: var(--primary-light) !important; }
+    .entry-row.drag-over { box-shadow: inset 0 2px 0 var(--primary); background: #f0fdf8 !important; }
+
     .row-chk { width: 15px; height: 15px; cursor: pointer; accent-color: var(--primary); }
     .entry-row.inactive { opacity: 0.38; }
     .entry-row.inactive .col-sub { text-decoration: line-through; color: var(--text-muted); }
+
+    /* ── Group header row ───────────────────────────────────── */
+    .group-header-row td {
+      background: var(--neutral-bg); color: var(--text-muted);
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.6px; padding: 5px 10px !important;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Group-by / filter select ───────────────────────────── */
+    .filter-select {
+      border: 1.5px solid var(--border); background: white; color: var(--text-main);
+      font-size: 0.78rem; font-family: var(--font); font-weight: 500;
+      padding: 4px 26px 4px 10px; border-radius: 20px; outline: none;
+      cursor: pointer; transition: border-color 0.14s;
+      -webkit-appearance: none; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236c757d'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 9px center;
+    }
+    .filter-select:focus { border-color: var(--primary); }
 
     /* ── Cell inputs ────────────────────────────────────────── */
     .cell-input, .cell-select {
@@ -176,7 +202,8 @@
 
     .empty-state-cell { padding: 40px 20px; text-align: center; color: var(--text-muted); font-size: 0.88rem; }
 
-    /* ── Saldo row ──────────────────────────────────────────── */
+    /* ── Saldo row (sticky so it's always visible) ─────────── */
+    #budget-table tfoot { position: sticky; bottom: 0; z-index: 5; }
     #budget-table tfoot tr { border-top: 2px solid var(--primary); background: var(--primary-light); }
     #budget-table tfoot td { padding: 10px 10px; font-size: 0.82rem; }
     .saldo-label-cell { font-weight: 700; }
@@ -253,12 +280,7 @@
     .sit-add-row input { flex: 1; padding: 8px 10px; border: 1.5px solid var(--border); border-radius: var(--radius); font-size: 0.85rem; font-family: var(--font); outline: none; }
     .sit-add-row input:focus { border-color: var(--primary); }
 
-    /* ── Embed panel ─────────────────────────────────────────── */
-    .embed-panel { position: fixed; bottom: 0; right: 24px; background: white; border-radius: 12px 12px 0 0; box-shadow: 0 -4px 20px rgba(0,0,0,0.11); z-index: 500; min-width: 310px; max-width: 430px; }
-    .embed-toggle { background: var(--accent); color: white; border: none; padding: 10px 20px; border-radius: 12px 12px 0 0; cursor: pointer; font-weight: 700; font-size: 0.82rem; font-family: var(--font); width: 100%; text-align: center; letter-spacing: 0.3px; transition: background 0.14s; }
-    .embed-toggle:hover { background: var(--accent-dark); }
-    .embed-body { padding: 14px 16px 16px; border-top: 1px solid var(--border); }
-    .embed-panel.collapsed .embed-body { display: none; }
+    /* ── Embed modal ─────────────────────────────────────────── */
     .embed-body > p { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 11px; }
     .embed-fields { display: flex; gap: 12px; margin-bottom: 11px; }
     .embed-fields label { display: flex; flex-direction: column; gap: 4px; font-size: 0.72rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.4px; }
@@ -277,9 +299,9 @@
 
     /* ── View mode ───────────────────────────────────────────── */
     .app.view-mode .cell-input, .app.view-mode .cell-select { pointer-events: none; -webkit-appearance: none; appearance: none; border: none; background: transparent; cursor: default; }
-    .app.view-mode .btn-delete-row, .app.view-mode #btn-add-row, .app.view-mode #btn-situacao, .app.view-mode #btn-rubrica, .app.view-mode .embed-panel, .app.view-mode .btn-token { display: none !important; }
+    .app.view-mode .btn-delete-row, .app.view-mode #btn-add-row, .app.view-mode #btn-situacao, .app.view-mode #btn-rubrica, .app.view-mode #btn-embed, .app.view-mode #group-by-wrap, .app.view-mode .btn-token { display: none !important; }
     .app.view-mode [contenteditable] { pointer-events: none; outline: none !important; border-color: transparent !important; cursor: default; }
-    .app.view-mode .col-chk { display: none; }
+    .app.view-mode .col-chk, .app.view-mode .col-drag { display: none; }
   </style>
 </head>
 <body>
@@ -315,7 +337,19 @@
     <div class="filter-group" id="situacao-filters"></div>
     <button id="btn-situacao" class="btn-secondary">⚙ Situações</button>
     <button id="btn-rubrica" class="btn-secondary">⚙ Rubricas</button>
+    <div class="toolbar-sep"></div>
+    <div id="group-by-wrap" style="display:flex;align-items:center;gap:6px;">
+      <span class="filter-label">Agrupar:</span>
+      <select id="group-by-select" class="filter-select">
+        <option value="none">Nenhum</option>
+        <option value="data">Data ↑</option>
+        <option value="rubrica">Rubrica</option>
+        <option value="tipo">Tipo</option>
+        <option value="situacao">Situação</option>
+      </select>
+    </div>
     <div class="toolbar-spacer"></div>
+    <button id="btn-embed" class="btn-secondary">&lt;/&gt; Incorporar</button>
     <button id="btn-add-row" class="btn-primary">+ Adicionar Linha</button>
   </div>
 
@@ -324,6 +358,7 @@
     <table id="budget-table">
       <thead>
         <tr>
+          <th class="col-drag"></th>
           <th class="col-chk th-center"><input type="checkbox" id="chk-all" class="row-chk" title="Selecionar todas / nenhuma" checked></th>
           <th class="col-id th-center">ID</th>
           <th class="col-data">Data</th>
@@ -341,7 +376,7 @@
       <tbody id="table-body"></tbody>
       <tfoot>
         <tr>
-          <td colspan="9" class="saldo-label-cell">
+          <td colspan="10" class="saldo-label-cell">
             <span class="saldo-title">SALDO</span>
             <span class="saldo-sub">↑ Receitas: <strong id="saldo-receitas">R$ 0,00</strong></span>
             <span class="saldo-sub">↓ Despesas: <strong id="saldo-despesas">R$ 0,00</strong></span>
@@ -414,18 +449,21 @@
     </div>
   </div>
 
-  <!-- Embed Panel -->
-  <div id="embed-panel" class="embed-panel collapsed">
-    <button id="embed-toggle" class="embed-toggle">&lt;/&gt; Incorporar Planilha</button>
-    <div class="embed-body">
-      <p>Gere um iframe estático e somente leitura desta planilha:</p>
-      <div class="embed-fields">
-        <label>Largura (px)<input type="number" id="em-w" value="1100"></label>
-        <label>Altura (px)<input type="number" id="em-h" value="600"></label>
+  <!-- Embed Modal -->
+  <div id="embed-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="embed-modal-title">
+    <div class="modal-box" style="width:min(520px,95vw)">
+      <button class="modal-close" id="embed-modal-close" aria-label="Fechar">&times;</button>
+      <h2 id="embed-modal-title">&lt;/&gt; Incorporar Planilha</h2>
+      <div class="embed-body">
+        <p>Gere um iframe estático e somente leitura desta planilha:</p>
+        <div class="embed-fields">
+          <label>Largura (px)<input type="number" id="em-w" value="1100"></label>
+          <label>Altura (px)<input type="number" id="em-h" value="600"></label>
+        </div>
+        <textarea id="embed-code" readonly rows="5" spellcheck="false"></textarea>
+        <button id="btn-copy-embed" class="btn-primary" style="width:100%">Copiar Código</button>
+        <p id="embed-note-el" class="embed-note">Tamanho da URL: <span id="url-len">0</span> caracteres</p>
       </div>
-      <textarea id="embed-code" readonly rows="4" spellcheck="false"></textarea>
-      <button id="btn-copy-embed" class="btn-primary" style="width:100%">Copiar Código</button>
-      <p id="embed-note-el" class="embed-note">Tamanho da URL: <span id="url-len">0</span> caracteres</p>
     </div>
   </div>
 
@@ -483,6 +521,7 @@
     rubricas: [...DEFAULT_RUBRICAS],
     filtroTipo: 'todos',
     filtroSituacao: 'todas',
+    groupBy: 'none',
     nextId: 1,
     entries: []
   };
@@ -682,6 +721,26 @@
     });
   }
 
+  function groupEntries(entries) {
+    const gb = state.groupBy;
+    const keyOf = e => {
+      if (gb === 'data')     return e.data     || 'Sem data';
+      if (gb === 'rubrica')  return e.rubrica  || 'Outros';
+      if (gb === 'tipo')     return e.tipo     || 'Despesa';
+      if (gb === 'situacao') return e.situacao || 'Previsto';
+      return '';
+    };
+    // Sort entries by group key (data: ascending; others: alphabetically)
+    const sorted = [...entries].sort((a, b) => keyOf(a).localeCompare(keyOf(b), 'pt-BR'));
+    const map = new Map();
+    sorted.forEach(e => {
+      const k = keyOf(e);
+      if (!map.has(k)) map.set(k, []);
+      map.get(k).push(e);
+    });
+    return [...map.entries()].map(([label, ents]) => ({ label, entries: ents }));
+  }
+
   /* ══════════════════════════════════════════════════════════
      7. RENDER
   ══════════════════════════════════════════════════════════ */
@@ -731,13 +790,24 @@
     const filtered = getFiltered();
 
     if (filtered.length === 0) {
-      const tr = el('tr'); const td = el('td', 'empty-state-cell'); td.colSpan = 10;
+      const tr = el('tr'); const td = el('td', 'empty-state-cell'); td.colSpan = 13;
       td.textContent = IS_VIEW_MODE ? 'Nenhuma entrada registrada.' : 'Nenhuma entrada. Clique em "+ Adicionar Linha" para começar.';
       tr.appendChild(td); tbody.appendChild(tr);
-    } else {
+    } else if (state.groupBy === 'none') {
       filtered.forEach(entry => tbody.appendChild(buildRow(entry)));
+    } else {
+      groupEntries(filtered).forEach(({ label, entries: grpEntries }) => {
+        const htr = el('tr', 'group-header-row');
+        const htd = el('td'); htd.colSpan = 13;
+        htd.textContent = label;
+        htr.appendChild(htd); tbody.appendChild(htr);
+        grpEntries.forEach(entry => tbody.appendChild(buildRow(entry)));
+      });
     }
     updateSaldoRow();
+    // Sync the group-by select value
+    const gbs = document.getElementById('group-by-select');
+    if (gbs && gbs.value !== state.groupBy) gbs.value = state.groupBy;
 
     if (focusId !== null) {
       const inp = document.querySelector(`[data-eid="${focusId}"][data-field="${focusField}"]`);
@@ -751,6 +821,15 @@
     const isAtivo = entry.ativo !== false;
     const tr  = el('tr', 'entry-row ' + (isR ? 'receita' : 'despesa') + (isAtivo ? '' : ' inactive'));
     tr.dataset.id = entry.id;
+
+    // Drag handle
+    const tdDrag = el('td', 'col-drag');
+    if (!IS_VIEW_MODE && state.groupBy === 'none') {
+      const handle = el('span', 'drag-handle'); handle.textContent = '⠿'; handle.title = 'Arrastar para reordenar';
+      tr.draggable = true;
+      tdDrag.appendChild(handle);
+    }
+    tr.appendChild(tdDrag);
 
     // Checkbox
     const tdChk = el('td','col-chk');
@@ -908,7 +987,66 @@
   }
 
   /* ══════════════════════════════════════════════════════════
-     8. TOKEN MODAL
+     8. DRAG & DROP ROW REORDERING
+  ══════════════════════════════════════════════════════════ */
+
+  let _dragSrcId = null;
+
+  function reorderEntry(srcId, dstId) {
+    const arr = [...state.entries];
+    const si = arr.findIndex(e => e.id === srcId);
+    const di = arr.findIndex(e => e.id === dstId);
+    if (si < 0 || di < 0 || si === di) return;
+    const [moved] = arr.splice(si, 1);
+    arr.splice(di, 0, moved);
+    setState({ entries: arr });
+  }
+
+  function initDragAndDrop() {
+    const tbody = document.getElementById('table-body');
+
+    tbody.addEventListener('dragstart', e => {
+      const tr = e.target.closest('.entry-row');
+      if (!tr || state.groupBy !== 'none') return;
+      _dragSrcId = +tr.dataset.id;
+      tr.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/plain', String(_dragSrcId));
+    });
+
+    tbody.addEventListener('dragover', e => {
+      if (_dragSrcId === null) return;
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      const tr = e.target.closest('.entry-row');
+      tbody.querySelectorAll('.entry-row.drag-over').forEach(r => r.classList.remove('drag-over'));
+      if (tr && +tr.dataset.id !== _dragSrcId) tr.classList.add('drag-over');
+    });
+
+    tbody.addEventListener('dragleave', e => {
+      if (!tbody.contains(e.relatedTarget)) {
+        tbody.querySelectorAll('.entry-row.drag-over').forEach(r => r.classList.remove('drag-over'));
+      }
+    });
+
+    tbody.addEventListener('drop', e => {
+      e.preventDefault();
+      const tr = e.target.closest('.entry-row');
+      if (!tr || _dragSrcId === null) return;
+      const dstId = +tr.dataset.id;
+      if (dstId !== _dragSrcId) reorderEntry(_dragSrcId, dstId);
+      _dragSrcId = null;
+      tbody.querySelectorAll('.entry-row.dragging, .entry-row.drag-over').forEach(r => r.classList.remove('dragging', 'drag-over'));
+    });
+
+    tbody.addEventListener('dragend', () => {
+      _dragSrcId = null;
+      tbody.querySelectorAll('.entry-row.dragging, .entry-row.drag-over').forEach(r => r.classList.remove('dragging', 'drag-over'));
+    });
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     10. TOKEN MODAL
   ══════════════════════════════════════════════════════════ */
 
   function openTokenModal() {
@@ -1054,11 +1192,17 @@
     if (note) { if (n>2000) { note.className='embed-note warn'; note.textContent=`⚠️ URL com ${n} chars — pode não funcionar em alguns navegadores.`; } else { note.className='embed-note'; note.innerHTML=`Tamanho da URL: <span id="url-len">${n}</span> caracteres`; } }
   }
 
+  function openEmbedModal()  { renderEmbedCode(); document.getElementById('embed-modal').classList.remove('hidden'); }
+  function closeEmbedModal() { document.getElementById('embed-modal').classList.add('hidden'); }
+
   function initEmbed() {
-    document.getElementById('embed-toggle').addEventListener('click', () => { const p=document.getElementById('embed-panel'); p.classList.toggle('collapsed'); if(!p.classList.contains('collapsed')) renderEmbedCode(); });
+    document.getElementById('btn-embed').addEventListener('click', openEmbedModal);
+    document.getElementById('embed-modal-close').addEventListener('click', closeEmbedModal);
+    document.getElementById('embed-modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeEmbedModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && !document.getElementById('embed-modal').classList.contains('hidden')) closeEmbedModal(); });
     document.getElementById('btn-copy-embed').addEventListener('click', () => {
       const code = document.getElementById('embed-code').value;
-      if (navigator.clipboard) { navigator.clipboard.writeText(code).then(()=>{ const b=document.getElementById('btn-copy-embed'); b.textContent='✓ Copiado!'; setTimeout(()=>b.textContent='Copiar Código',2000); }); }
+      if (navigator.clipboard) { navigator.clipboard.writeText(code).then(()=>{ const b=document.getElementById('btn-copy-embed'); b.textContent='✓ Copiado!'; setTimeout(()=>{ b.textContent='Copiar Código'; },2000); }); }
       else { document.getElementById('embed-code').select(); document.execCommand('copy'); showToast('Copiado!'); }
     });
     ['em-w','em-h'].forEach(id => document.getElementById(id).addEventListener('input', renderEmbedCode));
@@ -1116,10 +1260,10 @@
       initSituacaoModal();
       initRubricaModal();
       initEmbed();
+      initDragAndDrop();
       document.getElementById('btn-add-row').addEventListener('click', addEntry);
-      document.getElementById('chk-all').addEventListener('change', function() {
-        setAllAtivo(this.checked);
-      });
+      document.getElementById('chk-all').addEventListener('change', function() { setAllAtivo(this.checked); });
+      document.getElementById('group-by-select').addEventListener('change', function() { setState({ groupBy: this.value }); });
 
       // 3. Sync with GitHub asynchronously (may update display)
       loadFromGitHub(); // sempre carrega; PAT só necessário para salvar
