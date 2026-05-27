@@ -133,7 +133,7 @@
     {
       "descricao": "Passagem Aérea (Malfeitona)",
       "fornecedor": "",
-      "rubrica": "Outros",
+      "rubrica": "Passagens",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 2000,
