@@ -145,7 +145,7 @@
     {
       "descricao": "Hospedagem (Malfeitona)",
       "fornecedor": "",
-      "rubrica": "Outros",
+      "rubrica": "Hospedagem",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 760,
