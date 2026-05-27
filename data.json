@@ -19,6 +19,7 @@
   ],
   "filtroTipo": "todos",
   "filtroSituacao": "todas",
+  "groupBy": "none",
   "nextId": 35,
   "entries": [
     {
@@ -252,7 +253,7 @@
     {
       "descricao": "Hospedagem (Thaís Leão)",
       "fornecedor": "Thaís Leão Vieira",
-      "rubrica": "Outros",
+      "rubrica": "Hospedagem",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 3000,
@@ -382,8 +383,6 @@
       "data": "2026-05-21"
     },
     {
-      "id": 34,
-      "data": "2026-05-27",
       "descricao": "Alimentação / Almoço",
       "fornecedor": "",
       "rubrica": "Diárias Nacionais",
@@ -391,7 +390,9 @@
       "parcelas": 1,
       "valor": 55000,
       "situacao": "Previsto",
-      "ativo": true
+      "ativo": true,
+      "id": 34,
+      "data": "2026-05-27"
     }
   ]
 }
