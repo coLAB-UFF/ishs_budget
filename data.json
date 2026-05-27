@@ -167,18 +167,6 @@
       "data": "2026-05-16"
     },
     {
-      "descricao": "Hospedagem (Clarissa Diniz)",
-      "fornecedor": "",
-      "rubrica": "Outros",
-      "tipo": "Despesa",
-      "parcelas": 1,
-      "valor": 760,
-      "situacao": "Previsto",
-      "ativo": true,
-      "id": 13,
-      "data": "2026-05-16"
-    },
-    {
       "descricao": "Passagem Aérea (Ismael Monticelli)",
       "fornecedor": "",
       "rubrica": "Passagens",
