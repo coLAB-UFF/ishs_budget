@@ -167,18 +167,6 @@
       "data": "2026-05-16"
     },
     {
-      "descricao": "Passagem Aérea (Ismael Monticelli)",
-      "fornecedor": "",
-      "rubrica": "Passagens",
-      "tipo": "Despesa",
-      "parcelas": 1,
-      "valor": 2000,
-      "situacao": "Previsto",
-      "ativo": true,
-      "id": 14,
-      "data": "2026-05-16"
-    },
-    {
       "descricao": "Diárias (Roberto Kaz)",
       "fornecedor": "Roberto Kaz",
       "rubrica": "Diárias Nacionais",
