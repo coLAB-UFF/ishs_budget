@@ -20,7 +20,7 @@
   "filtroTipo": "todos",
   "filtroSituacao": "todas",
   "groupBy": "none",
-  "nextId": 36,
+  "nextId": 37,
   "entries": [
     {
       "descricao": "Edital de Apoio a Eventos",
@@ -386,6 +386,18 @@
       "id": 35,
       "data": "2026-05-27",
       "descricao": "Passagem (Sebástian)",
+      "fornecedor": "",
+      "rubrica": "Diárias Nacionais",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 2000,
+      "situacao": "Previsto",
+      "ativo": true
+    },
+    {
+      "id": 36,
+      "data": "2026-05-27",
+      "descricao": "Passagem (Thales Bueno)",
       "fornecedor": "",
       "rubrica": "Diárias Nacionais",
       "tipo": "Despesa",
