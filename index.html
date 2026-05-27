@@ -140,6 +140,7 @@
     .col-data { width: 138px; }
     .col-desc { min-width: 160px; }
     .col-forn { min-width: 140px; }
+    .col-rubr { min-width: 170px; }
     .col-tipo { width: 106px; }
     .col-parc { width: 80px; text-align: center; }
     .col-valor{ width: 120px; text-align: right; }
@@ -276,7 +277,7 @@
 
     /* ── View mode ───────────────────────────────────────────── */
     .app.view-mode .cell-input, .app.view-mode .cell-select { pointer-events: none; -webkit-appearance: none; appearance: none; border: none; background: transparent; cursor: default; }
-    .app.view-mode .btn-delete-row, .app.view-mode #btn-add-row, .app.view-mode #btn-situacao, .app.view-mode .embed-panel, .app.view-mode .btn-token { display: none !important; }
+    .app.view-mode .btn-delete-row, .app.view-mode #btn-add-row, .app.view-mode #btn-situacao, .app.view-mode #btn-rubrica, .app.view-mode .embed-panel, .app.view-mode .btn-token { display: none !important; }
     .app.view-mode [contenteditable] { pointer-events: none; outline: none !important; border-color: transparent !important; cursor: default; }
     .app.view-mode .col-chk { display: none; }
   </style>
@@ -313,6 +314,7 @@
     <span class="filter-label">Situação:</span>
     <div class="filter-group" id="situacao-filters"></div>
     <button id="btn-situacao" class="btn-secondary">⚙ Situações</button>
+    <button id="btn-rubrica" class="btn-secondary">⚙ Rubricas</button>
     <div class="toolbar-spacer"></div>
     <button id="btn-add-row" class="btn-primary">+ Adicionar Linha</button>
   </div>
@@ -327,6 +329,7 @@
           <th class="col-data">Data</th>
           <th class="col-desc">Descrição</th>
           <th class="col-forn">Fornecedor</th>
+          <th class="col-rubr">Rubrica</th>
           <th class="col-tipo">Tipo</th>
           <th class="col-parc th-center">Parcelas</th>
           <th class="col-valor th-right">Valor (R$)</th>
@@ -338,7 +341,7 @@
       <tbody id="table-body"></tbody>
       <tfoot>
         <tr>
-          <td colspan="8" class="saldo-label-cell">
+          <td colspan="9" class="saldo-label-cell">
             <span class="saldo-title">SALDO</span>
             <span class="saldo-sub">↑ Receitas: <strong id="saldo-receitas">R$ 0,00</strong></span>
             <span class="saldo-sub">↓ Despesas: <strong id="saldo-despesas">R$ 0,00</strong></span>
@@ -394,6 +397,19 @@
       <div class="sit-add-row">
         <input type="text" id="nova-situacao" placeholder="Nova situação…" maxlength="30">
         <button id="btn-add-situacao" class="btn-primary">Adicionar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rubrica Modal -->
+  <div id="rubrica-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="rubr-modal-title">
+    <div class="modal-box">
+      <button class="modal-close" id="rubr-modal-close" aria-label="Fechar">&times;</button>
+      <h2 id="rubr-modal-title">Gerenciar Rubricas</h2>
+      <div class="sit-list" id="rubr-list"></div>
+      <div class="sit-add-row">
+        <input type="text" id="nova-rubrica" placeholder="Nova rubrica…" maxlength="50">
+        <button id="btn-add-rubrica" class="btn-primary">Adicionar</button>
       </div>
     </div>
   </div>
@@ -458,10 +474,13 @@
      3. STATE
   ══════════════════════════════════════════════════════════ */
 
+  const DEFAULT_RUBRICAS = ['Diárias Nacionais', 'Diárias Internacionais', 'Passagens', 'Hospedagem', 'Papelaria e Impressão', 'Alimentação', 'Tradução Simultânea', 'Outros'];
+
   let state = {
     title: 'Orçamento ISHS',
     description: 'Programação financeira do evento ISHS | coLAB-UFF',
     situacoes: ['Previsto', 'Empenhado', 'Efetuado'],
+    rubricas: [...DEFAULT_RUBRICAS],
     filtroTipo: 'todos',
     filtroSituacao: 'todas',
     nextId: 1,
@@ -489,13 +508,20 @@
     return s;
   }
 
+  // Ensure rubricas array exists; seed with defaults if absent
+  function migrateRubricas(r) {
+    if (!Array.isArray(r) || r.length === 0) return [...DEFAULT_RUBRICAS];
+    return r;
+  }
+
   function loadLS() {
     try {
       const raw = localStorage.getItem(LS_KEY);
       if (!raw) return;
       const p = JSON.parse(raw);
-      p.entries = (p.entries || []).map(e => ({ descricao:'', fornecedor:'', tipo:'Despesa', parcelas:1, valor:0, situacao:'Previsto', ativo:true, ...e }));
+      p.entries = (p.entries || []).map(e => ({ descricao:'', fornecedor:'', rubrica:'Outros', tipo:'Despesa', parcelas:1, valor:0, situacao:'Previsto', ativo:true, ...e }));
       if (p.situacoes) p.situacoes = migrateSituacoes(p.situacoes);
+      p.rubricas = migrateRubricas(p.rubricas);
       Object.assign(state, p);
     } catch (_) {}
   }
@@ -522,7 +548,7 @@
 
   function addEntry() {
     const today = new Date().toISOString().split('T')[0];
-    const entry = { id: state.nextId, data: today, descricao:'', fornecedor:'', tipo:'Despesa', parcelas:1, valor:0, situacao: state.situacoes[0] || 'Previsto', ativo: true };
+    const entry = { id: state.nextId, data: today, descricao:'', fornecedor:'', rubrica: state.rubricas[0] || 'Outros', tipo:'Despesa', parcelas:1, valor:0, situacao: state.situacoes[0] || 'Previsto', ativo: true };
     setState({ nextId: state.nextId + 1, entries: [...state.entries, entry] });
     setTimeout(() => { const i = document.querySelector(`.entry-row[data-id="${entry.id}"] .inp-desc`); if (i) i.focus(); }, 30);
   }
@@ -533,6 +559,12 @@
     if (state.entries.some(e => e.situacao === n)) return false;
     setState({ situacoes: state.situacoes.filter(s => s !== n) });
     if (state.filtroSituacao === n) setState({ filtroSituacao: 'todas' });
+    return true;
+  }
+  function addRubrica(n)  { if (!n || state.rubricas.includes(n)) return false; setState({ rubricas: [...state.rubricas, n] }); return true; }
+  function removeRubrica(n) {
+    if (state.entries.some(e => e.rubrica === n)) return false;
+    setState({ rubricas: state.rubricas.filter(r => r !== n) });
     return true;
   }
 
@@ -560,8 +592,9 @@
       const file = await res.json();
       currentSHA = file.sha;
       const decoded = JSON.parse(b64DecodeUnicode(file.content.replace(/\n/g, '')));
-      decoded.entries = (decoded.entries || []).map(e => ({ descricao:'', fornecedor:'', tipo:'Despesa', parcelas:1, valor:0, situacao:'Previsto', ativo:true, ...e }));
+      decoded.entries = (decoded.entries || []).map(e => ({ descricao:'', fornecedor:'', rubrica:'Outros', tipo:'Despesa', parcelas:1, valor:0, situacao:'Previsto', ativo:true, ...e }));
       if (decoded.situacoes) decoded.situacoes = migrateSituacoes(decoded.situacoes);
+      decoded.rubricas = migrateRubricas(decoded.rubricas);
       Object.assign(state, decoded);
       saveLS();
       syncHeaderText();
@@ -750,6 +783,14 @@
     const inF = mkInput('text', entry.fornecedor, entry.id, 'fornecedor', 'Fornecedor');
     if (!IS_VIEW_MODE) inF.addEventListener('input', () => updateField(entry.id,'fornecedor',inF.value));
     tdF.appendChild(inF); tr.appendChild(tdF);
+
+    // Rubrica
+    const tdRubr = el('td','col-rubr');
+    const selRubr = el('select','cell-select');
+    selRubr.dataset.eid = entry.id; selRubr.dataset.field = 'rubrica';
+    state.rubricas.forEach(r => { const o = el('option'); o.value = r; o.textContent = r; if (r === entry.rubrica) o.selected = true; selRubr.appendChild(o); });
+    if (!IS_VIEW_MODE) selRubr.addEventListener('change', () => updateField(entry.id,'rubrica',selRubr.value));
+    tdRubr.appendChild(selRubr); tr.appendChild(tdRubr);
 
     // Tipo
     const tdT = el('td','col-tipo');
@@ -953,6 +994,36 @@
   }
 
   /* ══════════════════════════════════════════════════════════
+     9b. RUBRICA MODAL
+  ══════════════════════════════════════════════════════════ */
+
+  function openRubricaModal() { renderRubricaList(); document.getElementById('rubrica-modal').classList.remove('hidden'); document.getElementById('nova-rubrica').focus(); }
+  function closeRubricaModal() { document.getElementById('rubrica-modal').classList.add('hidden'); document.getElementById('nova-rubrica').value = ''; }
+
+  function renderRubricaList() {
+    const list = document.getElementById('rubr-list'); list.innerHTML = '';
+    if (!state.rubricas.length) { const p = el('p'); p.style.cssText='color:var(--text-muted);font-size:.82rem'; p.textContent='Nenhuma rubrica.'; list.appendChild(p); return; }
+    state.rubricas.forEach(rub => {
+      const inUse = state.entries.some(e => e.rubrica === rub);
+      const div = el('div','sit-item');
+      const nm  = el('span','sit-item-name'); nm.textContent = rub;
+      const btn = el('button','sit-item-del'); btn.textContent = '✕'; btn.disabled = inUse;
+      btn.title = inUse ? 'Em uso — não pode ser removida' : 'Remover';
+      btn.addEventListener('click', () => { if (!removeRubrica(rub)) { showToast('Em uso — não pode ser removida.'); return; } renderRubricaList(); });
+      div.appendChild(nm); div.appendChild(btn); list.appendChild(div);
+    });
+  }
+
+  function initRubricaModal() {
+    document.getElementById('btn-rubrica').addEventListener('click', openRubricaModal);
+    document.getElementById('rubr-modal-close').addEventListener('click', closeRubricaModal);
+    document.getElementById('rubrica-modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeRubricaModal(); });
+    const ni = document.getElementById('nova-rubrica');
+    document.getElementById('btn-add-rubrica').addEventListener('click', () => { const n = ni.value.trim(); if (!n) return; if (!addRubrica(n)) { showToast('Já existe.'); return; } ni.value=''; renderRubricaList(); ni.focus(); });
+    ni.addEventListener('keydown', e => { if (e.key==='Enter') document.getElementById('btn-add-rubrica').click(); });
+  }
+
+  /* ══════════════════════════════════════════════════════════
      10. INLINE HEADER EDITING
   ══════════════════════════════════════════════════════════ */
 
@@ -1004,7 +1075,9 @@
     if (raw) {
       try {
         const parsed = JSON.parse(LZString.decompressFromEncodedURIComponent(raw));
-        parsed.entries = (parsed.entries||[]).map(e=>({descricao:'',fornecedor:'',tipo:'Despesa',parcelas:1,valor:0,situacao:'Previsto',ativo:true,...e}));
+        parsed.entries = (parsed.entries||[]).map(e=>({descricao:'',fornecedor:'',rubrica:'Outros',tipo:'Despesa',parcelas:1,valor:0,situacao:'Previsto',ativo:true,...e}));
+        if (parsed.situacoes) parsed.situacoes = migrateSituacoes(parsed.situacoes);
+        parsed.rubricas = migrateRubricas(parsed.rubricas);
         Object.assign(state, parsed);
       } catch(_) { showError('Não foi possível carregar os dados do embed.'); }
     }
@@ -1041,6 +1114,7 @@
       initInlineEdit();
       initTokenModal();
       initSituacaoModal();
+      initRubricaModal();
       initEmbed();
       document.getElementById('btn-add-row').addEventListener('click', addEntry);
       document.getElementById('chk-all').addEventListener('change', function() {
