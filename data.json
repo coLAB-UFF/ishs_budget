@@ -19,7 +19,7 @@
   ],
   "filtroTipo": "todos",
   "filtroSituacao": "todas",
-  "nextId": 34,
+  "nextId": 35,
   "entries": [
     {
       "descricao": "Edital de Apoio a Eventos",
@@ -380,6 +380,18 @@
       "ativo": true,
       "id": 33,
       "data": "2026-05-21"
+    },
+    {
+      "id": 34,
+      "data": "2026-05-27",
+      "descricao": "Alimentação / Almoço",
+      "fornecedor": "",
+      "rubrica": "Diárias Nacionais",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 55000,
+      "situacao": "Previsto",
+      "ativo": true
     }
   ]
 }
