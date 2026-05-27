@@ -217,7 +217,7 @@
     {
       "descricao": "Passagem Aérea (Marcelo Zorzanelli)",
       "fornecedor": "",
-      "rubrica": "Outros",
+      "rubrica": "Passagens",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 1500,
