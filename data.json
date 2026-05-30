@@ -251,18 +251,6 @@
       "data": "2026-05-17"
     },
     {
-      "descricao": "Passagem Aérea (Choque de Cultura)",
-      "fornecedor": "",
-      "rubrica": "Passagens",
-      "tipo": "Despesa",
-      "parcelas": 1,
-      "valor": 1500,
-      "situacao": "Previsto",
-      "ativo": true,
-      "id": 24,
-      "data": "2026-05-17"
-    },
-    {
       "descricao": "Passagem Aérea (Suzy Brasil)",
       "fornecedor": "",
       "rubrica": "Passagens",
