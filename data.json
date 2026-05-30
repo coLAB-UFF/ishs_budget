@@ -263,18 +263,6 @@
       "data": "2026-05-17"
     },
     {
-      "descricao": "Hospedagem (Choque de Cultura)",
-      "fornecedor": "",
-      "rubrica": "Hospedagem",
-      "tipo": "Despesa",
-      "parcelas": 1,
-      "valor": 760,
-      "situacao": "Previsto",
-      "ativo": true,
-      "id": 25,
-      "data": "2026-05-17"
-    },
-    {
       "descricao": "Passagem Aérea (Suzy Brasil)",
       "fornecedor": "",
       "rubrica": "Passagens",
@@ -359,8 +347,6 @@
       "data": "2026-05-27"
     },
     {
-      "id": 35,
-      "data": "2026-05-27",
       "descricao": "Passagem (Sebástian)",
       "fornecedor": "",
       "rubrica": "Diárias Nacionais",
@@ -368,11 +354,11 @@
       "parcelas": 1,
       "valor": 2000,
       "situacao": "Previsto",
-      "ativo": true
+      "ativo": true,
+      "id": 35,
+      "data": "2026-05-27"
     },
     {
-      "id": 36,
-      "data": "2026-05-27",
       "descricao": "Passagem (Thales Bueno)",
       "fornecedor": "",
       "rubrica": "Diárias Nacionais",
@@ -380,7 +366,9 @@
       "parcelas": 1,
       "valor": 2000,
       "situacao": "Previsto",
-      "ativo": true
+      "ativo": true,
+      "id": 36,
+      "data": "2026-05-27"
     }
   ]
 }
