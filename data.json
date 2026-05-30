@@ -108,7 +108,7 @@
     },
     {
       "descricao": "Passagem Aérea Nacional (Daniel Kuppermann)",
-      "fornecedor": "",
+      "fornecedor": "Latam",
       "rubrica": "Passagens",
       "tipo": "Despesa",
       "parcelas": 1,
