@@ -328,7 +328,7 @@
       "rubrica": "Alimentação",
       "tipo": "Despesa",
       "parcelas": 1,
-      "valor": 45000,
+      "valor": 36000,
       "situacao": "Previsto",
       "ativo": true,
       "id": 34,
@@ -359,8 +359,6 @@
       "data": "2026-05-27"
     },
     {
-      "id": 37,
-      "data": "2026-05-30",
       "descricao": "Edição de Vídeo",
       "fornecedor": "",
       "rubrica": "Diárias Nacionais",
@@ -368,11 +366,11 @@
       "parcelas": 1,
       "valor": 5000,
       "situacao": "Previsto",
-      "ativo": true
+      "ativo": true,
+      "id": 37,
+      "data": "2026-05-30"
     },
     {
-      "id": 38,
-      "data": "2026-05-30",
       "descricao": "Brindes",
       "fornecedor": "",
       "rubrica": "Diárias Nacionais",
@@ -380,7 +378,9 @@
       "parcelas": 1,
       "valor": 11015,
       "situacao": "Previsto",
-      "ativo": true
+      "ativo": true,
+      "id": 38,
+      "data": "2026-05-30"
     }
   ]
 }
