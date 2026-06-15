@@ -159,7 +159,7 @@
       "fornecedor": "",
       "rubrica": "Outros",
       "tipo": "Despesa",
-      "parcelas": 3,
+      "parcelas": 2,
       "valor": 380,
       "situacao": "Previsto",
       "ativo": true,
