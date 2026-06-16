@@ -426,7 +426,7 @@
       "rubrica": "Diárias Nacionais",
       "tipo": "Despesa",
       "parcelas": 1,
-      "valor": 0,
+      "valor": 5000,
       "situacao": "Previsto",
       "ativo": true
     }
