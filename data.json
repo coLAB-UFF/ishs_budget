@@ -315,7 +315,7 @@
       "fornecedor": "",
       "rubrica": "Diárias Nacionais",
       "tipo": "Despesa",
-      "parcelas": 5,
+      "parcelas": 6,
       "valor": 380,
       "situacao": "Empenhado",
       "ativo": true,
