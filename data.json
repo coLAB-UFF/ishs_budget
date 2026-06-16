@@ -399,10 +399,10 @@
       "data": "2026-06-16",
       "descricao": "Passagem (Sebástian)",
       "fornecedor": "",
-      "rubrica": "Diárias Nacionais",
+      "rubrica": "Passagens",
       "tipo": "Despesa",
       "parcelas": 1,
-      "valor": 0,
+      "valor": 2000,
       "situacao": "Previsto",
       "ativo": true
     }
