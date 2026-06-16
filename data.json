@@ -171,7 +171,7 @@
       "fornecedor": "Roberto Kaz",
       "rubrica": "Diárias Nacionais",
       "tipo": "Despesa",
-      "parcelas": 5,
+      "parcelas": 3,
       "valor": 380,
       "situacao": "Empenhado",
       "ativo": true,
