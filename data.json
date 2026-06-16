@@ -20,7 +20,7 @@
   "filtroTipo": "todos",
   "filtroSituacao": "todas",
   "groupBy": "rubrica",
-  "nextId": 41,
+  "nextId": 42,
   "entries": [
     {
       "descricao": "Edital de Apoio a Eventos",
@@ -400,6 +400,18 @@
       "descricao": "Passagem (Sebástian)",
       "fornecedor": "",
       "rubrica": "Passagens",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 2000,
+      "situacao": "Previsto",
+      "ativo": true
+    },
+    {
+      "id": 41,
+      "data": "2026-06-16",
+      "descricao": "Passagem (Rodrigo Carreiro)",
+      "fornecedor": "",
+      "rubrica": "Diárias Nacionais",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 2000,
