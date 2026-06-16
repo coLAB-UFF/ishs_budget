@@ -20,7 +20,7 @@
   "filtroTipo": "todos",
   "filtroSituacao": "todas",
   "groupBy": "rubrica",
-  "nextId": 45,
+  "nextId": 46,
   "entries": [
     {
       "descricao": "Edital de Apoio a Eventos",
@@ -446,6 +446,18 @@
       "id": 44,
       "data": "2026-06-16",
       "descricao": "Diárias (Marcelo Zorzanelli)",
+      "fornecedor": "",
+      "rubrica": "Diárias Nacionais",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 0,
+      "situacao": "Previsto",
+      "ativo": true
+    },
+    {
+      "id": 45,
+      "data": "2026-06-16",
+      "descricao": "Diárias ",
       "fornecedor": "",
       "rubrica": "Diárias Nacionais",
       "tipo": "Despesa",
