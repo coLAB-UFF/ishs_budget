@@ -99,7 +99,7 @@
       "fornecedor": "",
       "rubrica": "Hospedagem",
       "tipo": "Despesa",
-      "parcelas": 1,
+      "parcelas": 6,
       "valor": 3000,
       "situacao": "Previsto",
       "ativo": true,
