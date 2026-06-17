@@ -143,18 +143,6 @@
       "data": "2026-05-16"
     },
     {
-      "descricao": "Hospedagem (Malfeitona + Sebastián)",
-      "fornecedor": "",
-      "rubrica": "Hospedagem",
-      "tipo": "Despesa",
-      "parcelas": 1,
-      "valor": 600,
-      "situacao": "Previsto",
-      "ativo": true,
-      "id": 11,
-      "data": "2026-05-16"
-    },
-    {
       "descricao": "Diárias (Clarissa Diniz)",
       "fornecedor": "",
       "rubrica": "Diárias Nacionais",
