@@ -399,7 +399,7 @@
       "fornecedor": "",
       "rubrica": "Diárias Nacionais",
       "tipo": "Despesa",
-      "parcelas": 2,
+      "parcelas": 4,
       "valor": 380,
       "situacao": "Previsto",
       "ativo": true,
