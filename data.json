@@ -219,7 +219,7 @@
       "fornecedor": "Thaís Leão Vieira",
       "rubrica": "Hospedagem",
       "tipo": "Despesa",
-      "parcelas": 1,
+      "parcelas": 3,
       "valor": 3000,
       "situacao": "Previsto",
       "ativo": true,
