@@ -315,7 +315,7 @@
       "fornecedor": "",
       "rubrica": "Hospedagem",
       "tipo": "Despesa",
-      "parcelas": 1,
+      "parcelas": 6,
       "valor": 380,
       "situacao": "Empenhado",
       "ativo": true,
