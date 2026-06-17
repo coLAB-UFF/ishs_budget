@@ -20,7 +20,7 @@
   "filtroTipo": "todos",
   "filtroSituacao": "todas",
   "groupBy": "rubrica",
-  "nextId": 47,
+  "nextId": 48,
   "entries": [
     {
       "descricao": "Edital de Apoio a Eventos",
@@ -441,6 +441,18 @@
       "ativo": true,
       "id": 46,
       "data": "2026-06-16"
+    },
+    {
+      "id": 47,
+      "data": "2026-06-17",
+      "descricao": "Prêmio ISHS",
+      "fornecedor": "",
+      "rubrica": "Diárias Nacionais",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 0,
+      "situacao": "Previsto",
+      "ativo": true
     }
   ]
 }
