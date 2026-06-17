@@ -383,8 +383,6 @@
       "data": "2026-05-30"
     },
     {
-      "id": 39,
-      "data": "2026-06-16",
       "descricao": "Coquetel",
       "fornecedor": "",
       "rubrica": "Alimentação",
@@ -392,23 +390,11 @@
       "parcelas": 1,
       "valor": 14400,
       "situacao": "Previsto",
-      "ativo": true
+      "ativo": true,
+      "id": 39,
+      "data": "2026-06-16"
     },
     {
-      "id": 40,
-      "data": "2026-06-16",
-      "descricao": "Passagem (Sebástian)",
-      "fornecedor": "",
-      "rubrica": "Passagens",
-      "tipo": "Despesa",
-      "parcelas": 1,
-      "valor": 2000,
-      "situacao": "Previsto",
-      "ativo": true
-    },
-    {
-      "id": 41,
-      "data": "2026-06-16",
       "descricao": "Passagem (Rodrigo Carreiro)",
       "fornecedor": "",
       "rubrica": "Passagens",
@@ -416,11 +402,11 @@
       "parcelas": 1,
       "valor": 827.43,
       "situacao": "Previsto",
-      "ativo": true
+      "ativo": true,
+      "id": 41,
+      "data": "2026-06-16"
     },
     {
-      "id": 42,
-      "data": "2026-06-16",
       "descricao": "Banners e Papelaria",
       "fornecedor": "",
       "rubrica": "Produção",
@@ -428,11 +414,11 @@
       "parcelas": 1,
       "valor": 5000,
       "situacao": "Previsto",
-      "ativo": true
+      "ativo": true,
+      "id": 42,
+      "data": "2026-06-16"
     },
     {
-      "id": 43,
-      "data": "2026-06-16",
       "descricao": "Diárias (Helen + Sebástian)",
       "fornecedor": "",
       "rubrica": "Diárias Nacionais",
@@ -440,11 +426,11 @@
       "parcelas": 1,
       "valor": 0,
       "situacao": "Previsto",
-      "ativo": true
+      "ativo": true,
+      "id": 43,
+      "data": "2026-06-16"
     },
     {
-      "id": 44,
-      "data": "2026-06-16",
       "descricao": "Diárias (Marcelo Zorzanelli)",
       "fornecedor": "",
       "rubrica": "Diárias Nacionais",
@@ -452,11 +438,11 @@
       "parcelas": 2,
       "valor": 380,
       "situacao": "Previsto",
-      "ativo": true
+      "ativo": true,
+      "id": 44,
+      "data": "2026-06-16"
     },
     {
-      "id": 46,
-      "data": "2026-06-16",
       "descricao": "Diárias (Rodrigo Carrero)",
       "fornecedor": "",
       "rubrica": "Diárias Nacionais",
@@ -464,7 +450,9 @@
       "parcelas": 1,
       "valor": 380,
       "situacao": "Previsto",
-      "ativo": true
+      "ativo": true,
+      "id": 46,
+      "data": "2026-06-16"
     }
   ]
 }
