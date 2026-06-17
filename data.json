@@ -450,7 +450,7 @@
       "rubrica": "Produção",
       "tipo": "Despesa",
       "parcelas": 1,
-      "valor": 200,
+      "valor": 0,
       "situacao": "Previsto",
       "ativo": true
     }
