@@ -347,18 +347,6 @@
       "data": "2026-05-27"
     },
     {
-      "descricao": "Passagem (Thales Bueno)",
-      "fornecedor": "",
-      "rubrica": "Passagens",
-      "tipo": "Despesa",
-      "parcelas": 1,
-      "valor": 2000,
-      "situacao": "Previsto",
-      "ativo": true,
-      "id": 36,
-      "data": "2026-05-27"
-    },
-    {
       "descricao": "Edição de Vídeo",
       "fornecedor": "",
       "rubrica": "Produção",
