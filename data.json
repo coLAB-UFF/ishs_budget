@@ -347,13 +347,13 @@
       "data": "2026-05-30"
     },
     {
-      "descricao": "Brindes",
+      "descricao": "Brindes (Canetas + Blocos)",
       "fornecedor": "",
       "rubrica": "Produção",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 2500,
-      "situacao": "Previsto",
+      "situacao": "Efetuado",
       "ativo": true,
       "id": 38,
       "data": "2026-05-30"
