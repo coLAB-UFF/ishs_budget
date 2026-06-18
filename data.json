@@ -83,7 +83,7 @@
       "data": "2026-05-16"
     },
     {
-      "descricao": "Passagem Aérea Internacional (Raúl Pérez)",
+      "descricao": "Passagem Aérea (Raúl Pérez)",
       "fornecedor": "Copa Airlines",
       "rubrica": "Passagens",
       "tipo": "Despesa",
@@ -107,7 +107,7 @@
       "data": "2026-05-16"
     },
     {
-      "descricao": "Passagem Aérea Nacional (Daniel Kuppermann)",
+      "descricao": "Passagem Aérea (Daniel Kuppermann)",
       "fornecedor": "Latam",
       "rubrica": "Passagens",
       "tipo": "Despesa",
