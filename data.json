@@ -450,7 +450,7 @@
       "parcelas": 1,
       "valor": 5000,
       "situacao": "Previsto",
-      "ativo": false,
+      "ativo": true,
       "id": 48,
       "data": "2026-06-17"
     },
@@ -462,7 +462,7 @@
       "parcelas": 1,
       "valor": 10000,
       "situacao": "Previsto",
-      "ativo": false,
+      "ativo": true,
       "id": 49,
       "data": "2026-06-18"
     },
