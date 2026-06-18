@@ -495,10 +495,10 @@
       "data": "2026-06-18",
       "descricao": "Quentinhas Zeladoria IACS",
       "fornecedor": "",
-      "rubrica": "Diárias Nacionais",
+      "rubrica": "Alimentação",
       "tipo": "Despesa",
       "parcelas": 1,
-      "valor": 0,
+      "valor": 880,
       "situacao": "Previsto",
       "ativo": true
     }
