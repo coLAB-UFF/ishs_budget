@@ -20,7 +20,7 @@
   "filtroTipo": "todos",
   "filtroSituacao": "todas",
   "groupBy": "rubrica",
-  "nextId": 53,
+  "nextId": 54,
   "entries": [
     {
       "descricao": "Edital de Apoio a Eventos",
@@ -499,6 +499,18 @@
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 880,
+      "situacao": "Previsto",
+      "ativo": true
+    },
+    {
+      "id": 53,
+      "data": "2026-06-18",
+      "descricao": "Brindes",
+      "fornecedor": "",
+      "rubrica": "Diárias Nacionais",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 0,
       "situacao": "Previsto",
       "ativo": true
     }
