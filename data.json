@@ -431,8 +431,6 @@
       "data": "2026-06-16"
     },
     {
-      "id": 47,
-      "data": "2026-06-17",
       "descricao": "Prêmio ISHS",
       "fornecedor": "",
       "rubrica": "Produção",
@@ -440,11 +438,11 @@
       "parcelas": 1,
       "valor": 0,
       "situacao": "Previsto",
-      "ativo": true
+      "ativo": true,
+      "id": 47,
+      "data": "2026-06-17"
     },
     {
-      "id": 48,
-      "data": "2026-06-17",
       "descricao": "Roda de Samba",
       "fornecedor": "",
       "rubrica": "Alimentação",
@@ -452,11 +450,11 @@
       "parcelas": 1,
       "valor": 4000,
       "situacao": "Previsto",
-      "ativo": true
+      "ativo": true,
+      "id": 48,
+      "data": "2026-06-17"
     },
     {
-      "id": 49,
-      "data": "2026-06-18",
       "descricao": "Feijoada",
       "fornecedor": "",
       "rubrica": "Alimentação",
@@ -464,11 +462,11 @@
       "parcelas": 1,
       "valor": 10000,
       "situacao": "Previsto",
-      "ativo": true
+      "ativo": true,
+      "id": 49,
+      "data": "2026-06-18"
     },
     {
-      "id": 50,
-      "data": "2026-06-18",
       "descricao": "Recursos PPGCOM",
       "fornecedor": "",
       "rubrica": "Outros",
@@ -476,11 +474,11 @@
       "parcelas": 1,
       "valor": 10000,
       "situacao": "Previsto",
-      "ativo": false
+      "ativo": false,
+      "id": 50,
+      "data": "2026-06-18"
     },
     {
-      "id": 51,
-      "data": "2026-06-18",
       "descricao": "Bolsa Faperj JCNE",
       "fornecedor": "",
       "rubrica": "Outros",
@@ -488,11 +486,11 @@
       "parcelas": 1,
       "valor": 12000,
       "situacao": "Previsto",
-      "ativo": false
+      "ativo": false,
+      "id": 51,
+      "data": "2026-06-18"
     },
     {
-      "id": 52,
-      "data": "2026-06-18",
       "descricao": "Zeladoria Alimentação (Quentinhas)",
       "fornecedor": "",
       "rubrica": "Produção",
@@ -500,11 +498,11 @@
       "parcelas": 1,
       "valor": 880,
       "situacao": "Previsto",
-      "ativo": true
+      "ativo": true,
+      "id": 52,
+      "data": "2026-06-18"
     },
     {
-      "id": 53,
-      "data": "2026-06-18",
       "descricao": "Brindes",
       "fornecedor": "",
       "rubrica": "Produção",
@@ -512,11 +510,11 @@
       "parcelas": 1,
       "valor": 2800,
       "situacao": "Previsto",
-      "ativo": true
+      "ativo": true,
+      "id": 53,
+      "data": "2026-06-18"
     },
     {
-      "id": 54,
-      "data": "2026-06-18",
       "descricao": "Material de Limpeza",
       "fornecedor": "",
       "rubrica": "Produção",
@@ -524,7 +522,9 @@
       "parcelas": 1,
       "valor": 1000,
       "situacao": "Previsto",
-      "ativo": true
+      "ativo": true,
+      "id": 54,
+      "data": "2026-06-18"
     }
   ]
 }
