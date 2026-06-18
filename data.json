@@ -462,7 +462,7 @@
       "rubrica": "Alimentação",
       "tipo": "Despesa",
       "parcelas": 1,
-      "valor": 10400,
+      "valor": 10000,
       "situacao": "Previsto",
       "ativo": true
     }
