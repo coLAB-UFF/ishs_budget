@@ -467,18 +467,6 @@
       "data": "2026-06-18"
     },
     {
-      "descricao": "Recursos PPGCOM",
-      "fornecedor": "",
-      "rubrica": "Outros",
-      "tipo": "Receita",
-      "parcelas": 1,
-      "valor": 10000,
-      "situacao": "Previsto",
-      "ativo": true,
-      "id": 50,
-      "data": "2026-06-18"
-    },
-    {
       "descricao": "Bolsa Faperj JCNE",
       "fornecedor": "",
       "rubrica": "Outros",
