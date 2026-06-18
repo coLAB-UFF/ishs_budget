@@ -507,10 +507,10 @@
       "data": "2026-06-18",
       "descricao": "Brindes",
       "fornecedor": "",
-      "rubrica": "Diárias Nacionais",
+      "rubrica": "Produção",
       "tipo": "Despesa",
       "parcelas": 1,
-      "valor": 0,
+      "valor": 2800,
       "situacao": "Previsto",
       "ativo": true
     }
