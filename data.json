@@ -522,7 +522,7 @@
       "rubrica": "Outros",
       "tipo": "Receita",
       "parcelas": 1,
-      "valor": 0,
+      "valor": 10000,
       "situacao": "Previsto",
       "ativo": true
     }
