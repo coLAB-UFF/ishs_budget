@@ -19,7 +19,7 @@
   ],
   "filtroTipo": "todos",
   "filtroSituacao": "todas",
-  "groupBy": "rubrica",
+  "groupBy": "tipo",
   "nextId": 56,
   "entries": [
     {
