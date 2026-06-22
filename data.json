@@ -525,18 +525,6 @@
       "ativo": true,
       "id": 55,
       "data": "2026-06-21"
-    },
-    {
-      "id": 56,
-      "data": "2026-06-22",
-      "descricao": "Inscrições Efetuadas (Asaas)",
-      "fornecedor": "",
-      "rubrica": "Outros",
-      "tipo": "Receita",
-      "parcelas": 1,
-      "valor": 18227.3,
-      "situacao": "Previsto",
-      "ativo": true
     }
   ]
 }
