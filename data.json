@@ -161,7 +161,7 @@
       "tipo": "Despesa",
       "parcelas": 3,
       "valor": 380,
-      "situacao": "Empenhado",
+      "situacao": "Previsto",
       "ativo": true,
       "id": 17,
       "data": "2026-05-16"
@@ -293,7 +293,7 @@
       "tipo": "Despesa",
       "parcelas": 3,
       "valor": 380,
-      "situacao": "Empenhado",
+      "situacao": "Previsto",
       "ativo": true,
       "id": 31,
       "data": "2026-05-21"
