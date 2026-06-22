@@ -341,7 +341,7 @@
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 1500,
-      "situacao": "Previsto",
+      "situacao": "Efetuado",
       "ativo": true,
       "id": 37,
       "data": "2026-05-30"
