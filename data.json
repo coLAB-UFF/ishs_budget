@@ -531,10 +531,10 @@
       "data": "2026-06-22",
       "descricao": "Inscrições Efetuadas (Asaas)",
       "fornecedor": "",
-      "rubrica": "Diárias Nacionais",
-      "tipo": "Despesa",
+      "rubrica": "Outros",
+      "tipo": "Receita",
       "parcelas": 1,
-      "valor": 0,
+      "valor": 18.2273,
       "situacao": "Previsto",
       "ativo": true
     }
