@@ -305,7 +305,7 @@
       "tipo": "Despesa",
       "parcelas": 6,
       "valor": 400,
-      "situacao": "Empenhado",
+      "situacao": "Previsto",
       "ativo": true,
       "id": 33,
       "data": "2026-05-21"
