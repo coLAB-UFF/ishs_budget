@@ -396,7 +396,7 @@
     },
     {
       "descricao": "Diárias (Helen + Sebástian)",
-      "fornecedor": "",
+      "fornecedor": "Helen Fernandes",
       "rubrica": "Diárias Nacionais",
       "tipo": "Despesa",
       "parcelas": 4,
@@ -408,7 +408,7 @@
     },
     {
       "descricao": "Diárias (Marcelo Zorzanelli)",
-      "fornecedor": "",
+      "fornecedor": "Marcelo Zorzanelli",
       "rubrica": "Diárias Nacionais",
       "tipo": "Despesa",
       "parcelas": 2,
@@ -420,7 +420,7 @@
     },
     {
       "descricao": "Diárias (Rodrigo Carrero)",
-      "fornecedor": "",
+      "fornecedor": "Rodrigo Carrero",
       "rubrica": "Diárias Nacionais",
       "tipo": "Despesa",
       "parcelas": 1,
