@@ -521,7 +521,7 @@
       "tipo": "Receita",
       "parcelas": 1,
       "valor": 10000,
-      "situacao": "Previsto",
+      "situacao": "Empenhado",
       "ativo": true,
       "id": 55,
       "data": "2026-06-21"
