@@ -233,7 +233,7 @@
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 23170,
-      "situacao": "Previsto",
+      "situacao": "Empenhado",
       "ativo": true,
       "id": 23,
       "data": "2026-05-17"
