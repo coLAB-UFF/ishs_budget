@@ -221,7 +221,7 @@
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 40000,
-      "situacao": "Previsto",
+      "situacao": "Empenhado",
       "ativo": true,
       "id": 22,
       "data": "2026-05-17"
@@ -317,7 +317,7 @@
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 21600,
-      "situacao": "Previsto",
+      "situacao": "Empenhado",
       "ativo": true,
       "id": 34,
       "data": "2026-05-27"
@@ -365,7 +365,7 @@
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 17100,
-      "situacao": "Previsto",
+      "situacao": "Empenhado",
       "ativo": true,
       "id": 39,
       "data": "2026-06-16"
