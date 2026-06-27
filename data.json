@@ -425,7 +425,7 @@
       "tipo": "Despesa",
       "parcelas": 11,
       "valor": 88,
-      "situacao": "Previsto",
+      "situacao": "Efetuado",
       "ativo": true,
       "id": 52,
       "data": "2026-06-18"
