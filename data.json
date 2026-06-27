@@ -317,7 +317,7 @@
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 7200,
-      "situacao": "Empenhado",
+      "situacao": "Efetuado",
       "ativo": true,
       "id": 39,
       "data": "2026-06-16"
