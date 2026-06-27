@@ -99,7 +99,7 @@
       "fornecedor": "Hotel Orizzonte Niterói by Atlantica",
       "rubrica": "Hospedagem",
       "tipo": "Despesa",
-      "parcelas": 6,
+      "parcelas": 1,
       "valor": 8486.4,
       "situacao": "Previsto",
       "ativo": true,
