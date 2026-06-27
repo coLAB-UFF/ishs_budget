@@ -191,18 +191,6 @@
       "data": "2026-05-16"
     },
     {
-      "descricao": "Hospedagem (Thaís Leão)",
-      "fornecedor": "Thaís Leão Vieira",
-      "rubrica": "Hospedagem",
-      "tipo": "Despesa",
-      "parcelas": 3,
-      "valor": 600,
-      "situacao": "Previsto",
-      "ativo": true,
-      "id": 21,
-      "data": "2026-05-16"
-    },
-    {
       "descricao": "Catering / Coffee Break + Almoço + Feijoada 50%",
       "fornecedor": "MARCIO JOAQUIM Buffet",
       "rubrica": "Alimentação",
@@ -239,18 +227,6 @@
       "data": "2026-05-17"
     },
     {
-      "descricao": "Hospedagem (Héctor Fernández L'Hoeste)",
-      "fornecedor": "",
-      "rubrica": "Hospedagem",
-      "tipo": "Despesa",
-      "parcelas": 6,
-      "valor": 600,
-      "situacao": "Previsto",
-      "ativo": true,
-      "id": 27,
-      "data": "2026-05-17"
-    },
-    {
       "descricao": "Zeladoria",
       "fornecedor": "",
       "rubrica": "Produção",
@@ -284,18 +260,6 @@
       "situacao": "Previsto",
       "ativo": true,
       "id": 31,
-      "data": "2026-05-21"
-    },
-    {
-      "descricao": "Hospedagem (Denise Margonari)",
-      "fornecedor": "",
-      "rubrica": "Hospedagem",
-      "tipo": "Despesa",
-      "parcelas": 6,
-      "valor": 400,
-      "situacao": "Previsto",
-      "ativo": true,
-      "id": 33,
       "data": "2026-05-21"
     },
     {
