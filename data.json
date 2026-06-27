@@ -221,7 +221,7 @@
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 38300,
-      "situacao": "Empenhado",
+      "situacao": "Efetuado",
       "ativo": true,
       "id": 22,
       "data": "2026-05-17"
@@ -316,7 +316,7 @@
       "rubrica": "Alimentação",
       "tipo": "Despesa",
       "parcelas": 1,
-      "valor": 21600,
+      "valor": 383,
       "situacao": "Empenhado",
       "ativo": true,
       "id": 34,
