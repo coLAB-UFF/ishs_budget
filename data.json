@@ -179,18 +179,6 @@
       "data": "2026-05-16"
     },
     {
-      "descricao": "Hospedagem (Marcelo Zorzanelli)",
-      "fornecedor": "",
-      "rubrica": "Hospedagem",
-      "tipo": "Despesa",
-      "parcelas": 2,
-      "valor": 600,
-      "situacao": "Previsto",
-      "ativo": true,
-      "id": 19,
-      "data": "2026-05-16"
-    },
-    {
       "descricao": "Passagem Aérea (Thaís Leão)",
       "fornecedor": "Thaís Leão Vieira",
       "rubrica": "Passagens",
