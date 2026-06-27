@@ -455,18 +455,6 @@
       "data": "2026-06-17"
     },
     {
-      "descricao": "Feijoada",
-      "fornecedor": "",
-      "rubrica": "Alimentação",
-      "tipo": "Despesa",
-      "parcelas": 1,
-      "valor": 15000,
-      "situacao": "Empenhado",
-      "ativo": true,
-      "id": 49,
-      "data": "2026-06-18"
-    },
-    {
       "descricao": "Bolsa Faperj JCNE",
       "fornecedor": "",
       "rubrica": "Outros",
