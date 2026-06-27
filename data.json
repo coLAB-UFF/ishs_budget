@@ -357,8 +357,8 @@
     {
       "descricao": "Passagem Aérea (Sebastián)",
       "descricao_en": "Flight Ticket (Sebastián)",
-      "fornecedor": "",
-      "fornecedor_en": "",
+      "fornecedor": "Gol Airlines",
+      "fornecedor_en": "Gol Airlines",
       "rubrica": "Passagens",
       "tipo": "Despesa",
       "parcelas": 1,
