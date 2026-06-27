@@ -287,8 +287,8 @@
     {
       "descricao": "Passagem Aérea (Héctor Fernández L'Hoeste)",
       "descricao_en": "Flight Ticket (Héctor Fernández L'Hoeste)",
-      "fornecedor": "",
-      "fornecedor_en": "",
+      "fornecedor": "Copa Airlines",
+      "fornecedor_en": "Copa Airlines",
       "rubrica": "Passagens",
       "tipo": "Despesa",
       "parcelas": 1,
