@@ -534,8 +534,8 @@
       "rubrica": "Alimentação",
       "tipo": "Despesa",
       "parcelas": 1,
-      "valor": 0,
-      "situacao": "Previsto",
+      "valor": 7200,
+      "situacao": "Efetuado",
       "ativo": true
     }
   ]
