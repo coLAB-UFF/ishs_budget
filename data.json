@@ -101,7 +101,7 @@
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 8486.4,
-      "situacao": "Previsto",
+      "situacao": "Efetuado",
       "ativo": true,
       "id": 7,
       "data": "2026-05-16"
@@ -125,7 +125,7 @@
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 3000,
-      "situacao": "Previsto",
+      "situacao": "Efetuado",
       "ativo": true,
       "id": 9,
       "data": "2026-05-16"
