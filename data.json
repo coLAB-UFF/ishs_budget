@@ -119,12 +119,12 @@
       "data": "2026-05-16"
     },
     {
-      "descricao": "Hospedagem (Denise Margonari 6 + Natalia Dias 6)",
+      "descricao": "Hospedagem (Denise Margonari 6 + Natalia Dias 5)",
       "fornecedor": "Hotel Cantareira",
       "rubrica": "Hospedagem",
       "tipo": "Despesa",
       "parcelas": 1,
-      "valor": 600,
+      "valor": 3000,
       "situacao": "Previsto",
       "ativo": true,
       "id": 9,
