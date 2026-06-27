@@ -449,7 +449,7 @@
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 5000,
-      "situacao": "Previsto",
+      "situacao": "Efetuado",
       "ativo": true,
       "id": 48,
       "data": "2026-06-17"
@@ -535,7 +535,7 @@
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 7200,
-      "situacao": "Efetuado",
+      "situacao": "Empenhado",
       "ativo": true
     }
   ]
