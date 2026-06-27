@@ -20,7 +20,7 @@
   "filtroTipo": "todos",
   "filtroSituacao": "todas",
   "groupBy": "rubrica",
-  "nextId": 57,
+  "nextId": 58,
   "entries": [
     {
       "descricao": "Edital de Apoio a Eventos",
@@ -525,6 +525,18 @@
       "ativo": true,
       "id": 55,
       "data": "2026-06-21"
+    },
+    {
+      "id": 57,
+      "data": "2026-06-27",
+      "descricao": "Coquetel 50%",
+      "fornecedor": "",
+      "rubrica": "Diárias Nacionais",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 0,
+      "situacao": "Previsto",
+      "ativo": true
     }
   ]
 }
