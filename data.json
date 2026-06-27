@@ -145,7 +145,7 @@
       "data": "2026-05-16"
     },
     {
-      "descricao": "Hospedagem (Raúl Pérez 6 + Rodrigo Carreiro 1 + Marcelo Zorzanelli 2 + Thaís Leão 3 + Héctor Fernández L'Hoeste 6)",
+      "descricao": "Hospedagem (Raúl Pérez 6 + Rodrigo Carreiro 1 + Thaís Leão 3 + Héctor Fernández L'Hoeste 6)",
       "descricao_en": "Hotel Expenses (Raúl Pérez 6 + Rodrigo Carreiro 1 + Thaís Leão 3 + Héctor Fernández L'Hoeste 6)",
       "fornecedor": "Hotel Orizzonte Niterói by Atlantica",
       "fornecedor_en": "",
@@ -174,7 +174,7 @@
     },
     {
       "descricao": "Hospedagem (Denise Margonari 6 + Natalia Dias 5)",
-      "descricao_en": "",
+      "descricao_en": "Hotel Expenses (Denise Margonari 6 + Natalia Dias 5)",
       "fornecedor": "Hotel Cantareira",
       "fornecedor_en": "",
       "rubrica": "Hospedagem",
