@@ -80,6 +80,15 @@
     }
     .btn-token:hover { background: rgba(255,255,255,0.3); }
 
+    .btn-lang {
+      background: rgba(255,255,255,0.18); color: white;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      padding: 3px 9px; border-radius: 20px; font-size: 0.72rem; font-weight: 700;
+      cursor: pointer; font-family: var(--font); transition: background 0.14s;
+      letter-spacing: 0.5px; white-space: nowrap;
+    }
+    .btn-lang:hover { background: rgba(255,255,255,0.3); }
+
     /* ── Toolbar ─────────────────────────────────────────────── */
     .toolbar {
       display: flex; align-items: center; flex-wrap: wrap;
@@ -323,6 +332,7 @@
         <p  id="board-desc"  contenteditable="true" spellcheck="false" data-placeholder="Descrição..."></p>
       </div>
       <div class="header-controls">
+        <button id="btn-lang" class="btn-lang" title="Switch to English">EN</button>
         <span id="sync-status" class="sync-status" data-status="loading">⟳ Carregando…</span>
         <button id="btn-token" class="btn-token" title="Configurar sincronização GitHub">⚙</button>
       </div>
@@ -331,27 +341,27 @@
 
   <!-- Toolbar -->
   <div class="toolbar">
-    <span class="filter-label">Tipo:</span>
+    <span class="filter-label" data-i18n="lbl_tipo">Tipo:</span>
     <div class="filter-group" id="tipo-filters"></div>
     <div class="toolbar-sep"></div>
-    <span class="filter-label">Situação:</span>
+    <span class="filter-label" data-i18n="lbl_sit">Situação:</span>
     <div class="filter-group" id="situacao-filters"></div>
-    <button id="btn-situacao" class="btn-secondary">⚙ Situações</button>
-    <button id="btn-rubrica" class="btn-secondary">⚙ Rubricas</button>
+    <button id="btn-situacao" class="btn-secondary" data-i18n="btn_sit">⚙ Situações</button>
+    <button id="btn-rubrica" class="btn-secondary" data-i18n="btn_rubr">⚙ Rubricas</button>
     <div class="toolbar-sep"></div>
     <div id="group-by-wrap" style="display:flex;align-items:center;gap:6px;">
-      <span class="filter-label">Agrupar:</span>
+      <span class="filter-label" data-i18n="lbl_group">Agrupar:</span>
       <select id="group-by-select" class="filter-select">
-        <option value="none">Nenhum</option>
-        <option value="data">Data ↑</option>
-        <option value="rubrica">Rubrica</option>
-        <option value="tipo">Tipo</option>
-        <option value="situacao">Situação</option>
+        <option value="none" data-i18n="grp_none">Nenhum</option>
+        <option value="data" data-i18n="grp_data">Data ↑</option>
+        <option value="rubrica" data-i18n="grp_rubrica">Rubrica</option>
+        <option value="tipo" data-i18n="grp_tipo">Tipo</option>
+        <option value="situacao" data-i18n="grp_situacao">Situação</option>
       </select>
     </div>
     <div class="toolbar-spacer"></div>
-    <button id="btn-embed" class="btn-secondary">&lt;/&gt; Incorporar</button>
-    <button id="btn-add-row" class="btn-primary">+ Adicionar Linha</button>
+    <button id="btn-embed" class="btn-secondary" data-i18n="btn_embed">&lt;/&gt; Incorporar</button>
+    <button id="btn-add-row" class="btn-primary" data-i18n="btn_add">+ Adicionar Linha</button>
   </div>
 
   <!-- Table -->
@@ -362,15 +372,15 @@
           <th class="col-drag"></th>
           <th class="col-chk th-center"><input type="checkbox" id="chk-all" class="row-chk" title="Selecionar todas / nenhuma" checked></th>
           <th class="col-id th-center">ID</th>
-          <th class="col-data">Data</th>
-          <th class="col-desc">Descrição</th>
-          <th class="col-forn">Fornecedor</th>
-          <th class="col-rubr">Rubrica</th>
-          <th class="col-tipo">Tipo</th>
-          <th class="col-parc th-center">Parcelas</th>
-          <th class="col-valor th-right">Valor (R$)</th>
-          <th class="col-sub th-right">Subtotal</th>
-          <th class="col-sit">Situação</th>
+          <th class="col-data" data-i18n="col_date">Data</th>
+          <th class="col-desc" data-i18n="col_desc">Descrição</th>
+          <th class="col-forn" data-i18n="col_forn">Fornecedor</th>
+          <th class="col-rubr" data-i18n="col_rubr">Rubrica</th>
+          <th class="col-tipo" data-i18n="col_tipo">Tipo</th>
+          <th class="col-parc th-center" data-i18n="col_parc">Parcelas</th>
+          <th class="col-valor th-right" data-i18n="col_valor">Valor (R$)</th>
+          <th class="col-sub th-right" data-i18n="col_sub">Subtotal</th>
+          <th class="col-sit" data-i18n="col_sit">Situação</th>
           <th class="col-act"></th>
         </tr>
       </thead>
@@ -378,9 +388,9 @@
       <tfoot>
         <tr>
           <td colspan="10" class="saldo-label-cell">
-            <span class="saldo-title">SALDO</span>
-            <span class="saldo-sub">↑ Receitas: <strong id="saldo-receitas">R$ 0,00</strong></span>
-            <span class="saldo-sub">↓ Despesas: <strong id="saldo-despesas">R$ 0,00</strong></span>
+            <span class="saldo-title" data-i18n="saldo">SALDO</span>
+            <span class="saldo-sub">↑ <span data-i18n="receitas">Receitas</span>: <strong id="saldo-receitas">R$ 0,00</strong></span>
+            <span class="saldo-sub">↓ <span data-i18n="despesas">Despesas</span>: <strong id="saldo-despesas">R$ 0,00</strong></span>
           </td>
           <td class="saldo-total-cell"><span id="saldo-value" class="saldo-pos">R$ 0,00</span></td>
           <td colspan="2"></td>
@@ -393,33 +403,33 @@
   <div id="token-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="token-modal-title">
     <div class="modal-box">
       <button class="modal-close" id="token-modal-close" aria-label="Fechar">&times;</button>
-      <h2 id="token-modal-title">Sincronização com GitHub</h2>
-      <p class="token-intro">
+      <h2 id="token-modal-title" data-i18n="modal_token_title">Sincronização com GitHub</h2>
+      <p class="token-intro" data-i18n="tok_intro">
         Insira um <strong>Personal Access Token</strong> do GitHub para salvar automaticamente
         os dados no repositório e acessá-los de qualquer dispositivo.
       </p>
-      <div id="token-current-status" class="token-status none">Nenhum token configurado</div>
+      <div id="token-current-status" class="token-status none" data-i18n="tok_none">Nenhum token configurado</div>
       <div class="token-field-wrap">
         <input type="password" id="inp-token" placeholder="github_pat_…" autocomplete="off" spellcheck="false">
         <button class="btn-show-token" id="btn-show-token" tabindex="-1">👁</button>
       </div>
       <div class="token-guide">
-        <strong>Como criar um token Fine-grained:</strong>
+        <strong data-i18n="tok_guide_title">Como criar um token Fine-grained:</strong>
         <ol>
-          <li>Acesse <a href="https://github.com/settings/personal-access-tokens/new" target="_blank">github.com → Settings → Fine-grained tokens</a></li>
-          <li>Em <em>Resource owner</em>, selecione <code>coLAB-UFF</code></li>
-          <li>Em <em>Repository access</em>, escolha <em>Only selected</em> → <code>ishs_budget</code></li>
-          <li>Em <em>Permissions → Contents</em>, selecione <strong>Read and write</strong></li>
-          <li>Gere e copie o token aqui</li>
+          <li><span data-i18n="tok_guide_s1">Acesse</span> <a href="https://github.com/settings/personal-access-tokens/new" target="_blank">github.com → Settings → Fine-grained tokens</a></li>
+          <li><span data-i18n="tok_guide_s2">Em <em>Resource owner</em>, selecione</span> <code>coLAB-UFF</code></li>
+          <li><span data-i18n="tok_guide_s3">Em <em>Repository access</em>, escolha <em>Only selected</em> →</span> <code>ishs_budget</code></li>
+          <li><span data-i18n="tok_guide_s4">Em <em>Permissions → Contents</em>, selecione</span> <strong>Read and write</strong></li>
+          <li data-i18n="tok_guide_s5">Gere e copie o token aqui</li>
         </ol>
       </div>
       <div id="token-upload-wrap" style="display:none;margin-bottom:12px;">
-        <button id="btn-upload-local" class="btn-primary" style="width:100%;background:var(--accent)">↑ Enviar dados locais para o GitHub</button>
-        <p style="font-size:0.74rem;color:var(--text-muted);margin-top:6px;">Nenhum dado encontrado no GitHub. Clique para enviar os dados deste dispositivo.</p>
+        <button id="btn-upload-local" class="btn-primary" style="width:100%;background:var(--accent)" data-i18n="btn_upload">↑ Enviar dados locais para o GitHub</button>
+        <p style="font-size:0.74rem;color:var(--text-muted);margin-top:6px;" data-i18n="upload_hint">Nenhum dado encontrado no GitHub. Clique para enviar os dados deste dispositivo.</p>
       </div>
       <div class="modal-actions">
-        <button id="btn-clear-token" class="btn-danger">Remover Token</button>
-        <button id="btn-save-token" class="btn-primary">Salvar e Sincronizar</button>
+        <button id="btn-clear-token" class="btn-danger" data-i18n="btn_clear">Remover Token</button>
+        <button id="btn-save-token" class="btn-primary" data-i18n="btn_save_tok">Salvar e Sincronizar</button>
       </div>
     </div>
   </div>
@@ -428,11 +438,11 @@
   <div id="situacao-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="sit-modal-title">
     <div class="modal-box">
       <button class="modal-close" id="sit-modal-close" aria-label="Fechar">&times;</button>
-      <h2 id="sit-modal-title">Gerenciar Situações</h2>
+      <h2 id="sit-modal-title" data-i18n="modal_sit_title">Gerenciar Situações</h2>
       <div class="sit-list" id="sit-list"></div>
       <div class="sit-add-row">
         <input type="text" id="nova-situacao" placeholder="Nova situação…" maxlength="30">
-        <button id="btn-add-situacao" class="btn-primary">Adicionar</button>
+        <button id="btn-add-situacao" class="btn-primary" data-i18n="btn_add_sit">Adicionar</button>
       </div>
     </div>
   </div>
@@ -441,11 +451,11 @@
   <div id="rubrica-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="rubr-modal-title">
     <div class="modal-box">
       <button class="modal-close" id="rubr-modal-close" aria-label="Fechar">&times;</button>
-      <h2 id="rubr-modal-title">Gerenciar Rubricas</h2>
+      <h2 id="rubr-modal-title" data-i18n="modal_rubr_title">Gerenciar Rubricas</h2>
       <div class="sit-list" id="rubr-list"></div>
       <div class="sit-add-row">
         <input type="text" id="nova-rubrica" placeholder="Nova rubrica…" maxlength="50">
-        <button id="btn-add-rubrica" class="btn-primary">Adicionar</button>
+        <button id="btn-add-rubrica" class="btn-primary" data-i18n="btn_add_rubr">Adicionar</button>
       </div>
     </div>
   </div>
@@ -454,16 +464,16 @@
   <div id="embed-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="embed-modal-title">
     <div class="modal-box" style="width:min(520px,95vw)">
       <button class="modal-close" id="embed-modal-close" aria-label="Fechar">&times;</button>
-      <h2 id="embed-modal-title">&lt;/&gt; Incorporar Planilha</h2>
+      <h2 id="embed-modal-title" data-i18n="modal_embed_title">&lt;/&gt; Incorporar Planilha</h2>
       <div class="embed-body">
-        <p>Gere um iframe estático e somente leitura desta planilha:</p>
+        <p data-i18n="embed_intro">Gere um iframe estático e somente leitura desta planilha:</p>
         <div class="embed-fields">
-          <label>Largura (px)<input type="number" id="em-w" value="1100"></label>
-          <label>Altura (px)<input type="number" id="em-h" value="600"></label>
+          <label><span data-i18n="embed_w">Largura (px)</span><input type="number" id="em-w" value="1100"></label>
+          <label><span data-i18n="embed_h">Altura (px)</span><input type="number" id="em-h" value="600"></label>
         </div>
         <textarea id="embed-code" readonly rows="5" spellcheck="false"></textarea>
-        <button id="btn-copy-embed" class="btn-primary" style="width:100%">Copiar Código</button>
-        <p id="embed-note-el" class="embed-note">Tamanho da URL: <span id="url-len">0</span> caracteres</p>
+        <button id="btn-copy-embed" class="btn-primary" style="width:100%" data-i18n="btn_copy">Copiar Código</button>
+        <p id="embed-note-el" class="embed-note"><span data-i18n="embed_url">Tamanho da URL:</span> <span id="url-len">0</span> <span data-i18n="embed_chars">caracteres</span></p>
       </div>
     </div>
   </div>
@@ -490,7 +500,260 @@
   const TOKEN_KEY = 'budget-gh-token';
   const IS_VIEW_MODE = new URLSearchParams(window.location.search).get('view') === '1';
 
-  let currentSHA = null;   // SHA do data.json no repo (necessário para updates)
+  /* ══════════════════════════════════════════════════════════
+     1b. LANGUAGE
+  ══════════════════════════════════════════════════════════ */
+
+  let _lang = new URLSearchParams(window.location.search).get('lang')
+           || localStorage.getItem('budget-lang')
+           || 'pt';
+
+  const STRINGS = {
+    pt: {
+      col_date:   'Data',
+      col_desc:   'Descrição',
+      col_forn:   'Fornecedor',
+      col_rubr:   'Rubrica',
+      col_tipo:   'Tipo',
+      col_parc:   'Parcelas',
+      col_valor:  'Valor (R$)',
+      col_sub:    'Subtotal',
+      col_sit:    'Situação',
+      lbl_tipo:   'Tipo:',
+      lbl_sit:    'Situação:',
+      lbl_group:  'Agrupar:',
+      grp_none:   'Nenhum',
+      grp_data:   'Data ↑',
+      grp_rubrica:'Rubrica',
+      grp_tipo:   'Tipo',
+      grp_situacao:'Situação',
+      chip_all:   'Todos',
+      chip_allf:  'Todas',
+      chip_rev:   'Receita',
+      chip_exp:   'Despesa',
+      btn_sit:    '⚙ Situações',
+      btn_rubr:   '⚙ Rubricas',
+      btn_embed:  '</> Incorporar',
+      btn_add:    '+ Adicionar Linha',
+      btn_copy:   'Copiar Código',
+      saldo:      'SALDO',
+      receitas:   'Receitas',
+      despesas:   'Despesas',
+      ph_desc:    'Descrição',
+      ph_forn:    'Fornecedor',
+      ph_title:   'Título do Orçamento',
+      ph_desc_hdr:'Descrição...',
+      ph_nova_sit:'Nova situação…',
+      ph_nova_rubr:'Nova rubrica…',
+      st_loading: '⟳ Carregando…',
+      st_saving:  '⏳ Salvando…',
+      st_pending: '● Pendente',
+      st_synced:  '✓ Sincronizado',
+      st_error:   '✗ Erro',
+      st_notoken: '○ Sem token',
+      modal_token_title: 'Sincronização com GitHub',
+      modal_sit_title:   'Gerenciar Situações',
+      modal_rubr_title:  'Gerenciar Rubricas',
+      modal_embed_title: '</> Incorporar Planilha',
+      tok_intro:   'Insira um Personal Access Token do GitHub para salvar automaticamente os dados no repositório e acessá-los de qualquer dispositivo.',
+      tok_guide_title: 'Como criar um token Fine-grained:',
+      tok_guide_s1: 'Acesse',
+      tok_guide_s2: 'Em Resource owner, selecione',
+      tok_guide_s3: 'Em Repository access, escolha Only selected →',
+      tok_guide_s4: 'Em Permissions → Contents, selecione',
+      tok_guide_s5: 'Gere e copie o token aqui',
+      tok_has:     '✓ Token configurado neste dispositivo',
+      tok_none:    'Nenhum token configurado',
+      tok_replace: 'Insira um novo token para substituir…',
+      btn_upload:  '↑ Enviar dados locais para o GitHub',
+      upload_hint: 'Nenhum dado encontrado no GitHub. Clique para enviar os dados deste dispositivo.',
+      btn_clear:   'Remover Token',
+      btn_save_tok:'Salvar e Sincronizar',
+      btn_add_sit: 'Adicionar',
+      no_sit:      'Nenhuma situação.',
+      btn_add_rubr:'Adicionar',
+      no_rubr:     'Nenhuma rubrica.',
+      embed_intro: 'Gere um iframe estático e somente leitura desta planilha:',
+      embed_w:     'Largura (px)',
+      embed_h:     'Altura (px)',
+      embed_url:   'Tamanho da URL:',
+      embed_chars: 'caracteres',
+      empty_view:  'Nenhuma entrada registrada.',
+      empty_edit:  'Nenhuma entrada. Clique em "+ Adicionar Linha" para começar.',
+      drag_title:  'Arrastar para reordenar',
+      del_title:   'Excluir',
+      del_confirm: 'Excluir linha #',
+      toast_quota: 'Armazenamento local cheio.',
+      toast_tok_save: 'Token salvo. Sincronizando…',
+      toast_tok_req:  'Insira o token antes de salvar.',
+      toast_upload:   'Enviando dados locais…',
+      toast_tok_del:  'Token removido.',
+      toast_conflict: 'Conflito de versão detectado. Recarregando dados do repositório…',
+      toast_copied:   '✓ Copiado!',
+      toast_in_use:   'Em uso — não pode ser removida.',
+      toast_exists:   'Já existe.',
+      in_use_hint: 'Em uso — não pode ser removida',
+      confirm_tok: 'Remover o token? O salvamento automático será desativado.',
+      sync_readonly: '○ Somente leitura — configure o token para salvar',
+      sync_no_repo:  '○ Configure o token para acessar este repositório',
+      sync_pending:  '● Alterações pendentes…',
+      sync_err_load: 'Erro ao carregar do repositório',
+      sync_err_save: 'Erro ao salvar: ',
+      sync_tok_inv:  'Token inválido ou sem permissão',
+      embed_err:   'Não foi possível carregar os dados do embed.',
+      gh_no_token: 'Token não configurado',
+    },
+    en: {
+      col_date:   'Date',
+      col_desc:   'Description',
+      col_forn:   'Supplier',
+      col_rubr:   'Category',
+      col_tipo:   'Type',
+      col_parc:   'Installments',
+      col_valor:  'Amount (R$)',
+      col_sub:    'Subtotal',
+      col_sit:    'Status',
+      lbl_tipo:   'Type:',
+      lbl_sit:    'Status:',
+      lbl_group:  'Group by:',
+      grp_none:   'None',
+      grp_data:   'Date ↑',
+      grp_rubrica:'Category',
+      grp_tipo:   'Type',
+      grp_situacao:'Status',
+      chip_all:   'All',
+      chip_allf:  'All',
+      chip_rev:   'Revenue',
+      chip_exp:   'Expense',
+      btn_sit:    '⚙ Statuses',
+      btn_rubr:   '⚙ Categories',
+      btn_embed:  '</> Embed',
+      btn_add:    '+ Add Row',
+      btn_copy:   'Copy Code',
+      saldo:      'BALANCE',
+      receitas:   'Revenue',
+      despesas:   'Expenses',
+      ph_desc:    'Description',
+      ph_forn:    'Supplier',
+      ph_title:   'Budget Title',
+      ph_desc_hdr:'Description…',
+      ph_nova_sit:'New status…',
+      ph_nova_rubr:'New category…',
+      st_loading: '⟳ Loading…',
+      st_saving:  '⏳ Saving…',
+      st_pending: '● Pending',
+      st_synced:  '✓ Synced',
+      st_error:   '✗ Error',
+      st_notoken: '○ No token',
+      modal_token_title: 'GitHub Sync',
+      modal_sit_title:   'Manage Statuses',
+      modal_rubr_title:  'Manage Categories',
+      modal_embed_title: '</> Embed Spreadsheet',
+      tok_intro:   'Enter a GitHub Personal Access Token to automatically save data to the repository and access it from any device.',
+      tok_guide_title: 'How to create a Fine-grained token:',
+      tok_guide_s1: 'Go to',
+      tok_guide_s2: 'Under Resource owner, select',
+      tok_guide_s3: 'Under Repository access, choose Only selected →',
+      tok_guide_s4: 'Under Permissions → Contents, select',
+      tok_guide_s5: 'Generate and paste the token here',
+      tok_has:     '✓ Token configured on this device',
+      tok_none:    'No token configured',
+      tok_replace: 'Enter a new token to replace the current one…',
+      btn_upload:  '↑ Upload local data to GitHub',
+      upload_hint: 'No data found on GitHub. Click to upload data from this device.',
+      btn_clear:   'Remove Token',
+      btn_save_tok:'Save and Sync',
+      btn_add_sit: 'Add',
+      no_sit:      'No statuses.',
+      btn_add_rubr:'Add',
+      no_rubr:     'No categories.',
+      embed_intro: 'Generate a static, read-only iframe of this spreadsheet:',
+      embed_w:     'Width (px)',
+      embed_h:     'Height (px)',
+      embed_url:   'URL size:',
+      embed_chars: 'characters',
+      empty_view:  'No entries recorded.',
+      empty_edit:  'No entries yet. Click "+ Add Row" to get started.',
+      drag_title:  'Drag to reorder',
+      del_title:   'Delete',
+      del_confirm: 'Delete row #',
+      toast_quota: 'Local storage full.',
+      toast_tok_save: 'Token saved. Syncing…',
+      toast_tok_req:  'Enter the token before saving.',
+      toast_upload:   'Uploading local data…',
+      toast_tok_del:  'Token removed.',
+      toast_conflict: 'Version conflict detected. Reloading data from repository…',
+      toast_copied:   '✓ Copied!',
+      toast_in_use:   'In use — cannot be removed.',
+      toast_exists:   'Already exists.',
+      in_use_hint: 'In use — cannot be removed',
+      confirm_tok: 'Remove token? Auto-save will be disabled.',
+      sync_readonly: '○ Read-only — configure token to save',
+      sync_no_repo:  '○ Configure token to access this repository',
+      sync_pending:  '● Pending changes…',
+      sync_err_load: 'Error loading from repository',
+      sync_err_save: 'Save error: ',
+      sync_tok_inv:  'Invalid token or no permission',
+      embed_err:   'Could not load embed data.',
+      gh_no_token: 'Token not configured',
+    }
+  };
+
+  function t(key) {
+    return (STRINGS[_lang] || STRINGS.pt)[key] ?? STRINGS.pt[key] ?? key;
+  }
+
+  function applyStaticTranslations() {
+    // Update all data-i18n elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      el.textContent = t(el.dataset.i18n);
+    });
+
+    // Update group-by select options
+    const gbs = document.getElementById('group-by-select');
+    if (gbs) {
+      gbs.querySelectorAll('option[data-i18n]').forEach(opt => {
+        opt.textContent = t(opt.dataset.i18n);
+      });
+    }
+
+    // Update input placeholders with data-i18n-ph
+    const novaSit = document.getElementById('nova-situacao');
+    if (novaSit) novaSit.placeholder = t('ph_nova_sit');
+    const novaRubr = document.getElementById('nova-rubrica');
+    if (novaRubr) novaRubr.placeholder = t('ph_nova_rubr');
+
+    // Update contenteditable placeholders
+    const titleEl = document.getElementById('board-title');
+    if (titleEl) titleEl.dataset.placeholder = t('ph_title');
+    const descEl = document.getElementById('board-desc');
+    if (descEl) descEl.dataset.placeholder = t('ph_desc_hdr');
+
+    // Update btn-lang: show what you switch TO
+    const btnLang = document.getElementById('btn-lang');
+    if (btnLang) {
+      if (_lang === 'pt') {
+        btnLang.textContent = 'EN';
+        btnLang.title = 'Switch to English';
+      } else {
+        btnLang.textContent = 'PT';
+        btnLang.title = 'Mudar para Português';
+      }
+    }
+  }
+
+  function switchLang() {
+    _lang = _lang === 'pt' ? 'en' : 'pt';
+    localStorage.setItem('budget-lang', _lang);
+    const url = new URL(window.location.href);
+    if (_lang === 'en') url.searchParams.set('lang', 'en');
+    else url.searchParams.delete('lang');
+    history.replaceState(null, '', url.toString());
+    render();
+    applyStaticTranslations();
+  }
+
+  let currentSHA = null;
   let _saveTimer = null;
 
   /* ══════════════════════════════════════════════════════════
@@ -503,9 +766,9 @@
 
   function ghHeaders(write) {
     const h = { 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' };
-    const t = getToken();
-    if (t) h['Authorization'] = `Bearer ${t}`;
-    else if (write) throw new Error('Token não configurado');
+    const tok = getToken();
+    if (tok) h['Authorization'] = `Bearer ${tok}`;
+    else if (write) throw new Error(t('gh_no_token'));
     return h;
   }
 
@@ -536,19 +799,15 @@
 
   function saveLS() {
     try { localStorage.setItem(LS_KEY, JSON.stringify(state)); }
-    catch (e) { if (e.name === 'QuotaExceededError') showToast('Armazenamento local cheio.'); }
+    catch (e) { if (e.name === 'QuotaExceededError') showToast(t('toast_quota')); }
   }
 
-  // Ensure default situations are always present in the correct order
   function migrateSituacoes(s) {
     const defaults = ['Previsto', 'Empenhado', 'Efetuado'];
-    defaults.forEach((d, i) => {
-      if (!s.includes(d)) s.splice(i, 0, d);
-    });
+    defaults.forEach((d, i) => { if (!s.includes(d)) s.splice(i, 0, d); });
     return s;
   }
 
-  // Ensure rubricas array exists; seed with defaults if absent
   function migrateRubricas(r) {
     if (!Array.isArray(r) || r.length === 0) return [...DEFAULT_RUBRICAS];
     return r;
@@ -566,7 +825,6 @@
     } catch (_) {}
   }
 
-  /* Direct mutation for text fields (no re-render, no full setState) */
   function updateField(id, field, value) {
     const e = state.entries.find(e => e.id === id);
     if (!e) return;
@@ -575,7 +833,6 @@
     scheduleSave();
   }
 
-  /* Direct mutation for numeric fields + targeted DOM update */
   function updateNumeric(id, field, value) {
     const e = state.entries.find(e => e.id === id);
     if (!e) return;
@@ -613,18 +870,17 @@
   ══════════════════════════════════════════════════════════ */
 
   async function loadFromGitHub() {
-    setSyncStatus('loading', 'Carregando…');
+    setSyncStatus('loading', t('st_loading'));
     try {
       const res = await fetch(GH_API, { headers: ghHeaders(false) });
       if (res.status === 404) {
-        // No data file yet — first time use
         currentSHA = null;
         setSyncStatus(getToken() ? 'synced' : 'notoken');
         return;
       }
       if (res.status === 401 || res.status === 403) {
-        if (getToken()) setSyncStatus('error', 'Token inválido ou sem permissão');
-        else            setSyncStatus('notoken', '○ Configure o token para acessar este repositório');
+        if (getToken()) setSyncStatus('error', t('sync_tok_inv'));
+        else            setSyncStatus('notoken', t('sync_no_repo'));
         return;
       }
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -639,17 +895,17 @@
       saveLS();
       syncHeaderText();
       render();
-      setSyncStatus(getToken() ? 'synced' : 'notoken', getToken() ? '' : '○ Somente leitura — configure o token para salvar');
+      setSyncStatus(getToken() ? 'synced' : 'notoken', getToken() ? '' : t('sync_readonly'));
     } catch (err) {
       console.warn('GitHub load failed:', err.message);
-      setSyncStatus('error', 'Erro ao carregar do repositório');
+      setSyncStatus('error', t('sync_err_load'));
     }
   }
 
   async function saveToGitHub() {
     const token = getToken();
     if (!token) { setSyncStatus('notoken'); return; }
-    setSyncStatus('saving', 'Salvando…');
+    setSyncStatus('saving', t('st_saving'));
     try {
       const content = b64EncodeUnicode(JSON.stringify(state, null, 2));
       const body = { message: `Update budget data — ${new Date().toISOString()}`, content, branch: GH_BRANCH };
@@ -662,8 +918,7 @@
       });
 
       if (res.status === 409) {
-        // SHA conflict: repo was updated externally — reload and retry
-        showToast('Conflito de versão detectado. Recarregando dados do repositório…');
+        showToast(t('toast_conflict'));
         await loadFromGitHub();
         return;
       }
@@ -677,14 +932,13 @@
       setSyncStatus('synced');
     } catch (err) {
       console.warn('GitHub save failed:', err.message);
-      setSyncStatus('error', `Erro ao salvar: ${err.message}`);
+      setSyncStatus('error', t('sync_err_save') + err.message);
     }
   }
 
-  /* Debounced save — fires 2.5 s after last change */
   function scheduleSave() {
     if (IS_VIEW_MODE) return;
-    setSyncStatus('pending', '● Alterações pendentes…');
+    setSyncStatus('pending', t('sync_pending'));
     clearTimeout(_saveTimer);
     _saveTimer = setTimeout(() => saveToGitHub(), 2500);
   }
@@ -693,20 +947,23 @@
      5. SYNC STATUS UI
   ══════════════════════════════════════════════════════════ */
 
-  const STATUS_LABELS = {
-    loading: '⟳ Carregando…',
-    saving:  '⏳ Salvando…',
-    pending: '● Pendente',
-    synced:  '✓ Sincronizado',
-    error:   '✗ Erro',
-    notoken: '○ Sem token'
-  };
+  function getSyncLabel(status) {
+    const map = {
+      loading: t('st_loading'),
+      saving:  t('st_saving'),
+      pending: t('st_pending'),
+      synced:  t('st_synced'),
+      error:   t('st_error'),
+      notoken: t('st_notoken'),
+    };
+    return map[status] || status;
+  }
 
   function setSyncStatus(status, customMsg) {
     const el = document.getElementById('sync-status');
     if (!el) return;
     el.dataset.status = status;
-    el.textContent = customMsg || STATUS_LABELS[status] || status;
+    el.textContent = customMsg !== undefined && customMsg !== '' ? customMsg : getSyncLabel(status);
     el.title = customMsg || '';
   }
 
@@ -731,7 +988,6 @@
       if (gb === 'situacao') return e.situacao || 'Previsto';
       return '';
     };
-    // Sort entries by group key (data: ascending; others: alphabetically)
     const sorted = [...entries].sort((a, b) => keyOf(a).localeCompare(keyOf(b), 'pt-BR'));
     const map = new Map();
     sorted.forEach(e => {
@@ -750,6 +1006,7 @@
     renderFilters();
     renderTable();
     renderEmbedCode();
+    applyStaticTranslations();
   }
 
   function renderFilters() {
@@ -758,7 +1015,7 @@
     if (!tipoEl || !sitEl) return;
 
     tipoEl.innerHTML = '';
-    [['todos','Todos','active-primary'],['receita','Receita','active-receita'],['despesa','Despesa','active-despesa']].forEach(([val, lbl, cls]) => {
+    [['todos', t('chip_all'), 'active-primary'], ['receita', t('chip_rev'), 'active-receita'], ['despesa', t('chip_exp'), 'active-despesa']].forEach(([val, lbl, cls]) => {
       const b = el('button', 'chip' + (state.filtroTipo === val ? ' ' + cls : ''));
       b.textContent = lbl;
       b.addEventListener('click', () => setState({ filtroTipo: val }));
@@ -767,7 +1024,7 @@
 
     sitEl.innerHTML = '';
     const allB = el('button', 'chip' + (state.filtroSituacao === 'todas' ? ' active-primary' : ''));
-    allB.textContent = 'Todas';
+    allB.textContent = t('chip_allf');
     allB.addEventListener('click', () => setState({ filtroSituacao: 'todas' }));
     sitEl.appendChild(allB);
     state.situacoes.forEach(sit => {
@@ -792,7 +1049,7 @@
 
     if (filtered.length === 0) {
       const tr = el('tr'); const td = el('td', 'empty-state-cell'); td.colSpan = 13;
-      td.textContent = IS_VIEW_MODE ? 'Nenhuma entrada registrada.' : 'Nenhuma entrada. Clique em "+ Adicionar Linha" para começar.';
+      td.textContent = IS_VIEW_MODE ? t('empty_view') : t('empty_edit');
       tr.appendChild(td); tbody.appendChild(tr);
     } else if (state.groupBy === 'none') {
       filtered.forEach(entry => tbody.appendChild(buildRow(entry)));
@@ -806,7 +1063,6 @@
       });
     }
     updateSaldoRow();
-    // Sync the group-by select value
     const gbs = document.getElementById('group-by-select');
     if (gbs && gbs.value !== state.groupBy) gbs.value = state.groupBy;
 
@@ -826,7 +1082,7 @@
     // Drag handle
     const tdDrag = el('td', 'col-drag');
     if (!IS_VIEW_MODE && state.groupBy === 'none') {
-      const handle = el('span', 'drag-handle'); handle.textContent = '⠿'; handle.title = 'Arrastar para reordenar';
+      const handle = el('span', 'drag-handle'); handle.textContent = '⠿'; handle.title = t('drag_title');
       tr.draggable = true;
       tdDrag.appendChild(handle);
     }
@@ -853,14 +1109,14 @@
 
     // Descrição
     const tdDesc = el('td','col-desc');
-    const inDesc = mkInput('text', entry.descricao, entry.id, 'descricao', 'Descrição');
+    const inDesc = mkInput('text', entry.descricao, entry.id, 'descricao', t('ph_desc'));
     inDesc.className += ' inp-desc';
     if (!IS_VIEW_MODE) inDesc.addEventListener('input', () => updateField(entry.id,'descricao',inDesc.value));
     tdDesc.appendChild(inDesc); tr.appendChild(tdDesc);
 
     // Fornecedor
     const tdF = el('td','col-forn');
-    const inF = mkInput('text', entry.fornecedor, entry.id, 'fornecedor', 'Fornecedor');
+    const inF = mkInput('text', entry.fornecedor, entry.id, 'fornecedor', t('ph_forn'));
     if (!IS_VIEW_MODE) inF.addEventListener('input', () => updateField(entry.id,'fornecedor',inF.value));
     tdF.appendChild(inF); tr.appendChild(tdF);
 
@@ -913,8 +1169,8 @@
     // Ações
     const tdA = el('td','col-act');
     if (!IS_VIEW_MODE) {
-      const btn = el('button','btn-delete-row'); btn.textContent = '🗑'; btn.title = 'Excluir';
-      btn.addEventListener('click', () => { if (confirm(`Excluir linha #${entry.id}?`)) deleteEntry(entry.id); });
+      const btn = el('button','btn-delete-row'); btn.textContent = '🗑'; btn.title = t('del_title');
+      btn.addEventListener('click', () => { if (confirm(t('del_confirm') + entry.id + '?')) deleteEntry(entry.id); });
       tdA.appendChild(btn);
     }
     tr.appendChild(tdA);
@@ -941,7 +1197,6 @@
   function updateSaldoRow() {
     const filtered = getFiltered();
     let rec = 0, des = 0;
-    // Only count rows that are active (ativo !== false)
     filtered.filter(e => e.ativo !== false).forEach(e => {
       const s = (e.parcelas||0)*(e.valor||0);
       if (e.tipo==='Receita') rec += s; else des += s;
@@ -960,7 +1215,6 @@
     if (!e) return;
     e.ativo = (e.ativo === false) ? true : false;
     saveLS(); scheduleSave();
-    // Update row appearance without full re-render
     const tr = document.querySelector(`.entry-row[data-id="${id}"]`);
     if (tr) tr.classList.toggle('inactive', e.ativo === false);
     updateSaldoRow();
@@ -1047,18 +1301,17 @@
   }
 
   /* ══════════════════════════════════════════════════════════
-     10. TOKEN MODAL
+     9. TOKEN MODAL
   ══════════════════════════════════════════════════════════ */
 
   function openTokenModal() {
     const statusEl = document.getElementById('token-current-status');
     const inp = document.getElementById('inp-token');
     const hasToken = !!getToken();
-    statusEl.textContent = hasToken ? '✓ Token configurado neste dispositivo' : 'Nenhum token configurado';
+    statusEl.textContent = hasToken ? t('tok_has') : t('tok_none');
     statusEl.className = 'token-status ' + (hasToken ? 'ok' : 'none');
     inp.value = '';
-    inp.placeholder = hasToken ? 'Insira um novo token para substituir…' : 'github_pat_…';
-    // Mostra botão de upload sempre que o token estiver configurado
+    inp.placeholder = hasToken ? t('tok_replace') : 'github_pat_…';
     document.getElementById('token-upload-wrap').style.display = hasToken ? 'block' : 'none';
     document.getElementById('token-modal').classList.remove('hidden');
     if (!hasToken) setTimeout(() => inp.focus(), 40);
@@ -1079,31 +1332,31 @@
 
     document.getElementById('btn-save-token').addEventListener('click', async () => {
       const val = document.getElementById('inp-token').value.trim();
-      if (!val) { showToast('Insira o token antes de salvar.'); return; }
+      if (!val) { showToast(t('toast_tok_req')); return; }
       setToken(val);
       closeTokenModal();
-      showToast('Token salvo. Sincronizando…');
+      showToast(t('toast_tok_save'));
       currentSHA = null;
       await loadFromGitHub();
     });
 
     document.getElementById('btn-upload-local').addEventListener('click', async () => {
       closeTokenModal();
-      showToast('Enviando dados locais…');
+      showToast(t('toast_upload'));
       await saveToGitHub();
     });
 
     document.getElementById('btn-clear-token').addEventListener('click', () => {
-      if (!confirm('Remover o token? O salvamento automático será desativado.')) return;
+      if (!confirm(t('confirm_tok'))) return;
       clearToken();
       closeTokenModal();
       setSyncStatus('notoken');
-      showToast('Token removido.');
+      showToast(t('toast_tok_del'));
     });
   }
 
   /* ══════════════════════════════════════════════════════════
-     9. SITUAÇÃO MODAL
+     10. SITUAÇÃO MODAL
   ══════════════════════════════════════════════════════════ */
 
   function openSituacaoModal() { renderSituacaoList(); document.getElementById('situacao-modal').classList.remove('hidden'); document.getElementById('nova-situacao').focus(); }
@@ -1111,14 +1364,14 @@
 
   function renderSituacaoList() {
     const list = document.getElementById('sit-list'); list.innerHTML = '';
-    if (!state.situacoes.length) { const p = el('p'); p.style.cssText='color:var(--text-muted);font-size:.82rem'; p.textContent='Nenhuma situação.'; list.appendChild(p); return; }
+    if (!state.situacoes.length) { const p = el('p'); p.style.cssText='color:var(--text-muted);font-size:.82rem'; p.textContent = t('no_sit'); list.appendChild(p); return; }
     state.situacoes.forEach(sit => {
       const inUse = state.entries.some(e => e.situacao === sit);
       const div = el('div','sit-item');
       const nm  = el('span','sit-item-name'); nm.textContent = sit;
       const btn = el('button','sit-item-del'); btn.textContent = '✕'; btn.disabled = inUse;
-      btn.title = inUse ? 'Em uso — não pode ser removida' : 'Remover';
-      btn.addEventListener('click', () => { if (!removeSituacao(sit)) { showToast('Em uso — não pode ser removida.'); return; } renderSituacaoList(); });
+      btn.title = inUse ? t('in_use_hint') : 'Remover';
+      btn.addEventListener('click', () => { if (!removeSituacao(sit)) { showToast(t('toast_in_use')); return; } renderSituacaoList(); });
       div.appendChild(nm); div.appendChild(btn); list.appendChild(div);
     });
   }
@@ -1128,12 +1381,12 @@
     document.getElementById('sit-modal-close').addEventListener('click', closeSituacaoModal);
     document.getElementById('situacao-modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeSituacaoModal(); });
     const ni = document.getElementById('nova-situacao');
-    document.getElementById('btn-add-situacao').addEventListener('click', () => { const n = ni.value.trim(); if (!n) return; if (!addSituacao(n)) { showToast('Já existe.'); return; } ni.value=''; renderSituacaoList(); ni.focus(); });
+    document.getElementById('btn-add-situacao').addEventListener('click', () => { const n = ni.value.trim(); if (!n) return; if (!addSituacao(n)) { showToast(t('toast_exists')); return; } ni.value=''; renderSituacaoList(); ni.focus(); });
     ni.addEventListener('keydown', e => { if (e.key==='Enter') document.getElementById('btn-add-situacao').click(); });
   }
 
   /* ══════════════════════════════════════════════════════════
-     9b. RUBRICA MODAL
+     10b. RUBRICA MODAL
   ══════════════════════════════════════════════════════════ */
 
   function openRubricaModal() { renderRubricaList(); document.getElementById('rubrica-modal').classList.remove('hidden'); document.getElementById('nova-rubrica').focus(); }
@@ -1141,14 +1394,14 @@
 
   function renderRubricaList() {
     const list = document.getElementById('rubr-list'); list.innerHTML = '';
-    if (!state.rubricas.length) { const p = el('p'); p.style.cssText='color:var(--text-muted);font-size:.82rem'; p.textContent='Nenhuma rubrica.'; list.appendChild(p); return; }
+    if (!state.rubricas.length) { const p = el('p'); p.style.cssText='color:var(--text-muted);font-size:.82rem'; p.textContent = t('no_rubr'); list.appendChild(p); return; }
     state.rubricas.forEach(rub => {
       const inUse = state.entries.some(e => e.rubrica === rub);
       const div = el('div','sit-item');
       const nm  = el('span','sit-item-name'); nm.textContent = rub;
       const btn = el('button','sit-item-del'); btn.textContent = '✕'; btn.disabled = inUse;
-      btn.title = inUse ? 'Em uso — não pode ser removida' : 'Remover';
-      btn.addEventListener('click', () => { if (!removeRubrica(rub)) { showToast('Em uso — não pode ser removida.'); return; } renderRubricaList(); });
+      btn.title = inUse ? t('in_use_hint') : 'Remover';
+      btn.addEventListener('click', () => { if (!removeRubrica(rub)) { showToast(t('toast_in_use')); return; } renderRubricaList(); });
       div.appendChild(nm); div.appendChild(btn); list.appendChild(div);
     });
   }
@@ -1158,12 +1411,12 @@
     document.getElementById('rubr-modal-close').addEventListener('click', closeRubricaModal);
     document.getElementById('rubrica-modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeRubricaModal(); });
     const ni = document.getElementById('nova-rubrica');
-    document.getElementById('btn-add-rubrica').addEventListener('click', () => { const n = ni.value.trim(); if (!n) return; if (!addRubrica(n)) { showToast('Já existe.'); return; } ni.value=''; renderRubricaList(); ni.focus(); });
+    document.getElementById('btn-add-rubrica').addEventListener('click', () => { const n = ni.value.trim(); if (!n) return; if (!addRubrica(n)) { showToast(t('toast_exists')); return; } ni.value=''; renderRubricaList(); ni.focus(); });
     ni.addEventListener('keydown', e => { if (e.key==='Enter') document.getElementById('btn-add-rubrica').click(); });
   }
 
   /* ══════════════════════════════════════════════════════════
-     10. INLINE HEADER EDITING
+     11. INLINE HEADER EDITING
   ══════════════════════════════════════════════════════════ */
 
   function initInlineEdit() {
@@ -1178,19 +1431,29 @@
   }
 
   /* ══════════════════════════════════════════════════════════
-     11. EMBED PANEL
+     12. EMBED PANEL
   ══════════════════════════════════════════════════════════ */
 
   function renderEmbedCode() {
     if (IS_VIEW_MODE) return;
     const ta = document.getElementById('embed-code'); if (!ta) return;
     const enc = LZString.compressToEncodedURIComponent(JSON.stringify(state));
-    const url = `${window.location.href.split('?')[0]}?view=1&data=${enc}`;
+    const base = window.location.href.split('?')[0];
+    const langParam = _lang === 'en' ? '&lang=en' : '';
+    const url = `${base}?view=1&data=${enc}${langParam}`;
     const w = document.getElementById('em-w').value||1100, h = document.getElementById('em-h').value||600;
     ta.value = `<iframe src="${url}" width="${w}" height="${h}" frameborder="0" style="border:none;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.12)"></iframe>`;
-    const n = url.length; const sp = document.getElementById('url-len'); if (sp) sp.textContent = n;
+    const n = url.length;
     const note = document.getElementById('embed-note-el');
-    if (note) { if (n>2000) { note.className='embed-note warn'; note.textContent=`⚠️ URL com ${n} chars — pode não funcionar em alguns navegadores.`; } else { note.className='embed-note'; note.innerHTML=`Tamanho da URL: <span id="url-len">${n}</span> caracteres`; } }
+    if (note) {
+      if (n > 2000) {
+        note.className = 'embed-note warn';
+        note.textContent = `⚠️ URL com ${n} chars — pode não funcionar em alguns navegadores.`;
+      } else {
+        note.className = 'embed-note';
+        note.innerHTML = `<span data-i18n="embed_url">${t('embed_url')}</span> <span id="url-len">${n}</span> <span data-i18n="embed_chars">${t('embed_chars')}</span>`;
+      }
+    }
   }
 
   function openEmbedModal()  { renderEmbedCode(); document.getElementById('embed-modal').classList.remove('hidden'); }
@@ -1203,14 +1466,23 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && !document.getElementById('embed-modal').classList.contains('hidden')) closeEmbedModal(); });
     document.getElementById('btn-copy-embed').addEventListener('click', () => {
       const code = document.getElementById('embed-code').value;
-      if (navigator.clipboard) { navigator.clipboard.writeText(code).then(()=>{ const b=document.getElementById('btn-copy-embed'); b.textContent='✓ Copiado!'; setTimeout(()=>{ b.textContent='Copiar Código'; },2000); }); }
-      else { document.getElementById('embed-code').select(); document.execCommand('copy'); showToast('Copiado!'); }
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(code).then(() => {
+          const b = document.getElementById('btn-copy-embed');
+          b.textContent = t('toast_copied');
+          setTimeout(() => { b.textContent = t('btn_copy'); }, 2000);
+        });
+      } else {
+        document.getElementById('embed-code').select();
+        document.execCommand('copy');
+        showToast(t('toast_copied'));
+      }
     });
     ['em-w','em-h'].forEach(id => document.getElementById(id).addEventListener('input', renderEmbedCode));
   }
 
   /* ══════════════════════════════════════════════════════════
-     12. URL (view mode)
+     13. URL (view mode)
   ══════════════════════════════════════════════════════════ */
 
   function loadFromURL() {
@@ -1224,13 +1496,13 @@
         if (parsed.situacoes) parsed.situacoes = migrateSituacoes(parsed.situacoes);
         parsed.rubricas = migrateRubricas(parsed.rubricas);
         Object.assign(state, parsed);
-      } catch(_) { showError('Não foi possível carregar os dados do embed.'); }
+      } catch(_) { showError(t('embed_err')); }
     }
     document.getElementById('app').classList.add('view-mode');
   }
 
   /* ══════════════════════════════════════════════════════════
-     13. UTILITIES
+     14. UTILITIES
   ══════════════════════════════════════════════════════════ */
 
   function fmtBRL(n) { return new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(n||0); }
@@ -1239,7 +1511,6 @@
   function showError(msg) { document.getElementById('error-msg').textContent=msg; document.getElementById('error-banner').classList.remove('hidden'); }
   function syncHeaderText() { const t=document.getElementById('board-title'),d=document.getElementById('board-desc'); if(t&&t.innerText.trim()!==state.title) t.innerText=state.title; if(d&&d.innerText.trim()!==state.description) d.innerText=state.description; }
 
-  /* Base64 ↔ Unicode (handles special chars like ã, ç, é…) */
   function b64EncodeUnicode(str) { return btoa(unescape(encodeURIComponent(str))); }
   function b64DecodeUnicode(b64) { return decodeURIComponent(escape(atob(b64))); }
 
@@ -1253,8 +1524,12 @@
     loadFromURL();
     syncHeaderText();
     render();
+    applyStaticTranslations();
 
-    // 2. Wire up events
+    // 2. Wire up language button
+    document.getElementById('btn-lang').addEventListener('click', switchLang);
+
+    // 3. Wire up other events
     if (!IS_VIEW_MODE) {
       initInlineEdit();
       initTokenModal();
@@ -1266,8 +1541,8 @@
       document.getElementById('chk-all').addEventListener('change', function() { setAllAtivo(this.checked); });
       document.getElementById('group-by-select').addEventListener('change', function() { setState({ groupBy: this.value }); });
 
-      // 3. Sync with GitHub asynchronously (may update display)
-      loadFromGitHub(); // sempre carrega; PAT só necessário para salvar
+      // 4. Sync with GitHub asynchronously
+      loadFromGitHub();
     } else {
       setSyncStatus('synced', '');
       document.getElementById('sync-status').style.display = 'none';
