@@ -413,8 +413,8 @@
     {
       "descricao": "Passagem Aérea (Rodrigo Carreiro)",
       "descricao_en": "Flight Ticket (Rodrigo Carreiro)",
-      "fornecedor": "",
-      "fornecedor_en": "",
+      "fornecedor": "Gol Airlines",
+      "fornecedor_en": "Gol Airlines",
       "rubrica": "Passagens",
       "tipo": "Despesa",
       "parcelas": 1,
