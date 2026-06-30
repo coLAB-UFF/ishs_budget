@@ -567,8 +567,8 @@
     {
       "descricao": "Recursos PPGCOM",
       "descricao_en": "PPGCOM Support",
-      "fornecedor": "",
-      "fornecedor_en": "",
+      "fornecedor": "PPGCOM",
+      "fornecedor_en": "PPGCOM",
       "rubrica": "Outros",
       "tipo": "Receita",
       "parcelas": 1,
