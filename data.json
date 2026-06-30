@@ -616,7 +616,7 @@
       "rubrica": "Produção",
       "tipo": "Despesa",
       "parcelas": 1,
-      "valor": 2000,
+      "valor": 1500,
       "situacao": "Previsto",
       "ativo": true
     }
