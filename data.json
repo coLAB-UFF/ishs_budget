@@ -58,7 +58,7 @@
   "filtroTipo": "todos",
   "filtroSituacao": "todas",
   "groupBy": "rubrica",
-  "nextId": 59,
+  "nextId": 60,
   "entries": [
     {
       "descricao": "Edital de Apoio a Eventos",
@@ -603,6 +603,20 @@
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 500,
+      "situacao": "Previsto",
+      "ativo": true
+    },
+    {
+      "id": 59,
+      "data": "2026-06-30",
+      "descricao": "",
+      "descricao_en": "",
+      "fornecedor": "",
+      "fornecedor_en": "",
+      "rubrica": "Diárias Nacionais",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 0,
       "situacao": "Previsto",
       "ativo": true
     }
