@@ -617,7 +617,7 @@
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 1100,
-      "situacao": "Previsto",
+      "situacao": "Empenhado",
       "ativo": true
     },
     {
