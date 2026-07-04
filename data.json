@@ -319,7 +319,7 @@
       "fornecedor_en": "",
       "rubrica": "Produção",
       "tipo": "Despesa",
-      "parcelas": 2,
+      "parcelas": 1,
       "valor": 1317,
       "situacao": "Empenhado",
       "ativo": true,
