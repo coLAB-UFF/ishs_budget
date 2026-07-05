@@ -58,7 +58,7 @@
   "filtroTipo": "todos",
   "filtroSituacao": "todas",
   "groupBy": "rubrica",
-  "nextId": 62,
+  "nextId": 63,
   "entries": [
     {
       "descricao": "Edital de Apoio a Eventos",
@@ -593,8 +593,6 @@
       "data": "2026-06-27"
     },
     {
-      "id": 58,
-      "data": "2026-06-30",
       "descricao": "Translado",
       "descricao_en": "Transfer",
       "fornecedor": "",
@@ -604,11 +602,11 @@
       "parcelas": 1,
       "valor": 2000,
       "situacao": "Previsto",
-      "ativo": true
+      "ativo": true,
+      "id": 58,
+      "data": "2026-06-30"
     },
     {
-      "id": 59,
-      "data": "2026-06-30",
       "descricao": "Locação de Mesas e Cadeiras",
       "descricao_en": "Table and Chair Rental",
       "fornecedor": "",
@@ -618,11 +616,11 @@
       "parcelas": 1,
       "valor": 1100,
       "situacao": "Empenhado",
-      "ativo": true
+      "ativo": true,
+      "id": 59,
+      "data": "2026-06-30"
     },
     {
-      "id": 60,
-      "data": "2026-06-30",
       "descricao": "Camisetas",
       "descricao_en": "T-Shirts",
       "fornecedor": "",
@@ -632,11 +630,11 @@
       "parcelas": 1,
       "valor": 1999.5,
       "situacao": "Previsto",
-      "ativo": true
+      "ativo": true,
+      "id": 60,
+      "data": "2026-06-30"
     },
     {
-      "id": 61,
-      "data": "2026-07-01",
       "descricao": "Impressões",
       "descricao_en": "Printings",
       "fornecedor": "",
@@ -645,6 +643,22 @@
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 214,
+      "situacao": "Previsto",
+      "ativo": true,
+      "id": 61,
+      "data": "2026-07-01"
+    },
+    {
+      "id": 62,
+      "data": "2026-07-05",
+      "descricao": "",
+      "descricao_en": "",
+      "fornecedor": "",
+      "fornecedor_en": "",
+      "rubrica": "Diárias Nacionais",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 0,
       "situacao": "Previsto",
       "ativo": true
     }
