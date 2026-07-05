@@ -654,11 +654,11 @@
       "descricao": "Diárias (Daniel Kupermann)",
       "descricao_en": "Allowances (Daniel Kupermann)",
       "fornecedor": "Daniel Kupermann",
-      "fornecedor_en": "",
+      "fornecedor_en": "Daniel Kupermann",
       "rubrica": "Diárias Nacionais",
       "tipo": "Despesa",
       "parcelas": 1,
-      "valor": 0,
+      "valor": 380,
       "situacao": "Previsto",
       "ativo": true
     }
