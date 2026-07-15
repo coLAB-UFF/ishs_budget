@@ -531,7 +531,7 @@
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 7400,
-      "situacao": "Empenhado",
+      "situacao": "Efetuado",
       "ativo": true,
       "id": 53,
       "data": "2026-06-18"
