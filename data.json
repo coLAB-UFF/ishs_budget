@@ -140,7 +140,7 @@
       "parcelas": 1,
       "valor": 6478.6,
       "situacao": "Efetuado",
-      "ativo": false,
+      "ativo": true,
       "id": 6,
       "data": "2026-05-16"
     },
