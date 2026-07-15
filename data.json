@@ -58,7 +58,7 @@
   "filtroTipo": "todos",
   "filtroSituacao": "todas",
   "groupBy": "rubrica",
-  "nextId": 66,
+  "nextId": 67,
   "entries": [
     {
       "descricao": "Edital de Apoio a Eventos",
@@ -688,6 +688,20 @@
       "parcelas": 1,
       "valor": 876.84,
       "situacao": "Efetuado",
+      "ativo": true
+    },
+    {
+      "id": 66,
+      "data": "2026-07-15",
+      "descricao": "Camisetas",
+      "descricao_en": "T-Shirts",
+      "fornecedor": "",
+      "fornecedor_en": "",
+      "rubrica": "Diárias Nacionais",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 0,
+      "situacao": "Previsto",
       "ativo": true
     }
   ]
