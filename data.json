@@ -70,7 +70,7 @@
       "parcelas": 1,
       "valor": 69317.05,
       "situacao": "Efetuado",
-      "ativo": true,
+      "ativo": false,
       "id": 1,
       "data": "2026-05-13"
     },
@@ -84,7 +84,7 @@
       "parcelas": 1,
       "valor": 99648.44,
       "situacao": "Efetuado",
-      "ativo": true,
+      "ativo": false,
       "id": 2,
       "data": "2026-05-16"
     },
@@ -98,7 +98,7 @@
       "parcelas": 1,
       "valor": 5517.46,
       "situacao": "Previsto",
-      "ativo": true,
+      "ativo": false,
       "id": 3,
       "data": "2026-05-16"
     },
@@ -112,7 +112,7 @@
       "parcelas": 1,
       "valor": 10000,
       "situacao": "Efetuado",
-      "ativo": true,
+      "ativo": false,
       "id": 4,
       "data": "2026-05-16"
     },
@@ -126,7 +126,7 @@
       "parcelas": 1,
       "valor": 2500,
       "situacao": "Empenhado",
-      "ativo": true,
+      "ativo": false,
       "id": 5,
       "data": "2026-05-16"
     },
@@ -140,7 +140,7 @@
       "parcelas": 1,
       "valor": 6478.6,
       "situacao": "Efetuado",
-      "ativo": true,
+      "ativo": false,
       "id": 6,
       "data": "2026-05-16"
     },
@@ -154,7 +154,7 @@
       "parcelas": 1,
       "valor": 8486.4,
       "situacao": "Efetuado",
-      "ativo": true,
+      "ativo": false,
       "id": 7,
       "data": "2026-05-16"
     },
@@ -168,7 +168,7 @@
       "parcelas": 1,
       "valor": 729.07,
       "situacao": "Efetuado",
-      "ativo": true,
+      "ativo": false,
       "id": 8,
       "data": "2026-05-16"
     },
@@ -182,7 +182,7 @@
       "parcelas": 1,
       "valor": 3000,
       "situacao": "Efetuado",
-      "ativo": true,
+      "ativo": false,
       "id": 9,
       "data": "2026-05-16"
     },
@@ -196,7 +196,7 @@
       "parcelas": 1,
       "valor": 1162.6,
       "situacao": "Efetuado",
-      "ativo": true,
+      "ativo": false,
       "id": 10,
       "data": "2026-05-16"
     },
@@ -210,7 +210,7 @@
       "parcelas": 3,
       "valor": 380,
       "situacao": "Previsto",
-      "ativo": true,
+      "ativo": false,
       "id": 12,
       "data": "2026-05-16"
     },
@@ -224,7 +224,7 @@
       "parcelas": 3,
       "valor": 380,
       "situacao": "Previsto",
-      "ativo": true,
+      "ativo": false,
       "id": 17,
       "data": "2026-05-16"
     },
@@ -238,7 +238,7 @@
       "parcelas": 1,
       "valor": 675.8,
       "situacao": "Efetuado",
-      "ativo": true,
+      "ativo": false,
       "id": 18,
       "data": "2026-05-16"
     },
@@ -252,7 +252,7 @@
       "parcelas": 1,
       "valor": 1327.17,
       "situacao": "Efetuado",
-      "ativo": true,
+      "ativo": false,
       "id": 20,
       "data": "2026-05-16"
     },
@@ -266,7 +266,7 @@
       "parcelas": 1,
       "valor": 38300,
       "situacao": "Efetuado",
-      "ativo": true,
+      "ativo": false,
       "id": 22,
       "data": "2026-05-17"
     },
@@ -280,7 +280,7 @@
       "parcelas": 1,
       "valor": 22072,
       "situacao": "Efetuado",
-      "ativo": true,
+      "ativo": false,
       "id": 23,
       "data": "2026-05-17"
     },
@@ -294,7 +294,7 @@
       "parcelas": 1,
       "valor": 6095.77,
       "situacao": "Efetuado",
-      "ativo": true,
+      "ativo": false,
       "id": 26,
       "data": "2026-05-17"
     },
@@ -308,7 +308,7 @@
       "parcelas": 1,
       "valor": 5775,
       "situacao": "Efetuado",
-      "ativo": true,
+      "ativo": false,
       "id": 29,
       "data": "2026-05-20"
     },
@@ -322,7 +322,7 @@
       "parcelas": 1,
       "valor": 300,
       "situacao": "Efetuado",
-      "ativo": true,
+      "ativo": false,
       "id": 30,
       "data": "2026-05-20"
     },
@@ -336,7 +336,7 @@
       "parcelas": 3,
       "valor": 380,
       "situacao": "Previsto",
-      "ativo": true,
+      "ativo": false,
       "id": 31,
       "data": "2026-05-21"
     },
@@ -350,7 +350,7 @@
       "parcelas": 1,
       "valor": 38841.2,
       "situacao": "Efetuado",
-      "ativo": true,
+      "ativo": false,
       "id": 34,
       "data": "2026-05-27"
     },
@@ -364,7 +364,7 @@
       "parcelas": 1,
       "valor": 571.04,
       "situacao": "Efetuado",
-      "ativo": true,
+      "ativo": false,
       "id": 35,
       "data": "2026-05-27"
     },
@@ -392,7 +392,7 @@
       "parcelas": 1,
       "valor": 7200,
       "situacao": "Efetuado",
-      "ativo": true,
+      "ativo": false,
       "id": 39,
       "data": "2026-06-16"
     },
@@ -406,7 +406,7 @@
       "parcelas": 1,
       "valor": 827.43,
       "situacao": "Efetuado",
-      "ativo": true,
+      "ativo": false,
       "id": 41,
       "data": "2026-06-16"
     },
@@ -420,7 +420,7 @@
       "parcelas": 1,
       "valor": 2235,
       "situacao": "Previsto",
-      "ativo": true,
+      "ativo": false,
       "id": 42,
       "data": "2026-06-16"
     },
@@ -434,7 +434,7 @@
       "parcelas": 4,
       "valor": 380,
       "situacao": "Previsto",
-      "ativo": true,
+      "ativo": false,
       "id": 43,
       "data": "2026-06-16"
     },
@@ -448,7 +448,7 @@
       "parcelas": 2,
       "valor": 380,
       "situacao": "Previsto",
-      "ativo": true,
+      "ativo": false,
       "id": 44,
       "data": "2026-06-16"
     },
@@ -462,7 +462,7 @@
       "parcelas": 1,
       "valor": 380,
       "situacao": "Previsto",
-      "ativo": true,
+      "ativo": false,
       "id": 46,
       "data": "2026-06-16"
     },
@@ -476,7 +476,7 @@
       "parcelas": 1,
       "valor": 0,
       "situacao": "Efetuado",
-      "ativo": true,
+      "ativo": false,
       "id": 47,
       "data": "2026-06-17"
     },
@@ -490,7 +490,7 @@
       "parcelas": 1,
       "valor": 2500,
       "situacao": "Empenhado",
-      "ativo": true,
+      "ativo": false,
       "id": 48,
       "data": "2026-06-17"
     },
@@ -504,7 +504,7 @@
       "parcelas": 1,
       "valor": 12000,
       "situacao": "Previsto",
-      "ativo": true,
+      "ativo": false,
       "id": 51,
       "data": "2026-06-18"
     },
@@ -518,7 +518,7 @@
       "parcelas": 11,
       "valor": 88,
       "situacao": "Efetuado",
-      "ativo": true,
+      "ativo": false,
       "id": 52,
       "data": "2026-06-18"
     },
@@ -532,7 +532,7 @@
       "parcelas": 1,
       "valor": 7400,
       "situacao": "Efetuado",
-      "ativo": true,
+      "ativo": false,
       "id": 53,
       "data": "2026-06-18"
     },
@@ -546,7 +546,7 @@
       "parcelas": 1,
       "valor": 1000,
       "situacao": "Previsto",
-      "ativo": true,
+      "ativo": false,
       "id": 54,
       "data": "2026-06-18"
     },
@@ -560,7 +560,7 @@
       "parcelas": 1,
       "valor": 10000,
       "situacao": "Efetuado",
-      "ativo": true,
+      "ativo": false,
       "id": 55,
       "data": "2026-06-21"
     },
@@ -574,7 +574,7 @@
       "parcelas": 1,
       "valor": 7200,
       "situacao": "Empenhado",
-      "ativo": true,
+      "ativo": false,
       "id": 57,
       "data": "2026-06-27"
     },
@@ -588,7 +588,7 @@
       "parcelas": 1,
       "valor": 2000,
       "situacao": "Efetuado",
-      "ativo": true,
+      "ativo": false,
       "id": 58,
       "data": "2026-06-30"
     },
@@ -602,7 +602,7 @@
       "parcelas": 1,
       "valor": 1100,
       "situacao": "Empenhado",
-      "ativo": true,
+      "ativo": false,
       "id": 59,
       "data": "2026-06-30"
     },
@@ -616,7 +616,7 @@
       "parcelas": 1,
       "valor": 1999.5,
       "situacao": "Previsto",
-      "ativo": true,
+      "ativo": false,
       "id": 60,
       "data": "2026-06-30"
     },
@@ -630,7 +630,7 @@
       "parcelas": 1,
       "valor": 214,
       "situacao": "Previsto",
-      "ativo": true,
+      "ativo": false,
       "id": 61,
       "data": "2026-07-01"
     },
@@ -644,7 +644,7 @@
       "parcelas": 1,
       "valor": 380,
       "situacao": "Previsto",
-      "ativo": true,
+      "ativo": false,
       "id": 62,
       "data": "2026-07-05"
     },
@@ -660,7 +660,7 @@
       "parcelas": 1,
       "valor": 1017,
       "situacao": "Efetuado",
-      "ativo": true
+      "ativo": false
     },
     {
       "id": 64,
@@ -674,7 +674,7 @@
       "parcelas": 1,
       "valor": 296,
       "situacao": "Efetuado",
-      "ativo": true
+      "ativo": false
     }
   ]
 }
