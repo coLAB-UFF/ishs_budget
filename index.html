@@ -101,6 +101,7 @@
     .col-desc{min-width:160px;}
     .col-forn{min-width:140px;}
     .col-rubr{min-width:170px;}
+    .col-fonte{min-width:140px;}
     .col-tipo{width:106px;}
     .col-parc{width:80px;text-align:center;}
     .col-valor{width:120px;text-align:right;}
@@ -219,7 +220,7 @@
 
     /* ── View mode ───────────────────────────────────────────── */
     .app.view-mode .cell-input,.app.view-mode .cell-select{pointer-events:none;-webkit-appearance:none;appearance:none;border:none;background:transparent;cursor:default;}
-    .app.view-mode .btn-delete-row,.app.view-mode #btn-add-row,.app.view-mode #btn-situacao,.app.view-mode #btn-rubrica,.app.view-mode #btn-embed,.app.view-mode #group-by-wrap,.app.view-mode .btn-token,.app.view-mode .btn-lang{display:none !important;}
+    .app.view-mode .btn-delete-row,.app.view-mode #btn-add-row,.app.view-mode #btn-situacao,.app.view-mode #btn-rubrica,.app.view-mode #btn-fonte,.app.view-mode #btn-embed,.app.view-mode #group-by-wrap,.app.view-mode .btn-token,.app.view-mode .btn-lang{display:none !important;}
     .app.view-mode [contenteditable]{pointer-events:none;outline:none !important;border-color:transparent !important;cursor:default;}
     .app.view-mode .col-chk,.app.view-mode .col-drag{display:none;}
   </style>
@@ -256,6 +257,7 @@
     <div class="filter-group" id="situacao-filters"></div>
     <button id="btn-situacao" class="btn-secondary" data-i18n="btn_sit">⚙ Situações</button>
     <button id="btn-rubrica"  class="btn-secondary" data-i18n="btn_rubr">⚙ Rubricas</button>
+    <button id="btn-fonte"    class="btn-secondary" data-i18n="btn_fonte">⚙ Fontes</button>
     <div class="toolbar-sep"></div>
     <div id="group-by-wrap" style="display:flex;align-items:center;gap:6px;">
       <span class="filter-label" data-i18n="lbl_group">Agrupar:</span>
@@ -265,6 +267,7 @@
         <option value="rubrica"  data-i18n="grp_rubrica">Rubrica</option>
         <option value="tipo"     data-i18n="grp_tipo">Tipo</option>
         <option value="situacao" data-i18n="grp_situacao">Situação</option>
+        <option value="fonte"    data-i18n="grp_fonte">Fonte</option>
       </select>
     </div>
     <div class="toolbar-spacer"></div>
@@ -283,6 +286,7 @@
           <th class="col-desc"    data-i18n="col_desc">Descrição</th>
           <th class="col-forn"    data-i18n="col_forn">Fornecedor</th>
           <th class="col-rubr"    data-i18n="col_rubr">Rubrica</th>
+          <th class="col-fonte"   data-i18n="col_fonte">Fonte</th>
           <th class="col-tipo"    data-i18n="col_tipo">Tipo</th>
           <th class="col-parc th-center"  data-i18n="col_parc">Parcelas</th>
           <th class="col-valor th-right"  data-i18n="col_valor">Valor (R$)</th>
@@ -294,7 +298,7 @@
       <tbody id="table-body"></tbody>
       <tfoot>
         <tr>
-          <td colspan="10" class="saldo-label-cell">
+          <td colspan="11" class="saldo-label-cell">
             <span class="saldo-title" data-i18n="saldo">SALDO</span>
             <span class="saldo-sub">↑ <span data-i18n="receitas">Receitas</span>: <strong id="saldo-receitas">R$ 0,00</strong></span>
             <span class="saldo-sub">↓ <span data-i18n="despesas">Despesas</span>: <strong id="saldo-despesas">R$ 0,00</strong></span>
@@ -370,6 +374,22 @@
     </div>
   </div>
 
+  <!-- Fonte Modal -->
+  <div id="fonte-modal" class="modal-overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button class="modal-close" id="fonte-modal-close">&times;</button>
+      <h2 data-i18n="modal_fonte_title">Gerenciar Fontes</h2>
+      <div class="sit-list" id="fonte-list"></div>
+      <div class="sit-add-row">
+        <span class="lang-sm">PT</span>
+        <input type="text" id="nova-fonte-pt" placeholder="Nova fonte…"    maxlength="60">
+        <span class="lang-sm">EN</span>
+        <input type="text" id="nova-fonte-en" placeholder="New source…"    maxlength="60">
+        <button id="btn-add-fonte" class="btn-primary" data-i18n="btn_add_fonte" style="flex-shrink:0">Adicionar</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Embed Modal -->
   <div id="embed-modal" class="modal-overlay hidden" role="dialog" aria-modal="true">
     <div class="modal-box" style="width:min(520px,95vw)">
@@ -416,12 +436,12 @@
 
   const STRINGS = {
     pt: {
-      col_date:'Data', col_desc:'Descrição', col_forn:'Fornecedor', col_rubr:'Rubrica',
+      col_date:'Data', col_desc:'Descrição', col_forn:'Fornecedor', col_rubr:'Rubrica', col_fonte:'Fonte',
       col_tipo:'Tipo', col_parc:'Parcelas', col_valor:'Valor (R$)', col_sub:'Subtotal',
       col_sit:'Situação', lbl_tipo:'Tipo:', lbl_sit:'Situação:', lbl_group:'Agrupar:',
-      grp_none:'Nenhum', grp_data:'Data ↑', grp_rubrica:'Rubrica', grp_tipo:'Tipo', grp_situacao:'Situação',
+      grp_none:'Nenhum', grp_data:'Data ↑', grp_rubrica:'Rubrica', grp_tipo:'Tipo', grp_situacao:'Situação', grp_fonte:'Fonte',
       chip_all:'Todos', chip_allf:'Todas', chip_rev:'Receita', chip_exp:'Despesa',
-      btn_sit:'⚙ Situações', btn_rubr:'⚙ Rubricas', btn_embed:'</> Incorporar',
+      btn_sit:'⚙ Situações', btn_rubr:'⚙ Rubricas', btn_fonte:'⚙ Fontes', btn_embed:'</> Incorporar',
       btn_add:'+ Adicionar Linha', btn_copy:'Copiar Código',
       saldo:'SALDO', receitas:'Receitas', despesas:'Despesas',
       ph_desc:'Descrição', ph_forn:'Fornecedor',
@@ -445,6 +465,9 @@
       btn_clear:'Remover Token', btn_save_tok:'Salvar e Sincronizar',
       btn_add_sit:'Adicionar', no_sit:'Nenhuma situação.',
       btn_add_rubr:'Adicionar', no_rubr:'Nenhuma rubrica.',
+      btn_add_fonte:'Adicionar', no_fonte:'Nenhuma fonte.',
+      modal_fonte_title:'Gerenciar Fontes',
+      ph_nova_fonte:'Nova fonte…', ph_nova_fonte_en:'Tradução em inglês…',
       embed_intro:'Gere um iframe estático e somente leitura desta planilha:',
       embed_w:'Largura (px)', embed_h:'Altura (px)', embed_url:'Tamanho da URL:', embed_chars:'caracteres',
       empty_view:'Nenhuma entrada registrada.',
@@ -464,12 +487,12 @@
       embed_err:'Não foi possível carregar os dados do embed.', gh_no_token:'Token não configurado',
     },
     en: {
-      col_date:'Date', col_desc:'Description', col_forn:'Supplier', col_rubr:'Category',
+      col_date:'Date', col_desc:'Description', col_forn:'Supplier', col_rubr:'Category', col_fonte:'Source',
       col_tipo:'Type', col_parc:'Installments', col_valor:'Amount (R$)', col_sub:'Subtotal',
       col_sit:'Status', lbl_tipo:'Type:', lbl_sit:'Status:', lbl_group:'Group by:',
-      grp_none:'None', grp_data:'Date ↑', grp_rubrica:'Category', grp_tipo:'Type', grp_situacao:'Status',
+      grp_none:'None', grp_data:'Date ↑', grp_rubrica:'Category', grp_tipo:'Type', grp_situacao:'Status', grp_fonte:'Source',
       chip_all:'All', chip_allf:'All', chip_rev:'Revenue', chip_exp:'Expense',
-      btn_sit:'⚙ Statuses', btn_rubr:'⚙ Categories', btn_embed:'</> Embed',
+      btn_sit:'⚙ Statuses', btn_rubr:'⚙ Categories', btn_fonte:'⚙ Sources', btn_embed:'</> Embed',
       btn_add:'+ Add Row', btn_copy:'Copy Code',
       saldo:'BALANCE', receitas:'Revenue', despesas:'Expenses',
       ph_desc:'Description', ph_forn:'Supplier',
@@ -493,6 +516,9 @@
       btn_clear:'Remove Token', btn_save_tok:'Save and Sync',
       btn_add_sit:'Add', no_sit:'No statuses.',
       btn_add_rubr:'Add', no_rubr:'No categories.',
+      btn_add_fonte:'Add', no_fonte:'No sources.',
+      modal_fonte_title:'Manage Sources',
+      ph_nova_fonte:'New source…', ph_nova_fonte_en:'Portuguese name…',
       embed_intro:'Generate a static, read-only iframe of this spreadsheet:',
       embed_w:'Width (px)', embed_h:'Height (px)', embed_url:'URL size:', embed_chars:'characters',
       empty_view:'No entries recorded.',
@@ -514,8 +540,9 @@
   };
 
   function t(key) { return (STRINGS[_lang]||STRINGS.pt)[key] ?? STRINGS.pt[key] ?? key; }
-  function sitLabel(s) { return (_lang==='en' && s.en) ? s.en : s.pt; }
-  function rubrLabel(r) { return (_lang==='en' && r.en) ? r.en : r.pt; }
+  function sitLabel(s)   { return (_lang==='en' && s.en) ? s.en : s.pt; }
+  function rubrLabel(r)  { return (_lang==='en' && r.en) ? r.en : r.pt; }
+  function fonteLabel(f) { return (_lang==='en' && f.en) ? f.en : f.pt; }
 
   /* Update all data-i18n elements + header visibility */
   function applyStaticTranslations() {
@@ -526,8 +553,10 @@
     // Placeholders for modal add-rows
     const nSPt=document.getElementById('nova-sit-pt'), nSEn=document.getElementById('nova-sit-en');
     const nRPt=document.getElementById('nova-rubr-pt'), nREn=document.getElementById('nova-rubr-en');
+    const nFPt=document.getElementById('nova-fonte-pt'), nFEn=document.getElementById('nova-fonte-en');
     if(nSPt) nSPt.placeholder=t('ph_nova_sit'); if(nSEn) nSEn.placeholder=t('ph_nova_sit_en');
     if(nRPt) nRPt.placeholder=t('ph_nova_rubr'); if(nREn) nREn.placeholder=t('ph_nova_rubr_en');
+    if(nFPt) nFPt.placeholder=t('ph_nova_fonte'); if(nFEn) nFEn.placeholder=t('ph_nova_fonte_en');
 
     // btn-lang: show what you switch TO
     const btnL=document.getElementById('btn-lang');
@@ -585,6 +614,11 @@
     {pt:'Papelaria e Impressão',en:'Stationery & Printing'},{pt:'Alimentação',en:'Meals'},
     {pt:'Tradução Simultânea',en:'Simultaneous Translation'},{pt:'Outros',en:'Other'},
   ];
+  const DEFAULT_FONTES = [
+    {pt:'FAPERJ',            en:'FAPERJ'},
+    {pt:'ISHS Inscrições',   en:'ISHS Subscriptions'},
+  ];
+
   const SITUACAO_EN={'Previsto':'Planned','Empenhado':'Committed','Efetuado':'Paid'};
   const RUBRICA_EN={'Diárias Nacionais':'Domestic Per Diem','Diárias Internacionais':'International Per Diem','Passagens':'Travel','Hospedagem':'Accommodation','Papelaria e Impressão':'Stationery & Printing','Alimentação':'Meals','Tradução Simultânea':'Simultaneous Translation','Outros':'Other'};
 
@@ -596,6 +630,7 @@
     description_en:'Financial planning for the ISHS event | coLAB-UFF',
     situacoes: DEFAULT_SITUACOES.map(s=>({...s})),
     rubricas:  DEFAULT_RUBRICAS.map(r=>({...r})),
+    fontes:    DEFAULT_FONTES.map(f=>({...f})),
     filtroTipo:'todos', filtroSituacao:'todas', groupBy:'none',
     nextId:1, entries:[]
   };
@@ -619,10 +654,17 @@
     return r.map(x=>typeof x==='object'?{pt:x.pt||'',en:x.en||''}:{pt:String(x),en:''});
   }
 
+  function migrateFontes(f) {
+    if (!Array.isArray(f)||!f.length) return DEFAULT_FONTES.map(x=>({...x}));
+    if (typeof f[0]==='string') return f.map(pt=>({pt,en:pt}));
+    return f.map(x=>typeof x==='object'?{pt:x.pt||'',en:x.en||''}:{pt:String(x),en:''});
+  }
+
   function normalizeEntry(e) {
     return {
       descricao:'',descricao_en:'',fornecedor:'',fornecedor_en:'',
       rubrica:state.rubricas[0]?.pt||'Outros',
+      fonte:'',
       tipo:'Despesa',parcelas:1,valor:0,
       situacao:DEFAULT_SITUACOES[0].pt,ativo:true,...e
     };
@@ -635,6 +677,7 @@
       p.entries=(p.entries||[]).map(normalizeEntry);
       if(p.situacoes) p.situacoes=migrateSituacoes(p.situacoes);
       p.rubricas=migrateRubricas(p.rubricas);
+      p.fontes=migrateFontes(p.fontes);
       Object.assign(state,p);
     } catch(_){}
   }
@@ -644,7 +687,7 @@
 
   function addEntry() {
     const today=new Date().toISOString().split('T')[0];
-    const entry={id:state.nextId,data:today,descricao:'',descricao_en:'',fornecedor:'',fornecedor_en:'',rubrica:state.rubricas[0]?.pt||'Outros',tipo:'Despesa',parcelas:1,valor:0,situacao:state.situacoes[0]?.pt||'Previsto',ativo:true};
+    const entry={id:state.nextId,data:today,descricao:'',descricao_en:'',fornecedor:'',fornecedor_en:'',rubrica:state.rubricas[0]?.pt||'Outros',fonte:'',tipo:'Despesa',parcelas:1,valor:0,situacao:state.situacoes[0]?.pt||'Previsto',ativo:true};
     setState({nextId:state.nextId+1,entries:[...state.entries,entry]});
     setTimeout(()=>{const bc=document.querySelector(`.entry-row[data-id="${entry.id}"] .bil-cell`);if(bc)openBilCell(bc);},30);
   }
@@ -658,6 +701,10 @@
   function addRubrica(pt,en){if(!pt||state.rubricas.some(r=>r.pt===pt))return false;setState({rubricas:[...state.rubricas,{pt,en:en||''}]});return true;}
   function removeRubrica(pt){if(state.entries.some(e=>e.rubrica===pt))return false;setState({rubricas:state.rubricas.filter(r=>r.pt!==pt)});return true;}
   function updateRubricaEN(pt,en){const r=state.rubricas.find(r=>r.pt===pt);if(r){r.en=en;saveLS();scheduleSave();}}
+
+  function addFonte(pt,en){if(!pt||state.fontes.some(f=>f.pt===pt))return false;setState({fontes:[...state.fontes,{pt,en:en||''}]});return true;}
+  function removeFonte(pt){if(state.entries.some(e=>e.fonte===pt))return false;setState({fontes:state.fontes.filter(f=>f.pt!==pt)});return true;}
+  function updateFonteEN(pt,en){const f=state.fontes.find(f=>f.pt===pt);if(f){f.en=en;saveLS();scheduleSave();}}
 
   /* ── GitHub sync ──────────────────────────────────────────── */
 
@@ -673,6 +720,7 @@
       decoded.entries=(decoded.entries||[]).map(normalizeEntry);
       if(decoded.situacoes) decoded.situacoes=migrateSituacoes(decoded.situacoes);
       decoded.rubricas=migrateRubricas(decoded.rubricas);
+      decoded.fontes=migrateFontes(decoded.fontes);
       Object.assign(state,decoded); saveLS(); syncHeaderText(); render();
       setSyncStatus(getToken()?'synced':'notoken',getToken()?'':t('sync_readonly'));
     } catch(err){console.warn('GitHub load failed:',err.message);setSyncStatus('error',t('sync_err_load'));}
@@ -721,6 +769,7 @@
     const keyOf=e=>{
       if(gb==='data')     return e.data||'';
       if(gb==='rubrica')  { const r=state.rubricas.find(x=>x.pt===e.rubrica); return r?rubrLabel(r):(e.rubrica||''); }
+      if(gb==='fonte')    { const f=state.fontes.find(x=>x.pt===e.fonte); return f?fonteLabel(f):(e.fonte||'—'); }
       if(gb==='tipo')     return tipoLabel(e.tipo||'Despesa');
       if(gb==='situacao') { const s=state.situacoes.find(x=>x.pt===e.situacao); return s?sitLabel(s):(e.situacao||''); }
       return '';
@@ -759,13 +808,13 @@
     const tbody=document.getElementById('table-body'); tbody.innerHTML='';
     const filtered=getFiltered();
     if(!filtered.length){
-      const tr=el('tr'),td=el('td','empty-state-cell');td.colSpan=13;
+      const tr=el('tr'),td=el('td','empty-state-cell');td.colSpan=14;
       td.textContent=IS_VIEW_MODE?t('empty_view'):t('empty_edit');tr.appendChild(td);tbody.appendChild(tr);
     } else if(state.groupBy==='none'){
       filtered.forEach(e=>tbody.appendChild(buildRow(e)));
     } else {
       groupEntries(filtered).forEach(({label,entries:ge})=>{
-        const htr=el('tr','group-header-row'),htd=el('td');htd.colSpan=13;htd.textContent=label;
+        const htr=el('tr','group-header-row'),htd=el('td');htd.colSpan=14;htd.textContent=label;
         htr.appendChild(htd);tbody.appendChild(htr);ge.forEach(e=>tbody.appendChild(buildRow(e)));
       });
     }
@@ -816,6 +865,14 @@
     state.rubricas.forEach(r=>{const o=el('option');o.value=r.pt;o.textContent=rubrLabel(r);if(r.pt===entry.rubrica)o.selected=true;selRubr.appendChild(o);});
     if(!IS_VIEW_MODE)selRubr.addEventListener('change',()=>updateField(entry.id,'rubrica',selRubr.value));
     tdRubr.appendChild(selRubr);tr.appendChild(tdRubr);
+
+    // Fonte
+    const tdFonte=el('td','col-fonte'),selFonte=el('select','cell-select');
+    selFonte.dataset.eid=entry.id;selFonte.dataset.field='fonte';
+    const optFonteEmpty=el('option');optFonteEmpty.value='';optFonteEmpty.textContent='—';if(!entry.fonte)optFonteEmpty.selected=true;selFonte.appendChild(optFonteEmpty);
+    state.fontes.forEach(f=>{const o=el('option');o.value=f.pt;o.textContent=fonteLabel(f);if(f.pt===entry.fonte)o.selected=true;selFonte.appendChild(o);});
+    if(!IS_VIEW_MODE)selFonte.addEventListener('change',()=>updateField(entry.id,'fonte',selFonte.value));
+    tdFonte.appendChild(selFonte);tr.appendChild(tdFonte);
 
     // Tipo (translated labels, stored PT value)
     const tdT=el('td','col-tipo'),selT=el('select','cell-select '+(isR?'sel-receita':'sel-despesa'));
@@ -997,6 +1054,32 @@
     niEn.addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('btn-add-rubrica').click();});
   }
 
+  /* ── Fonte modal ──────────────────────────────────────────── */
+
+  function openFonteModal(){renderFonteList();document.getElementById('fonte-modal').classList.remove('hidden');document.getElementById('nova-fonte-pt').focus();}
+  function closeFonteModal(){document.getElementById('fonte-modal').classList.add('hidden');document.getElementById('nova-fonte-pt').value='';document.getElementById('nova-fonte-en').value='';}
+  function renderFonteList(){
+    const list=document.getElementById('fonte-list');list.innerHTML='';
+    if(!state.fontes.length){const p=el('p');p.style.cssText='color:var(--text-muted);font-size:.82rem';p.textContent=t('no_fonte');list.appendChild(p);return;}
+    state.fontes.forEach(fonte=>{
+      const inUse=state.entries.some(e=>e.fonte===fonte.pt);
+      const div=el('div','sit-item');
+      const ptW=el('div','sit-pt'),ptB=el('span','lang-sm');ptB.textContent='PT';const ptN=el('span','sit-item-name');ptN.textContent=fonte.pt;ptW.appendChild(ptB);ptW.appendChild(ptN);
+      const enW=el('div','sit-en'),enB=el('span','lang-sm');enB.textContent='EN';const enI=el('input');enI.className='sit-name-inp';enI.type='text';enI.value=fonte.en||'';enI.placeholder='English…';enI.addEventListener('change',()=>updateFonteEN(fonte.pt,enI.value));enW.appendChild(enB);enW.appendChild(enI);
+      const btn=el('button','sit-item-del');btn.textContent='✕';btn.disabled=inUse;btn.title=inUse?t('in_use_hint'):'Remover';btn.addEventListener('click',()=>{if(!removeFonte(fonte.pt)){showToast(t('toast_in_use'));return;}renderFonteList();});
+      div.appendChild(ptW);div.appendChild(enW);div.appendChild(btn);list.appendChild(div);
+    });
+  }
+  function initFonteModal(){
+    document.getElementById('btn-fonte').addEventListener('click',openFonteModal);
+    document.getElementById('fonte-modal-close').addEventListener('click',closeFonteModal);
+    document.getElementById('fonte-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeFonteModal();});
+    const niPt=document.getElementById('nova-fonte-pt'),niEn=document.getElementById('nova-fonte-en');
+    document.getElementById('btn-add-fonte').addEventListener('click',()=>{const pt=niPt.value.trim(),en=niEn.value.trim();if(!pt)return;if(!addFonte(pt,en)){showToast(t('toast_exists'));return;}niPt.value='';niEn.value='';renderFonteList();niPt.focus();});
+    niPt.addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('btn-add-fonte').click();});
+    niEn.addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('btn-add-fonte').click();});
+  }
+
   /* ── Inline header editing ────────────────────────────────── */
 
   function initInlineEdit(){
@@ -1047,7 +1130,7 @@
   function loadFromURL(){
     const p=new URLSearchParams(window.location.search);if(p.get('view')!=='1')return;
     const raw=p.get('data');
-    if(raw){try{const parsed=JSON.parse(LZString.decompressFromEncodedURIComponent(raw));parsed.entries=(parsed.entries||[]).map(normalizeEntry);if(parsed.situacoes)parsed.situacoes=migrateSituacoes(parsed.situacoes);parsed.rubricas=migrateRubricas(parsed.rubricas);Object.assign(state,parsed);}catch(_){showError(t('embed_err'));}}
+    if(raw){try{const parsed=JSON.parse(LZString.decompressFromEncodedURIComponent(raw));parsed.entries=(parsed.entries||[]).map(normalizeEntry);if(parsed.situacoes)parsed.situacoes=migrateSituacoes(parsed.situacoes);parsed.rubricas=migrateRubricas(parsed.rubricas);parsed.fontes=migrateFontes(parsed.fontes);Object.assign(state,parsed);}catch(_){showError(t('embed_err'));}}
     document.getElementById('app').classList.add('view-mode');
   }
 
@@ -1085,6 +1168,7 @@
       initTokenModal();
       initSituacaoModal();
       initRubricaModal();
+      initFonteModal();
       initEmbed();
       initDragAndDrop();
       document.getElementById('btn-add-row').addEventListener('click',addEntry);
