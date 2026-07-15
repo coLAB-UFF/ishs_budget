@@ -383,20 +383,6 @@
       "data": "2026-05-30"
     },
     {
-      "descricao": "Brindes (Canetas + Blocos)",
-      "descricao_en": "Giveaways (Pens + Notebooks)",
-      "fornecedor": "Alves Nascimento",
-      "fornecedor_en": "Alves Nascimento",
-      "rubrica": "Produção",
-      "tipo": "Despesa",
-      "parcelas": 1,
-      "valor": 2500,
-      "situacao": "Efetuado",
-      "ativo": true,
-      "id": 38,
-      "data": "2026-05-30"
-    },
-    {
       "descricao": "Coquetel 50%",
       "descricao_en": "Cocktail 50%",
       "fornecedor": "Gustô Gastronomia - Bistrô Reserva",
