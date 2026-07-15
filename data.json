@@ -715,7 +715,7 @@
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 530.4,
-      "situacao": "Previsto",
+      "situacao": "Efetuado",
       "ativo": true
     }
   ]
