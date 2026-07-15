@@ -291,7 +291,7 @@
       "parcelas": 1,
       "valor": 38300,
       "situacao": "Efetuado",
-      "ativo": false,
+      "ativo": true,
       "id": 22,
       "data": "2026-05-17"
     },
@@ -381,7 +381,7 @@
       "parcelas": 1,
       "valor": 38841.2,
       "situacao": "Efetuado",
-      "ativo": false,
+      "ativo": true,
       "id": 34,
       "data": "2026-05-27"
     },
