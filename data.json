@@ -602,7 +602,7 @@
       "parcelas": 1,
       "valor": 550,
       "situacao": "Efetuado",
-      "ativo": false,
+      "ativo": true,
       "id": 59,
       "data": "2026-07-10"
     },
