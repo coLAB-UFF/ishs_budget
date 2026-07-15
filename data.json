@@ -349,7 +349,7 @@
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 38841.2,
-      "situacao": "Empenhado",
+      "situacao": "Efetuado",
       "ativo": true,
       "id": 34,
       "data": "2026-05-27"
