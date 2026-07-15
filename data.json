@@ -278,7 +278,7 @@
       "rubrica": "Tradução Simultânea",
       "tipo": "Despesa",
       "parcelas": 1,
-      "valor": 23170,
+      "valor": 22072,
       "situacao": "Empenhado",
       "ativo": true,
       "id": 23,
@@ -649,8 +649,6 @@
       "data": "2026-07-01"
     },
     {
-      "id": 62,
-      "data": "2026-07-05",
       "descricao": "Diárias (Daniel Kupermann)",
       "descricao_en": "Allowances (Daniel Kupermann)",
       "fornecedor": "Daniel Kupermann",
@@ -660,7 +658,9 @@
       "parcelas": 1,
       "valor": 380,
       "situacao": "Previsto",
-      "ativo": true
+      "ativo": true,
+      "id": 62,
+      "data": "2026-07-05"
     }
   ]
 }
