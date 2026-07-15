@@ -697,10 +697,10 @@
       "descricao_en": "T-Shirts",
       "fornecedor": "SAN BENIAN CONFECCOES LTDA",
       "fornecedor_en": "SAN BENIAN CONFECCOES LTDA",
-      "rubrica": "Diárias Nacionais",
+      "rubrica": "Produção",
       "tipo": "Despesa",
       "parcelas": 1,
-      "valor": 0,
+      "valor": 0.01,
       "situacao": "Previsto",
       "ativo": true
     }
