@@ -674,7 +674,7 @@
       "parcelas": 1,
       "valor": 296,
       "situacao": "Efetuado",
-      "ativo": false
+      "ativo": true
     },
     {
       "id": 65,
