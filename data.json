@@ -252,7 +252,7 @@
       "parcelas": 1,
       "valor": 1327.17,
       "situacao": "Efetuado",
-      "ativo": false,
+      "ativo": true,
       "id": 20,
       "data": "2026-05-16"
     },
