@@ -601,7 +601,7 @@
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 2000,
-      "situacao": "Previsto",
+      "situacao": "Efetuado",
       "ativo": true,
       "id": 58,
       "data": "2026-06-30"
