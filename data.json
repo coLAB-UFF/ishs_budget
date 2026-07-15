@@ -511,8 +511,8 @@
     {
       "descricao": "Zeladoria Alimentação (Quentinhas)",
       "descricao_en": "Building Maintenance (Food Services)",
-      "fornecedor": "",
-      "fornecedor_en": "",
+      "fornecedor": "Roberto Angelo da Silva",
+      "fornecedor_en": "Roberto Angelo da Silva",
       "rubrica": "Produção",
       "tipo": "Despesa",
       "parcelas": 11,
