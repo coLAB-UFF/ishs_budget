@@ -664,21 +664,6 @@
       "data": "2026-06-30"
     },
     {
-      "descricao": "Impressões",
-      "descricao_en": "Printings",
-      "fornecedor": "",
-      "fornecedor_en": "",
-      "rubrica": "Produção",
-      "fonte": "",
-      "tipo": "Despesa",
-      "parcelas": 1,
-      "valor": 214,
-      "situacao": "Previsto",
-      "ativo": false,
-      "id": 61,
-      "data": "2026-07-01"
-    },
-    {
       "descricao": "Diárias (Daniel Kupermann)",
       "descricao_en": "Allowances (Daniel Kupermann)",
       "fornecedor": "Daniel Kupermann",
