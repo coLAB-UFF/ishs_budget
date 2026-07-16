@@ -58,11 +58,15 @@
   "fontes": [
     {
       "pt": "FAPERJ",
-      "en": "FAPERJ"
+      "en": "FAPERJ Sponsorship"
     },
     {
       "pt": "ISHS Inscrições",
       "en": "ISHS Subscriptions"
+    },
+    {
+      "pt": "PPGCOM Patrocínio",
+      "en": "PPGCOM Sponsorship"
     }
   ],
   "filtroTipo": "todos",
