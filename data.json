@@ -67,6 +67,10 @@
     {
       "pt": "PPGCOM Patrocínio",
       "en": "PPGCOM Sponsorship"
+    },
+    {
+      "pt": "FAPERJ JCNE",
+      "en": "FAPERJ Young Scholar Fellowship"
     }
   ],
   "filtroTipo": "todos",
