@@ -76,7 +76,7 @@
   "filtroTipo": "todos",
   "filtroSituacao": "todas",
   "groupBy": "rubrica",
-  "nextId": 69,
+  "nextId": 70,
   "entries": [
     {
       "descricao": "Edital de Apoio a Eventos",
@@ -781,6 +781,21 @@
       "parcelas": 2,
       "valor": 380,
       "situacao": "Efetuado",
+      "ativo": true
+    },
+    {
+      "id": 69,
+      "data": "2026-07-16",
+      "descricao": "Impressora",
+      "descricao_en": "",
+      "fornecedor": "",
+      "fornecedor_en": "",
+      "rubrica": "Diárias Nacionais",
+      "fonte": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 0,
+      "situacao": "Previsto",
       "ativo": true
     }
   ]
