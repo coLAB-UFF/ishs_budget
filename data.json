@@ -105,8 +105,8 @@
       "data": "2026-05-16"
     },
     {
-      "descricao": "ISHS Inscrições Tardias (Fora do Sistema)",
-      "descricao_en": "ISHS Late Registration (Off the System)",
+      "descricao": "ISHS Inscrições Tardias (Fora da Plataforma)",
+      "descricao_en": "ISHS Late Registration (Off the Platform)",
       "fornecedor": "ISHS 2026",
       "fornecedor_en": "",
       "rubrica": "Outros",
