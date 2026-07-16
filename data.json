@@ -114,7 +114,7 @@
       "tipo": "Receita",
       "parcelas": 1,
       "valor": 690,
-      "situacao": "Previsto",
+      "situacao": "Efetuado",
       "ativo": false,
       "id": 3,
       "data": "2026-05-16"
