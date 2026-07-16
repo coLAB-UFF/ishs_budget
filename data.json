@@ -595,7 +595,7 @@
       "parcelas": 1,
       "valor": 10000,
       "situacao": "Efetuado",
-      "ativo": false,
+      "ativo": true,
       "id": 55,
       "data": "2026-06-21"
     },
