@@ -785,8 +785,8 @@
       "rubrica": "Diárias Nacionais",
       "fonte": "ISHS Inscrições",
       "tipo": "Despesa",
-      "parcelas": 1,
-      "valor": 760,
+      "parcelas": 2,
+      "valor": 380,
       "situacao": "Efetuado",
       "ativo": true
     }
