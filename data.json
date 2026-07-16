@@ -550,7 +550,7 @@
       "parcelas": 11,
       "valor": 88,
       "situacao": "Efetuado",
-      "ativo": false,
+      "ativo": true,
       "id": 52,
       "data": "2026-06-18"
     },
