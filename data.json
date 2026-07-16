@@ -476,21 +476,6 @@
       "data": "2026-06-16"
     },
     {
-      "descricao": "Diárias (Marcelo Zorzanelli)",
-      "descricao_en": "Allowances (Marcelo Zorzanelli)",
-      "fornecedor": "Marcelo Zorzanelli",
-      "fornecedor_en": "Marcelo Zorzanelli",
-      "rubrica": "Diárias Nacionais",
-      "fonte": "",
-      "tipo": "Despesa",
-      "parcelas": 2,
-      "valor": 380,
-      "situacao": "Previsto",
-      "ativo": false,
-      "id": 44,
-      "data": "2026-06-16"
-    },
-    {
       "descricao": "Diárias (Rodrigo Carreiro)",
       "descricao_en": "Allowances (Rodrigo Carreiro)",
       "fornecedor": "Rodrigo Carreiro",
