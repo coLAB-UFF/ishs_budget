@@ -68,7 +68,7 @@
   "filtroTipo": "todos",
   "filtroSituacao": "todas",
   "groupBy": "rubrica",
-  "nextId": 68,
+  "nextId": 69,
   "entries": [
     {
       "descricao": "Edital de Apoio a Eventos",
@@ -774,6 +774,21 @@
       "ativo": true,
       "id": 67,
       "data": "2026-07-15"
+    },
+    {
+      "id": 68,
+      "data": "2026-07-16",
+      "descricao": "Diárias (Sebastián Piracés)",
+      "descricao_en": "Allowances (Sebastián Piracés)",
+      "fornecedor": "Sebastián Piracés",
+      "fornecedor_en": "Sebastián Piracés",
+      "rubrica": "Diárias Nacionais",
+      "fonte": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 0,
+      "situacao": "Previsto",
+      "ativo": true
     }
   ]
 }
