@@ -538,7 +538,7 @@
       "tipo": "Receita",
       "parcelas": 1,
       "valor": 2999.1,
-      "situacao": "Previsto",
+      "situacao": "Efetuado",
       "ativo": true,
       "id": 51,
       "data": "2026-06-18"
