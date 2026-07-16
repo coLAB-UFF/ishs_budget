@@ -696,7 +696,7 @@
       "parcelas": 1,
       "valor": 380,
       "situacao": "Previsto",
-      "ativo": false,
+      "ativo": true,
       "id": 62,
       "data": "2026-07-05"
     },
