@@ -620,8 +620,8 @@
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 7200,
-      "situacao": "Empenhado",
-      "ativo": false,
+      "situacao": "Efetuado",
+      "ativo": true,
       "id": 57,
       "data": "2026-06-27"
     },
