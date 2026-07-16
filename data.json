@@ -367,7 +367,7 @@
       "rubrica": "Diárias Nacionais",
       "fonte": "",
       "tipo": "Despesa",
-      "parcelas": 3,
+      "parcelas": 5,
       "valor": 380,
       "situacao": "Previsto",
       "ativo": false,
