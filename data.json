@@ -539,7 +539,7 @@
       "parcelas": 1,
       "valor": 2999.1,
       "situacao": "Previsto",
-      "ativo": false,
+      "ativo": true,
       "id": 51,
       "data": "2026-06-18"
     },
