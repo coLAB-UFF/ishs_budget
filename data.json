@@ -508,15 +508,15 @@
     {
       "descricao": "Roda de Samba",
       "descricao_en": "Samba Show",
-      "fornecedor": "",
-      "fornecedor_en": "",
+      "fornecedor": "Luciano Azevedo da Silva",
+      "fornecedor_en": "Luciano Azevedo da Silva",
       "rubrica": "Alimentação",
       "fonte": "",
       "tipo": "Despesa",
       "parcelas": 1,
       "valor": 2500,
       "situacao": "Empenhado",
-      "ativo": false,
+      "ativo": true,
       "id": 48,
       "data": "2026-06-17"
     },
