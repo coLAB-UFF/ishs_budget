@@ -796,7 +796,7 @@
       "parcelas": 1,
       "valor": 0,
       "situacao": "Previsto",
-      "ativo": true
+      "ativo": false
     }
   ]
 }
