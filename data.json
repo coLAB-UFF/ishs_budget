@@ -497,8 +497,8 @@
     {
       "descricao": "Prêmio ISHS",
       "descricao_en": "Brazilian ISHS Award",
-      "fornecedor": "",
-      "fornecedor_en": "",
+      "fornecedor": "N/A",
+      "fornecedor_en": "N/A",
       "rubrica": "Produção",
       "fonte": "",
       "tipo": "Despesa",
