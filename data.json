@@ -149,7 +149,7 @@
       "parcelas": 1,
       "valor": 2500,
       "situacao": "Empenhado",
-      "ativo": false,
+      "ativo": true,
       "id": 5,
       "data": "2026-05-16"
     },
@@ -584,7 +584,7 @@
       "parcelas": 1,
       "valor": 1000,
       "situacao": "Previsto",
-      "ativo": false,
+      "ativo": true,
       "id": 54,
       "data": "2026-06-18"
     },
@@ -796,7 +796,7 @@
       "parcelas": 1,
       "valor": 1000,
       "situacao": "Previsto",
-      "ativo": false
+      "ativo": true
     },
     {
       "id": 71,
