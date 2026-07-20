@@ -76,7 +76,7 @@
   "filtroTipo": "todos",
   "filtroSituacao": "todas",
   "groupBy": "rubrica",
-  "nextId": 71,
+  "nextId": 72,
   "entries": [
     {
       "descricao": "Edital de Apoio a Eventos",
@@ -797,6 +797,21 @@
       "valor": 1000,
       "situacao": "Previsto",
       "ativo": false
+    },
+    {
+      "id": 71,
+      "data": "2026-07-20",
+      "descricao": "Event Producer Assistant",
+      "descricao_en": "Event Producer Assistant",
+      "fornecedor": "Natália Ayrosa",
+      "fornecedor_en": "Natália Ayrosa",
+      "rubrica": "Diárias Nacionais",
+      "fonte": "",
+      "tipo": "Despesa",
+      "parcelas": 1,
+      "valor": 0,
+      "situacao": "Previsto",
+      "ativo": true
     }
   ]
 }
