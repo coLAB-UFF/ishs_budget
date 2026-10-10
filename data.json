@@ -71,6 +71,10 @@
     {
       "pt": "FAPERJ JCNE",
       "en": "FAPERJ Young Scholar Fellowship"
+    },
+    {
+      "pt": "CNPq Universal",
+      "en": "CNPq Universal"
     }
   ],
   "filtroTipo": "todos",
