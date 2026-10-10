@@ -574,21 +574,6 @@
       "data": "2026-06-18"
     },
     {
-      "descricao": "Mídias Sociais",
-      "descricao_en": "Social Media",
-      "fornecedor": "",
-      "fornecedor_en": "",
-      "rubrica": "Produção",
-      "fonte": "",
-      "tipo": "Despesa",
-      "parcelas": 1,
-      "valor": 1000,
-      "situacao": "Previsto",
-      "ativo": true,
-      "id": 54,
-      "data": "2026-06-18"
-    },
-    {
       "descricao": "PPGCOM Patrocínio",
       "descricao_en": "PPGCOM Sponsorship",
       "fornecedor": "PPGCOM",
