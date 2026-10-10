@@ -514,21 +514,6 @@
       "data": "2026-06-17"
     },
     {
-      "descricao": "FAPERJ JCNE",
-      "descricao_en": "FAPERJ Young Scholar Fellowship",
-      "fornecedor": "Viktor Chagas",
-      "fornecedor_en": "Viktor Chagas",
-      "rubrica": "Outros",
-      "fonte": "FAPERJ JCNE",
-      "tipo": "Receita",
-      "parcelas": 1,
-      "valor": 1999,
-      "situacao": "Efetuado",
-      "ativo": true,
-      "id": 51,
-      "data": "2026-06-18"
-    },
-    {
       "descricao": "Zeladoria Alimentação (Quentinhas)",
       "descricao_en": "Building Maintenance (Food Services)",
       "fornecedor": "Roberto Angelo da Silva",
