@@ -139,21 +139,6 @@
       "data": "2026-05-16"
     },
     {
-      "descricao": "Design e Identidade Visual",
-      "descricao_en": "Designer",
-      "fornecedor": "Daniel Rios",
-      "fornecedor_en": "Daniel Rios",
-      "rubrica": "Produção",
-      "fonte": "",
-      "tipo": "Despesa",
-      "parcelas": 1,
-      "valor": 2500,
-      "situacao": "Empenhado",
-      "ativo": true,
-      "id": 5,
-      "data": "2026-05-16"
-    },
-    {
       "descricao": "Passagem Aérea (Raúl Pérez)",
       "descricao_en": "Flight Ticket (Raúl Pérez)",
       "fornecedor": "Copa Airlines",
