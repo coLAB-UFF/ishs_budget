@@ -132,7 +132,7 @@
       "fonte": "PPGCOM Patrocínio",
       "tipo": "Despesa",
       "parcelas": 1,
-      "valor": 10000,
+      "valor": 15000,
       "situacao": "Efetuado",
       "ativo": true,
       "id": 4,
@@ -754,8 +754,6 @@
       "data": "2026-07-15"
     },
     {
-      "id": 68,
-      "data": "2026-07-16",
       "descricao": "Diárias (Sebastián Piracés)",
       "descricao_en": "Allowances (Sebastián Piracés)",
       "fornecedor": "Sebastián Piracés",
@@ -766,11 +764,11 @@
       "parcelas": 2,
       "valor": 380,
       "situacao": "Efetuado",
-      "ativo": true
+      "ativo": true,
+      "id": 68,
+      "data": "2026-07-16"
     },
     {
-      "id": 69,
-      "data": "2026-07-16",
       "descricao": "Impressora HP Smart Tank",
       "descricao_en": "Printer HP Smart Tank",
       "fornecedor": "Mercado Livre / HP",
@@ -781,11 +779,11 @@
       "parcelas": 1,
       "valor": 764.1,
       "situacao": "Previsto",
-      "ativo": true
+      "ativo": true,
+      "id": 69,
+      "data": "2026-07-16"
     },
     {
-      "id": 70,
-      "data": "2026-07-16",
       "descricao": "Assistente de Produção",
       "descricao_en": "Event Producer Assistant",
       "fornecedor": "Thalita Santos",
@@ -796,11 +794,11 @@
       "parcelas": 1,
       "valor": 1000,
       "situacao": "Previsto",
-      "ativo": true
+      "ativo": true,
+      "id": 70,
+      "data": "2026-07-16"
     },
     {
-      "id": 71,
-      "data": "2026-07-20",
       "descricao": "Assistente de Produção",
       "descricao_en": "Event Producer Assistant",
       "fornecedor": "Natália Ayrosa",
@@ -811,7 +809,9 @@
       "parcelas": 1,
       "valor": 1000,
       "situacao": "Previsto",
-      "ativo": true
+      "ativo": true,
+      "id": 71,
+      "data": "2026-07-20"
     }
   ]
 }
