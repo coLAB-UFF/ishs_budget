@@ -75,7 +75,7 @@
   ],
   "filtroTipo": "todos",
   "filtroSituacao": "todas",
-  "groupBy": "rubrica",
+  "groupBy": "fonte",
   "nextId": 73,
   "entries": [
     {
@@ -769,8 +769,6 @@
       "data": "2026-07-20"
     },
     {
-      "id": 72,
-      "data": "2026-10-10",
       "descricao": "Camisetas",
       "descricao_en": "T-Shirts",
       "fornecedor": "SAN BENIAN CONFECCOES LTDA",
@@ -781,7 +779,9 @@
       "parcelas": 1,
       "valor": 800,
       "situacao": "Previsto",
-      "ativo": true
+      "ativo": true,
+      "id": 72,
+      "data": "2026-10-10"
     }
   ]
 }
