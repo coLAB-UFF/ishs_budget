@@ -777,9 +777,9 @@
       "fornecedor_en": "",
       "rubrica": "Diárias Nacionais",
       "fonte": "",
-      "tipo": "Despesa",
+      "tipo": "Receita",
       "parcelas": 1,
-      "valor": 0,
+      "valor": 2999.1,
       "situacao": "Previsto",
       "ativo": true
     }
