@@ -786,21 +786,6 @@
     {
       "descricao": "Assistente de Produção",
       "descricao_en": "Event Producer Assistant",
-      "fornecedor": "Thalita Santos",
-      "fornecedor_en": "Thalita Santos",
-      "rubrica": "Produção",
-      "fonte": "",
-      "tipo": "Despesa",
-      "parcelas": 1,
-      "valor": 1000,
-      "situacao": "Previsto",
-      "ativo": true,
-      "id": 70,
-      "data": "2026-07-16"
-    },
-    {
-      "descricao": "Assistente de Produção",
-      "descricao_en": "Event Producer Assistant",
       "fornecedor": "Natália Ayrosa",
       "fornecedor_en": "Natália Ayrosa",
       "rubrica": "Produção",
